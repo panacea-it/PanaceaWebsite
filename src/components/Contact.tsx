@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, useMotionValue, useTransform, useSpring, AnimatePresence, useInView } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Sparkles, AlertCircle, ArrowRight } from "lucide-react";
 import { trackContactFormSubmit } from "@/lib/gtag";
 import { marketingInterestForSlug, marketingServices } from "@/data/digitalMarketing";
@@ -147,19 +147,6 @@ export default function CreativeLightContact() {
     }));
   }, []);
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const textX = useSpring(useTransform(x, [-100, 100], [30, -30]), { stiffness: 100, damping: 20 });
-  const textY = useSpring(useTransform(y, [-100, 100], [30, -30]), { stiffness: 100, damping: 20 });
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { width, height, left, top } = e.currentTarget.getBoundingClientRect();
-    const mouseX = e.clientX - left;
-    const mouseY = e.clientY - top;
-    x.set((mouseX / width - 0.5) * 100);
-    y.set((mouseY / height - 0.5) * 100);
-  };
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     if (errors[e.target.name]) setErrors({ ...errors, [e.target.name]: "" });
@@ -213,31 +200,10 @@ export default function CreativeLightContact() {
   };
 
   return (
-    <section
-      onMouseMove={handleMouseMove}
-      className="relative min-h-screen flex items-start justify-center overflow-hidden bg-slate-50 pt-48 pb-20 px-4"
-    >
-      {/* --- BACKGROUND LAYERS (unchanged) --- */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_110%)]"></div>
-        <motion.div
-          animate={{ scale: [1, 1.1, 1], opacity: [0.5, 0.8, 0.5] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-blue-200/40 rounded-full blur-[100px]"
-        />
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.4, 0.7, 0.4] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-          className="absolute bottom-[-10%] left-[-5%] w-[700px] h-[700px] bg-purple-200/40 rounded-full blur-[100px]"
-        />
-        <motion.div style={{ x: textX, y: textY }} className="absolute top-10 w-full flex justify-center z-0">
-          <h1
-            className="text-[15vw] md:text-[12vw] font-black whitespace-nowrap leading-none tracking-tighter select-none"
-            style={{ WebkitTextStroke: "2px #cbd5e1", color: "transparent" }}
-          >
-            Let&apos;s Discuss
-          </h1>
-        </motion.div>
+    <section className="relative flex items-start justify-center overflow-hidden bg-[#f4f9ff] px-4 pb-24 pt-4">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -left-24 top-10 h-72 w-72 rounded-full bg-[#d7ebf8]/70 blur-3xl" />
+        <div className="absolute -right-16 bottom-0 h-64 w-64 rounded-full bg-[#e7f3fc] blur-3xl" />
       </div>
 
       {/* --- SUBTLE FOREGROUND DECOR (behind card) --- */}

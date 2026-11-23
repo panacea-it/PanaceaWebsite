@@ -1,11 +1,11 @@
 /* ===== LET'S DISCUSS — Premium consultation card ===== */
 
 :root {
-  --contact-cyan: #38bdf8;
-  --contact-blue: #2563eb;
-  --contact-indigo: #6366f1;
-  --contact-violet: #818cf8;
-  --contact-pink: #fb7185;
+  --contact-cyan: #7eb6de;
+  --contact-blue: #367db5;
+  --contact-indigo: #4a8fc4;
+  --contact-violet: #8fc4e8;
+  --contact-pink: #d7ebf8;
   --contact-ink: #0f172a;
   --contact-muted: #64748b;
   --contact-ease: cubic-bezier(0.22, 1, 0.36, 1);
@@ -295,9 +295,8 @@
 .headlineGradient {
   background: linear-gradient(
     120deg,
-    var(--contact-cyan) 0%,
-    var(--contact-violet) 50%,
-    var(--contact-pink) 100%
+    #367db5 0%,
+    #4a8fc4 100%
   );
   background-clip: text;
   -webkit-background-clip: text;
@@ -584,9 +583,8 @@
   cursor: pointer;
   background: linear-gradient(
     120deg,
-    var(--contact-blue) 0%,
-    var(--contact-indigo) 45%,
-    var(--contact-violet) 100%
+    #367db5 0%,
+    #4a8fc4 100%
   );
   background-size: 200% 200%;
   box-shadow:

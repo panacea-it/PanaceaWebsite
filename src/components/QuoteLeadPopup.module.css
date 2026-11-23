@@ -103,7 +103,7 @@
 .layout {
   display: grid;
   grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
-  min-height: 620px;
+  min-height: 460px;
 }
 
 /* ---------- Left creative panel ---------- */
@@ -478,8 +478,8 @@
   bottom: -4px;
   z-index: 4;
   width: min(310px, 52%);
-  height: min(360px, 60%);
-  min-height: 280px;
+  height: min(280px, 54%);
+  min-height: 210px;
   pointer-events: none;
   overflow: visible;
 }
@@ -506,13 +506,13 @@
 
 .right {
   position: relative;
-  padding: 40px 42px 28px 28px;
+  padding: 28px 36px 22px 24px;
   background:
     linear-gradient(180deg, rgba(255,255,255,0.96) 0%, #f8fbff 100%);
 }
 
 .formTitle {
-  margin: 0 0 22px;
+  margin: 0 0 16px;
   max-width: 22rem;
   font-size: clamp(1.35rem, 1.8vw, 1.72rem);
   font-weight: 800;

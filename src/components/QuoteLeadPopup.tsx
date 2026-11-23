@@ -9,7 +9,7 @@ import {
   type FormEvent,
 } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Check, Loader2, RefreshCw, Sparkles, X } from "lucide-react";
+import { Check, Loader2, Sparkles, X } from "lucide-react";
 import {
   DIAL_CODES,
   FIND_US_OPTIONS,
@@ -20,20 +20,11 @@ import VideoCarousel from "./VideoCarousel";
 import styles from "./QuoteLeadPopup.module.css";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
-const CAPTCHA_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
 type Props = {
   open: boolean;
   onClose: () => void;
 };
-
-function makeCaptcha() {
-  let result = "";
-  for (let i = 0; i < 5; i += 1) {
-    result += CAPTCHA_CHARS[Math.floor(Math.random() * CAPTCHA_CHARS.length)];
-  }
-  return result;
-}
 
 function QuoteRobot() {
   return (
@@ -57,11 +48,7 @@ export default function QuoteLeadPopup({ open, onClose }: Props) {
     country: DIAL_CODES[0].country,
     phone: "",
     findUs: "",
-    message: "",
-    nda: false,
-    captchaInput: "",
   });
-  const [captcha, setCaptcha] = useState(makeCaptcha);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -125,7 +112,7 @@ export default function QuoteLeadPopup({ open, onClose }: Props) {
     };
   }, [open, onClose]);
 
-  const setField = (name: string, value: string | boolean) => {
+  const setField = (name: string, value: string) => {
     setForm((prev) => ({ ...prev, [name]: value }));
     if (errors[name]) setErrors((prev) => ({ ...prev, [name]: "" }));
   };
@@ -138,8 +125,6 @@ export default function QuoteLeadPopup({ open, onClose }: Props) {
     if (!form.phone.trim()) next.phone = "Please enter your mobile number.";
     else if (!/^[0-9]{8,15}$/.test(form.phone.replace(/\s+/g, ""))) next.phone = "Enter a valid number.";
     if (!form.findUs) next.findUs = "Please tell us where you found us.";
-    if (!form.message.trim()) next.message = "Please describe your project.";
-    if (form.captchaInput.trim().toUpperCase() !== captcha) next.captchaInput = "Captcha does not match.";
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -149,14 +134,13 @@ export default function QuoteLeadPopup({ open, onClose }: Props) {
     if (!validate()) return;
     setSubmitting(true);
     try {
-      const ndaLine = form.nda ? "NDA requested: Yes" : "NDA requested: No";
       await submitContact({
         name: form.name.trim(),
         email: form.email.trim(),
         phone: form.phone.trim(),
         country: form.country,
         interest: form.findUs,
-        message: `${form.message.trim()}\n\nWhere they found us: ${form.findUs}\n${ndaLine}`,
+        message: `Quote request. Where they found us: ${form.findUs}`,
         source: "Quote popup",
       });
       setSuccess(true);
@@ -366,68 +350,7 @@ export default function QuoteLeadPopup({ open, onClose }: Props) {
                     {errors.findUs && <span className={styles.error}>{errors.findUs}</span>}
                   </label>
 
-                  <label className={`${styles.field} ${errors.message ? styles.fieldError : ""}`}>
-                    <span className={styles.srOnly}>
-                      Describe your Project or Idea in Brief
-                    </span>
-                    <textarea
-                      className={styles.textarea}
-                      name="message"
-                      rows={5}
-                      placeholder="Describe your Project/Idea in Brief (Make our comeback even stronger.)*"
-                      value={form.message}
-                      onChange={(e) => setField("message", e.target.value)}
-                    />
-                    {errors.message && <span className={styles.error}>{errors.message}</span>}
-                  </label>
-
-                  <div className={styles.actions}>
-                    <label className={styles.nda}>
-                      <input
-                        type="checkbox"
-                        name="nda"
-                        checked={form.nda}
-                        onChange={(e) => setField("nda", e.target.checked)}
-                      />
-                      <span className={styles.ndaBox} aria-hidden>
-                        <Check size={13} strokeWidth={3} />
-                      </span>
-                      <span className={styles.ndaCopy}>
-                        <span className={styles.ndaTitle}>Need an NDA?</span>
-                        <span className={styles.ndaSub}>We&apos;re Happy to Sign.</span>
-                      </span>
-                    </label>
-
-                    <div className={styles.captcha}>
-                      <div className={styles.captchaArt} aria-hidden>
-                        <span className={styles.captchaCode}>{captcha}</span>
-                      </div>
-                      <button
-                        type="button"
-                        className={styles.captchaRefresh}
-                        onClick={() => {
-                          setCaptcha(makeCaptcha());
-                          setField("captchaInput", "");
-                        }}
-                        aria-label="Refresh captcha"
-                      >
-                        <RefreshCw size={15} />
-                      </button>
-                      <label>
-                        <span className={styles.srOnly}>Enter captcha</span>
-                        <input
-                          className={styles.captchaInput}
-                          name="captcha"
-                          placeholder="Code"
-                          autoComplete="off"
-                          value={form.captchaInput}
-                          onChange={(e) => setField("captchaInput", e.target.value)}
-                          aria-invalid={Boolean(errors.captchaInput)}
-                        />
-                      </label>
-                    </div>
-                  </div>
-                  {errors.captchaInput && <span className={styles.error}>{errors.captchaInput}</span>}
+                  {errors.message && <span className={styles.error}>{errors.message}</span>}
 
                   <button type="submit" className={styles.submit} disabled={submitting}>
                     <span className={styles.submitInner}>
