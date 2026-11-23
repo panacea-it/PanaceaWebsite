@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { motion, useMotionValue, useTransform, useSpring, AnimatePresence, useInView } from "framer-motion";
 import { Sparkles, AlertCircle, ArrowRight } from "lucide-react";
 import { trackContactFormSubmit } from "@/lib/gtag";
+import { marketingInterestForSlug, marketingServices } from "@/data/digitalMarketing";
 import styles from "./Contact.module.css";
 
 const COUNTRY_OPTIONS = [
@@ -136,6 +137,14 @@ export default function CreativeLightContact() {
 
   useEffect(() => {
     generateCaptcha();
+    const service = new URLSearchParams(window.location.search).get("service");
+    const match = marketingInterestForSlug(service);
+    if (!match) return;
+    setFormData((current) => ({
+      ...current,
+      interest: current.interest || match.interest,
+      message: current.message || match.message,
+    }));
   }, []);
 
   const x = useMotionValue(0);
@@ -371,6 +380,9 @@ export default function CreativeLightContact() {
                       <option value="Graphic Design">Graphic Design</option>
                       <option value="App Development">App Development</option>
                       <option value="Digital Marketing">Digital Marketing</option>
+                      {marketingServices.map((service) => (
+                        <option key={service.slug} value={service.title}>{service.title}</option>
+                      ))}
                       <option value="Business Development">Business Development</option>
                       <option value="Job Requirements">Job Requirements</option>
                       <option value="Other">Other</option>

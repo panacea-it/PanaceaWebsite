@@ -96,10 +96,10 @@ export default function OfferingParticles() {
         const alpha = Math.max(0.08, Math.min(0.55, 0.5 * scale));
         const color =
           p.tone < 0.34
-            ? `rgba(139, 92, 246, ${alpha})`
+            ? `rgba(74, 143, 196, ${alpha})`
             : p.tone < 0.68
-              ? `rgba(20, 184, 166, ${alpha})`
-              : `rgba(226, 232, 240, ${alpha})`;
+              ? `rgba(143, 196, 232, ${alpha})`
+              : `rgba(255, 255, 255, ${alpha})`;
 
         ctx.beginPath();
         ctx.fillStyle = color;
@@ -108,7 +108,7 @@ export default function OfferingParticles() {
 
         ctx.beginPath();
         ctx.fillStyle =
-          p.tone < 0.5 ? `rgba(196, 181, 253, ${alpha * 0.35})` : `rgba(153, 246, 228, ${alpha * 0.3})`;
+          p.tone < 0.5 ? `rgba(184, 220, 245, ${alpha * 0.4})` : `rgba(255, 255, 255, ${alpha * 0.35})`;
         ctx.arc(px, py, radius * 3.2, 0, Math.PI * 2);
         ctx.fill();
       }

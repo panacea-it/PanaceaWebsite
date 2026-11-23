@@ -3,7 +3,13 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-export default function ProcessTimeline({ process }: { process?: { step: number; name: string; desc: string }[] }) {
+export default function ProcessTimeline({
+    process,
+    intro = "Our proven agile methodology ensures transparency, quality, and timely delivery.",
+}: {
+    process?: { step: number; name: string; desc: string }[];
+    intro?: string;
+}) {
     const containerRef = useRef(null);
 
     const { scrollYProgress } = useScroll({
@@ -37,7 +43,7 @@ export default function ProcessTimeline({ process }: { process?: { step: number;
                         transition={{ delay: 0.1 }}
                         className="text-slate-400 text-lg"
                     >
-                        Our proven agile methodology ensures transparency, quality, and timely delivery.
+                        {intro}
                     </motion.p>
                 </div>
 

@@ -43,6 +43,19 @@ import {
   SiTensorflow,
   SiOpenai,
   SiPostman,
+  SiGoogleanalytics,
+  SiGoogleads,
+  SiGooglesearchconsole,
+  SiMeta,
+  SiSemrush,
+  SiHubspot,
+  SiMailchimp,
+  SiCanva,
+  SiFlutter,
+  SiKotlin,
+  SiAndroid,
+  SiExpo,
+  SiDart,
 } from "react-icons/si";
 import { ArrowUpRight } from "lucide-react";
 import SectionTitle from "@/components/SectionTitle";
@@ -50,10 +63,12 @@ import styles from "./Technologies.module.css";
 
 const categories = [
   "Web Platform",
+  "Mobile Apps",
   "Databases",
   "Cloud & DevOps",
   "UI/UX",
   "AI",
+  "Digital Marketing",
   "Tools",
 ] as const;
 
@@ -70,12 +85,19 @@ const techData: Record<Category, TechItem[]> = {
     { name: "React Js", icon: FaReact, color: "#61DAFB" },
     { name: "Next Js", icon: SiNextdotjs, color: "#000000" },
     { name: "Node.js", icon: FaNodeJs, color: "#339933" },
-    { name: "Ionic", icon: SiIonic, color: "#3880FF" },
     { name: "Laravel", icon: SiLaravel, color: "#FF2D20" },
     { name: "Vue.js", icon: FaVuejs, color: "#4FC08D" },
     { name: "Angular", icon: FaAngular, color: "#DD0031" },
+  ],
+  "Mobile Apps": [
     { name: "React Native", icon: FaReact, color: "#61DAFB" },
+    { name: "Flutter", icon: SiFlutter, color: "#02569B" },
     { name: "Swift", icon: FaSwift, color: "#F05138" },
+    { name: "Kotlin", icon: SiKotlin, color: "#7F52FF" },
+    { name: "Ionic", icon: SiIonic, color: "#3880FF" },
+    { name: "Android", icon: SiAndroid, color: "#3DDC84" },
+    { name: "Expo", icon: SiExpo, color: "#000020" },
+    { name: "Dart", icon: SiDart, color: "#0175C2" },
   ],
   Databases: [
     { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
@@ -96,6 +118,16 @@ const techData: Record<Category, TechItem[]> = {
     { name: "Python", icon: FaPython, color: "#3776AB" },
     { name: "TensorFlow", icon: SiTensorflow, color: "#FF6F00" },
     { name: "OpenAI", icon: SiOpenai, color: "#412991" },
+  ],
+  "Digital Marketing": [
+    { name: "Google Analytics", icon: SiGoogleanalytics, color: "#E37400" },
+    { name: "Google Ads", icon: SiGoogleads, color: "#4285F4" },
+    { name: "Search Console", icon: SiGooglesearchconsole, color: "#458CF5" },
+    { name: "Meta", icon: SiMeta, color: "#0082FB" },
+    { name: "Semrush", icon: SiSemrush, color: "#FF642D" },
+    { name: "HubSpot", icon: SiHubspot, color: "#FF7A59" },
+    { name: "Mailchimp", icon: SiMailchimp, color: "#FFE01B" },
+    { name: "Canva", icon: SiCanva, color: "#00C4CC" },
   ],
   Tools: [
     { name: "Git", icon: FaGitAlt, color: "#F05032" },

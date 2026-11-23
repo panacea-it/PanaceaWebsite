@@ -202,9 +202,11 @@ const Footer = () => {
     { label: "Web Development", href: "/services/web" },
     { label: "Mobile Apps", href: "/services/mobile" },
     { label: "UI/UX Design", href: "/services" },
-    { label: "Digital Marketing", href: "/services" },
-    { label: "SEO Optimization", href: "/services/seo" },
-    { label: "Consulting", href: "/contact" },
+    { label: "Digital Marketing", href: "/services/digital-marketing" },
+    { label: "SEO", href: "/services/seo" },
+    { label: "Google Ads", href: "/services/google-ads" },
+    { label: "Social Media", href: "/services/social-media" },
+    { label: "Marketing Automation", href: "/services/marketing-automation" },
   ];
 
   const companyLinks = [

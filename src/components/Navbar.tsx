@@ -201,21 +201,27 @@ const servicesData = [
     desc: "Turning clicks into customers with digital marketing solutions.",
     icon: <Image src="/digital-marketing-services.png" alt="Marketing" width={24} height={24} className="object-contain" />,
     items: [
-      { title: "SEO Optimization", desc: "Rank higher on search engines", href: "/services/seo" },
-      { title: "SEM / PPC Campaigns", desc: "Targeted ads for immediate ROI", href: "/services/ppc" },
-      { title: "Social Media Marketing", desc: "Engage and grow your audience", href: "/services/smm" },
-      { title: "Content Strategy", desc: "Compelling content that converts", href: "/services/content" },
+      { group: "Search", title: "SEO", desc: "Get found on Google", href: "/services/seo" },
+      { group: "Search", title: "Local SEO", desc: "Get found near you", href: "/services/local-seo" },
+      { group: "Search", title: "AI Search Visibility", desc: "Show up in AI answers", href: "/services/ai-search" },
+      { group: "Advertising", title: "Google Ads / PPC", desc: "Reach people ready to buy", href: "/services/google-ads" },
+      { group: "Advertising", title: "Meta Advertising", desc: "Ads on Facebook & Instagram", href: "/services/meta-ads" },
+      { group: "Brand & Content", title: "Social Media Marketing", desc: "Grow your following", href: "/services/social-media" },
+      { group: "Brand & Content", title: "Content Marketing", desc: "Content that builds trust", href: "/services/content-marketing" },
+      { group: "Brand & Content", title: "Video & Reels", desc: "Short videos that sell", href: "/services/video-reels" },
+      { group: "Brand & Content", title: "Branding & Creative", desc: "A look people remember", href: "/services/branding" },
+      { group: "Automation", title: "Marketing Automation", desc: "Follow up automatically", href: "/services/marketing-automation" },
     ],
     rightPanel: {
       title: "GROWTH MARKETING",
       checkmarks: [
-        "Data-Driven Strategies",
-        "Transparent Reporting",
-        "High ROI Performance Campaigns",
-        "Expert Creative Teams"
+        "Search, ads, content, and follow-up",
+        "Monthly reporting on the work",
+        "No guaranteed rankings or AI answers",
+        "You keep the ad accounts"
       ],
-      buttonText: "Boost Growth",
-      buttonLink: "/services"
+      buttonText: "All marketing services",
+      buttonLink: "/services/digital-marketing"
     }
   }
 ];
@@ -373,12 +379,12 @@ const MegaMenu = ({ data, type, closeMenu }: MegaMenuProps) => {
 
   return (
     <div
-      className={`${styles.megaWrap} w-full max-h-[60vh] overflow-hidden hidden lg:flex flex-col`}
+      className={`${styles.megaWrap} w-full max-h-[min(720px,78vh)] overflow-hidden hidden lg:flex flex-col`}
       data-type={type.toLowerCase()}
     >
       <span className={styles.megaAmbient} aria-hidden />
 
-      <div className={`${styles.megaInner} w-full h-full flex overflow-hidden`}>
+      <div className={`${styles.megaInner} w-full min-h-0 flex-1 flex overflow-hidden`}>
         {/* Left Column (Categories) */}
         <div className={`${styles.megaSidebar} ${styles.megaScrollbar}`}>
           <h4 className={styles.megaGroupLabel}>Explore • {type}</h4>
@@ -402,19 +408,56 @@ const MegaMenu = ({ data, type, closeMenu }: MegaMenuProps) => {
 
         {/* Middle Column (Content Grid) */}
         <div className={`${styles.megaContent} ${styles.megaScrollbar}`}>
-          <p className={styles.megaContentLabel}>Solutions</p>
-          <h4 className={styles.megaContentTitle}>{activeItem.category}</h4>
-          <div className={`grid ${activeItem.items.length > 5 ? "grid-cols-2" : "grid-cols-1"} gap-x-8 gap-y-1`}>
-            {activeItem.items.map((link: any, lIdx: number) => (
-              <Link key={lIdx} href={link.href} onClick={closeMenu} className={styles.megaLink}>
-                <span className={styles.megaLinkTitle}>
-                  {link.title}
-                  <ArrowRight size={12} className={styles.megaLinkArrow} aria-hidden />
-                </span>
-                <span className={styles.megaLinkDesc}>{link.desc}</span>
-              </Link>
-            ))}
-          </div>
+          {activeItem.items.some((link: { group?: string }) => link.group) ? (
+            <>
+              <p className={styles.megaContentLabel}>We deliver</p>
+              <h4 className={styles.megaContentTitle}>All these services for you</h4>
+            </>
+          ) : (
+            <>
+              <p className={styles.megaContentLabel}>Solutions</p>
+              <h4 className={styles.megaContentTitle}>{activeItem.category}</h4>
+            </>
+          )}
+          {activeItem.items.some((link: { group?: string }) => link.group) ? (
+            <div className={styles.megaGroupGrid}>
+              {activeItem.items.reduce((groups: { label: string; items: { title: string; desc: string; href: string; number: string }[] }[], link: { group?: string; title: string; desc: string; href: string }, index: number) => {
+                const label = link.group || "Services";
+                const current = groups[groups.length - 1];
+                const item = { title: link.title, desc: link.desc, href: link.href, number: String(index + 1).padStart(2, "0") };
+                if (!current || current.label !== label) groups.push({ label, items: [item] });
+                else current.items.push(item);
+                return groups;
+              }, []).map((group: { label: string; items: { title: string; desc: string; href: string; number: string }[] }) => (
+                <section key={group.label} className={styles.megaGroupCard}>
+                  <p className={styles.megaGroupHeading}>{group.label}</p>
+                  <div className={styles.megaGroupLinks}>
+                    {group.items.map((link) => (
+                      <Link key={link.href} href={link.href} onClick={closeMenu} className={styles.megaLink}>
+                        <span className={styles.megaLinkTitle}>
+                          <span className={styles.megaLinkIndex}>{link.number}</span>
+                          {link.title}
+                        </span>
+                        <span className={styles.megaLinkDesc}>{link.desc}</span>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+          ) : (
+            <div className={`grid ${activeItem.items.length > 5 ? "grid-cols-2" : "grid-cols-1"} gap-x-8 gap-y-1`}>
+              {activeItem.items.map((link: { title: string; desc: string; href: string }, lIdx: number) => (
+                <Link key={lIdx} href={link.href} onClick={closeMenu} className={styles.megaLink}>
+                  <span className={styles.megaLinkTitle}>
+                    {link.title}
+                    <ArrowRight size={12} className={styles.megaLinkArrow} aria-hidden />
+                  </span>
+                  <span className={styles.megaLinkDesc}>{link.desc}</span>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Right Column (Highlights) */}
@@ -754,16 +797,22 @@ export default function Navbar() {
                                   <div key={sIdx} className={styles.mobileSubGroup}>
                                     <p className={styles.mobileSubLabel}>{s.category}</p>
                                     <div className="flex flex-col">
-                                      {s.items.map((link: any, lIdx: number) => (
-                                        <Link
-                                          key={lIdx}
-                                          href={link.href}
-                                          onClick={() => setMobileMenuOpen(false)}
-                                          className={styles.mobileSubLink}
-                                        >
-                                          {link.title}
-                                        </Link>
-                                      ))}
+                                      {s.items.map((link: any, lIdx: number) => {
+                                        const previous = s.items[lIdx - 1] as { group?: string } | undefined;
+                                        const showGroup = link.group && (lIdx === 0 || previous?.group !== link.group);
+                                        return (
+                                          <React.Fragment key={lIdx}>
+                                            {showGroup ? <p className={styles.mobileGroupLabel}>{link.group}</p> : null}
+                                            <Link
+                                              href={link.href}
+                                              onClick={() => setMobileMenuOpen(false)}
+                                              className={styles.mobileSubLink}
+                                            >
+                                              {link.title}
+                                            </Link>
+                                          </React.Fragment>
+                                        );
+                                      })}
                                     </div>
                                   </div>
                                 ))}

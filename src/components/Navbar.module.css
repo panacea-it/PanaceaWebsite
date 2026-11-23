@@ -931,7 +931,10 @@
 
 .megaContent {
   flex: 1;
-  padding: 1.2rem 1.75rem 1.35rem;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 1.2rem 1.35rem 1.2rem;
   overflow-y: auto;
   background: #eaf5ff;
 }
@@ -1018,6 +1021,69 @@
   line-height: 1.5;
   color: #58738a;
   max-width: 20rem;
+}
+
+.megaGroupGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.7rem;
+  align-items: start;
+}
+
+@media (min-width: 1280px) {
+  .megaGroupGrid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.megaGroupCard {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 0.7rem 0.45rem 0.55rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(74, 143, 196, 0.16);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.megaGroupLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.megaGroupHeading {
+  margin: 0 0.55rem 0.4rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid rgba(74, 143, 196, 0.16);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #367db5;
+}
+
+.megaGroupCard .megaLink {
+  padding: 0.42rem 0.5rem 0.42rem 0.55rem;
+}
+
+.megaGroupCard .megaLinkTitle {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.megaGroupCard .megaLinkDesc {
+  font-size: 11.5px;
+  line-height: 1.35;
+}
+
+.megaLinkIndex {
+  margin-right: 0.4rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #4a8fc4;
 }
 
 .megaPanel {
@@ -1205,6 +1271,16 @@
   text-transform: uppercase;
   color: var(--nav-muted);
   margin-bottom: 0.35rem;
+}
+
+.mobileGroupLabel {
+  margin: 0.65rem 0 0.1rem;
+  padding-left: 0.15rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #367db5;
 }
 
 .mobileSubLink {

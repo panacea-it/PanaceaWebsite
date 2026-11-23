@@ -24,10 +24,8 @@
   color: var(--neutral-900);
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   background:
-    linear-gradient(180deg, #07133a 0%, #122044 4.5%, transparent 12%),
-    radial-gradient(ellipse 70% 50% at 50% 18%, rgba(11, 111, 255, 0.08), transparent 62%),
-    linear-gradient(180deg, rgba(11, 111, 255, 0.05), rgba(0, 169, 157, 0.03)),
-    var(--surface);
+    radial-gradient(ellipse 70% 50% at 50% 18%, rgba(11, 111, 255, 0.06), transparent 62%),
+    linear-gradient(180deg, #f4f9ff 0%, var(--surface) 18%);
 }
 
 .tbs :is(a, button, [tabindex="0"]):focus-visible {

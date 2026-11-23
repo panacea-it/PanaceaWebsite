@@ -51,29 +51,20 @@ export default function OfferingCard({ item, index }: Props) {
   return (
     <motion.div
       className={styles.cardEntrance}
-      initial={
-        reduced
-          ? { opacity: 0 }
-          : {
-              opacity: 0,
-              x: item.from.x,
-              y: item.from.y,
-              rotateX: item.from.rotateX,
-              rotateY: item.from.rotateY,
-              z: -80,
-            }
-      }
-      whileInView={{ opacity: 1, x: 0, y: 0, rotateX: 0, rotateY: 0, z: 0 }}
-      viewport={{ once: true, amount: 0.35 }}
+      initial={reduced ? { opacity: 0 } : { opacity: 0, y: 26 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.4 }}
       transition={{
-        delay: index * 0.07,
-        duration: 0.85,
-        ease: [0.16, 1, 0.3, 1],
+        delay: reduced ? 0 : 0.12 + index * 0.06,
+        duration: reduced ? 0 : 0.55,
+        ease: [0.22, 1, 0.36, 1],
       }}
     >
       <div
         className={styles.cardFloat}
-        style={{ animationDelay: reduced ? undefined : item.floatDelay }}
+        style={{
+          animationDelay: reduced ? undefined : `calc(${item.floatDelay} + 0.7s)`,
+        }}
       >
         <motion.button
           ref={cardRef}

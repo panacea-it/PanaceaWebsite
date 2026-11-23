@@ -4,7 +4,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
-export default function BenefitsSection({ benefits, title = "Key Benefits" }: { benefits?: string[], title?: string }) {
+export default function BenefitsSection({
+    benefits,
+    title = "Why Choose Our Services",
+    intro = "We focus on delivering measurable value, prioritizing quality, scalability, and an exceptional user experience in every project we undertake.",
+}: {
+    benefits?: string[];
+    title?: string;
+    intro?: string;
+}) {
     if (!benefits || benefits.length === 0) return null;
 
     return (
@@ -23,7 +31,7 @@ export default function BenefitsSection({ benefits, title = "Key Benefits" }: { 
                             Why Choose <span className="text-blue-600">Our Services</span>
                         </h2>
                         <p className="text-slate-500 text-lg mb-10 max-w-xl font-medium">
-                            We focus on delivering measurable value, prioritizing quality, scalability, and an exceptional user experience in every project we undertake.
+                            {intro}
                         </p>
 
                         <div className="space-y-5">

@@ -11,16 +11,15 @@ function OrbitRig({ reduced }: { reduced: boolean }) {
 
   useFrame((_, delta) => {
     if (reduced || !group.current) return;
-    group.current.rotation.y += delta * 0.22;
-    group.current.rotation.x += delta * 0.07;
-    group.current.rotation.z += delta * 0.04;
+    group.current.rotation.y += delta * 0.12;
+    group.current.rotation.x += delta * 0.035;
   });
 
   const colors = useMemo(
     () => ({
-      aqua: new Color("#22d3ee"),
-      violet: new Color("#a78bfa"),
-      silver: new Color("#e2e8f0"),
+      aqua: new Color("#7eb6de"),
+      violet: new Color("#4a8fc4"),
+      silver: new Color("#eaf5ff"),
     }),
     [],
   );

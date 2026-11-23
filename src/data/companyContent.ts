@@ -1,5 +1,6 @@
 
 import React from "react";
+import { marketingPageContent } from "@/data/digitalMarketing";
 
 export type ContentSection = {
     title: string;
@@ -7,6 +8,8 @@ export type ContentSection = {
     features?: { title: string; desc: string; }[];
     benefits?: string[];
     process?: { step: number; name: string; desc: string }[];
+    processIntro?: string;
+    benefitsIntro?: string;
     faqs?: { q: string; a: string }[];
 };
 
@@ -17,6 +20,12 @@ export type PageContent = {
     heroImage?: string;
     overview: string;
     sections: ContentSection;
+    cta?: {
+        title: string;
+        label: string;
+        href: string;
+        description?: string;
+    };
 };
 
 // Common Default Data to Fallback On
@@ -148,24 +157,7 @@ export const servicesContent: Record<string, PageContent> = {
             faqs: defaultFaqs
         }
     },
-    "seo": {
-        slug: "seo",
-        title: "SEO Optimization",
-        subtitle: "Rank higher on search engines",
-        overview: "Our data-driven SEO strategies improve your online visibility, drive organic traffic, and secure top rankings on Google and other search engines.",
-        sections: {
-            title: "SEO Strategies",
-            description: "Comprehensive optimization for long-term growth.",
-            features: [
-                { title: "On-Page SEO", desc: "Optimizing content and HTML source code." },
-                { title: "Technical SEO", desc: "Improving site speed and crawlability." },
-                { title: "Link Building", desc: "Establishing domain authority." },
-            ],
-            benefits: ["Increased organic traffic", "Higher brand credibility", "Better user experience"],
-            process: defaultProcess,
-            faqs: defaultFaqs
-        }
-    }
+    ...marketingPageContent,
 };
 
 export const productsContent: Record<string, PageContent> = {

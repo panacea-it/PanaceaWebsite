@@ -5,7 +5,17 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone, MessageSquare } from "lucide-react";
 
-export default function CTASection({ title = "Ready to Transform Your Business?" }) {
+export default function CTASection({
+    title = "Ready to Transform Your Business?",
+    description = "Partner with Panacea IT Services to build scalable, high-performance digital solutions that drive measurable growth.",
+    primaryLabel = "Start Your Project",
+    primaryHref = "/contact",
+}: {
+    title?: string;
+    description?: string;
+    primaryLabel?: string;
+    primaryHref?: string;
+}) {
     return (
         <section className="py-24 px-6 relative overflow-hidden bg-[#0a0f24]">
             {/* Dynamic Background Elements */}
@@ -29,17 +39,17 @@ export default function CTASection({ title = "Ready to Transform Your Business?"
                         {title}
                     </h2>
                     <p className="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-medium">
-                        Partner with Panacea IT Services to build scalable, high-performance digital solutions that drive measurable growth.
+                        {description}
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                        <Link href="/contact" className="w-full sm:w-auto">
+                        <Link href={primaryHref} className="w-full sm:w-auto">
                             <motion.button
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                                 className="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-blue-500/30 transition-shadow text-lg"
                             >
-                                Start Your Project <ArrowRight size={20} />
+                                {primaryLabel} <ArrowRight size={20} />
                             </motion.button>
                         </Link>
                         <Link href="/contact" className="w-full sm:w-auto">

@@ -13,15 +13,26 @@ import {
 } from "framer-motion";
 import {
   ArrowRight,
+  Clapperboard,
   Code2,
+  FileText,
   Globe,
   Layout,
   LayoutTemplate,
+  MapPin,
+  Megaphone,
+  MousePointerClick,
+  Palette,
   PieChart,
+  Search,
+  Share2,
   Smartphone,
+  Sparkles,
+  Workflow,
   X,
   type LucideIcon,
 } from "lucide-react";
+import { marketingServices } from "@/data/digitalMarketing";
 import styles from "./OurServicesSection.module.css";
 
 type FilterId = "all" | "development" | "design" | "marketing";
@@ -42,6 +53,9 @@ type ServiceItem = {
   accentGrad: string;
   capabilities: string[];
   technologies: string[];
+  hideOnAll?: boolean;
+  contactPath?: string;
+  ctaLabel?: string;
 };
 
 const FILTERS: { id: FilterId; label: string }[] = [
@@ -51,7 +65,7 @@ const FILTERS: { id: FilterId; label: string }[] = [
   { id: "marketing", label: "Marketing" },
 ];
 
-const serviceData: ServiceItem[] = [
+const coreServices: ServiceItem[] = [
   {
     id: "app",
     number: "01",
@@ -156,6 +170,8 @@ const serviceData: ServiceItem[] = [
       "Funnel tracking that ties spend to outcomes",
     ],
     technologies: ["SEO", "Google Ads", "Analytics", "Social"],
+    contactPath: "/contact?service=digital-marketing",
+    ctaLabel: "Discuss digital marketing",
   },
   {
     id: "wordpress",
@@ -179,6 +195,45 @@ const serviceData: ServiceItem[] = [
     technologies: ["WordPress", "WooCommerce", "PHP", "Gutenberg"],
   },
 ];
+
+const marketingAccents: Record<string, Pick<ServiceItem, "accent" | "accentStrong" | "accentSoft" | "accentGrad" | "icon" | "iconAnim">> = {
+  seo: { icon: Search, iconAnim: "scale", accent: "#0ea5e9", accentStrong: "#0284c7", accentSoft: "rgba(14, 165, 233, 0.16)", accentGrad: "linear-gradient(135deg, #38bdf8, #0284c7)" },
+  "local-seo": { icon: MapPin, iconAnim: "tilt", accent: "#14b8a6", accentStrong: "#0f766e", accentSoft: "rgba(20, 184, 166, 0.16)", accentGrad: "linear-gradient(135deg, #2dd4bf, #0f766e)" },
+  "ai-search": { icon: Sparkles, iconAnim: "spin", accent: "#8b5cf6", accentStrong: "#6d28d9", accentSoft: "rgba(139, 92, 246, 0.16)", accentGrad: "linear-gradient(135deg, #c4b5fd, #6d28d9)" },
+  "google-ads": { icon: MousePointerClick, iconAnim: "scale", accent: "#f59e0b", accentStrong: "#d97706", accentSoft: "rgba(245, 158, 11, 0.16)", accentGrad: "linear-gradient(135deg, #fbbf24, #d97706)" },
+  "meta-ads": { icon: Megaphone, iconAnim: "tilt", accent: "#ec4899", accentStrong: "#be185d", accentSoft: "rgba(236, 72, 153, 0.16)", accentGrad: "linear-gradient(135deg, #f9a8d4, #be185d)" },
+  "social-media": { icon: Share2, iconAnim: "spin", accent: "#6366f1", accentStrong: "#4338ca", accentSoft: "rgba(99, 102, 241, 0.16)", accentGrad: "linear-gradient(135deg, #a5b4fc, #4338ca)" },
+  "content-marketing": { icon: FileText, iconAnim: "tilt", accent: "#10b981", accentStrong: "#047857", accentSoft: "rgba(16, 185, 129, 0.16)", accentGrad: "linear-gradient(135deg, #6ee7b7, #047857)" },
+  "video-reels": { icon: Clapperboard, iconAnim: "scale", accent: "#ef4444", accentStrong: "#b91c1c", accentSoft: "rgba(239, 68, 68, 0.16)", accentGrad: "linear-gradient(135deg, #fca5a5, #b91c1c)" },
+  branding: { icon: Palette, iconAnim: "spin", accent: "#c026d3", accentStrong: "#a21caf", accentSoft: "rgba(192, 38, 211, 0.16)", accentGrad: "linear-gradient(135deg, #f0abfc, #a21caf)" },
+  "marketing-automation": { icon: Workflow, iconAnim: "tilt", accent: "#2563eb", accentStrong: "#1d4ed8", accentSoft: "rgba(37, 99, 235, 0.16)", accentGrad: "linear-gradient(135deg, #93c5fd, #1d4ed8)" },
+};
+
+const marketingHomeCards: ServiceItem[] = marketingServices.map((service) => {
+  const accent = marketingAccents[service.slug] ?? marketingAccents.seo;
+  return {
+    id: service.slug,
+    number: service.number,
+    title: service.title,
+    description: service.promise,
+    path: `/services/${service.slug}`,
+    icon: accent.icon,
+    category: "marketing",
+    visual: "chart",
+    iconAnim: accent.iconAnim,
+    accent: accent.accent,
+    accentStrong: accent.accentStrong,
+    accentSoft: accent.accentSoft,
+    accentGrad: accent.accentGrad,
+    capabilities: service.offerings,
+    technologies: [],
+    hideOnAll: true,
+    contactPath: `/contact?service=${service.slug}`,
+    ctaLabel: service.discussLabel,
+  };
+});
+
+const serviceData: ServiceItem[] = [...coreServices, ...marketingHomeCards];
 
 const PARTICLES = [
   { top: "18%", left: "12%", size: 4, delay: "0s" },
@@ -535,7 +590,10 @@ const OurServicesSection = () => {
 
         <div className={styles.grid}>
           {serviceData.map((service, index) => {
-            const hidden = filter !== "all" && service.category !== filter;
+            const hidden =
+              (filter === "all" && service.hideOnAll) ||
+              (filter !== "all" && service.category !== filter) ||
+              (filter === "marketing" && service.id === "marketing");
             return (
               <ServiceCard
                 key={service.id}
@@ -626,18 +684,22 @@ const OurServicesSection = () => {
                 ))}
               </ul>
 
-              <p className={styles.modalLabel}>Technologies</p>
-              <div className={styles.techRow}>
-                {active.technologies.map((tech) => (
-                  <span key={tech} className={styles.tech}>
-                    {tech}
-                  </span>
-                ))}
-              </div>
+              {active.technologies.length > 0 && (
+                <>
+                  <p className={styles.modalLabel}>Technologies</p>
+                  <div className={styles.techRow}>
+                    {active.technologies.map((tech) => (
+                      <span key={tech} className={styles.tech}>
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </>
+              )}
 
               <div className={styles.modalActions}>
-                <Link href="/contact" className={styles.modalPrimary}>
-                  Get Started
+                <Link href={active.contactPath ?? "/contact"} className={styles.modalPrimary}>
+                  {active.ctaLabel ?? "Get Started"}
                   <ArrowRight size={15} aria-hidden />
                 </Link>
                 <Link href={active.path} className={styles.modalSecondary}>

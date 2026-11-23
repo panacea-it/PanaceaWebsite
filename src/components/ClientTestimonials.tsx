@@ -24,6 +24,7 @@ import styles from "./ClientTestimonials.module.css";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 const SWIPE_THRESHOLD = 60;
+const AUTOPLAY_MS = 3000;
 
 const VIDEO_TESTIMONIALS = CLIENT_TESTIMONIALS.filter(
   (item): item is ClientTestimonial & { videoUrl: string } =>
@@ -49,6 +50,7 @@ function VideoCard({
   reduced,
   delay = 0,
   inView,
+  direction = 0,
 }: {
   item: ClientTestimonial;
   featured?: boolean;
@@ -56,7 +58,9 @@ function VideoCard({
   reduced: boolean;
   delay?: number;
   inView: boolean;
+  direction?: number;
 }) {
+  const slideX = direction > 0 ? 48 : direction < 0 ? -48 : 0;
   return (
     <motion.article
       className={`${styles.card} ${featured ? styles.cardFeatured : styles.cardSide}`}
@@ -72,15 +76,15 @@ function VideoCard({
         aria-label={`Play video testimonial from ${item.name}`}
       >
         <span className={styles.media}>
-          <AnimatePresence mode="wait">
+          <AnimatePresence initial={false}>
             {item.thumbnail && (
               <motion.span
                 key={item.id}
                 className={styles.thumbLayer}
-                initial={reduced ? false : { opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={reduced ? { opacity: 1 } : { opacity: 0 }}
-                transition={{ duration: 0.32, ease }}
+                initial={reduced || slideX === 0 ? false : { opacity: 0, x: slideX }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={reduced || slideX === 0 ? { opacity: 0 } : { opacity: 0, x: -slideX }}
+                transition={{ duration: 0.45, ease }}
               >
                 <Image
                   src={item.thumbnail}
@@ -105,13 +109,13 @@ function VideoCard({
             </span>
           </span>
           <span className={styles.credit}>
-            <AnimatePresence mode="wait">
+            <AnimatePresence initial={false}>
               <motion.span
                 key={item.id}
                 className={styles.creditInner}
                 initial={reduced ? false : { opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={reduced ? { opacity: 1 } : { opacity: 0 }}
+                exit={reduced ? { opacity: 0 } : { opacity: 0, y: -6 }}
                 transition={{ duration: 0.28, ease }}
               >
                 <span className={styles.creditName}>{item.name}</span>
@@ -199,11 +203,14 @@ function VideoModal({
 export default function ClientTestimonials() {
   const sectionRef = useRef<HTMLElement>(null);
   const inView = useInView(sectionRef, { once: true, margin: "-10%" });
+  const onScreen = useInView(sectionRef, { amount: 0.35 });
   const reduced = useReducedMotion() ?? false;
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [videoOpen, setVideoOpen] = useState<ClientTestimonial | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [paused, setPaused] = useState(false);
+  const [pageHidden, setPageHidden] = useState(false);
   const count = VIDEO_TESTIMONIALS.length;
 
   useEffect(() => {
@@ -228,6 +235,22 @@ export default function ClientTestimonials() {
 
   const next = useCallback(() => go(index + 1), [go, index]);
   const prev = useCallback(() => go(index - 1), [go, index]);
+
+  useEffect(() => {
+    const onVisibility = () => setPageHidden(document.hidden);
+    onVisibility();
+    document.addEventListener("visibilitychange", onVisibility);
+    return () => document.removeEventListener("visibilitychange", onVisibility);
+  }, []);
+
+  useEffect(() => {
+    if (reduced || paused || pageHidden || videoOpen || !onScreen || count < 2) return;
+    const id = window.setTimeout(() => {
+      setDirection(1);
+      setIndex((current) => wrapIndex(current + 1, count));
+    }, AUTOPLAY_MS);
+    return () => window.clearTimeout(id);
+  }, [reduced, paused, pageHidden, videoOpen, onScreen, count, index]);
 
   const onKeyDown = (e: KeyboardEvent) => {
     if (e.key === "ArrowRight") {
@@ -298,7 +321,7 @@ export default function ClientTestimonials() {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, ease }}
           >
-            What Our <span className={styles.headingAccent}>Clients</span> Say
+            What Our Clients Say
           </motion.h2>
           <motion.span
             className={styles.headingRule}
@@ -318,32 +341,17 @@ export default function ClientTestimonials() {
           </motion.p>
         </header>
 
-        <div className={styles.stage}>
-          {count > 1 && (
-            <>
-              <div className={`${styles.nav} ${styles.navPrev}`}>
-                <button
-                  type="button"
-                  className={styles.navBtn}
-                  onClick={prev}
-                  aria-label="Previous testimonial video"
-                >
-                  <ChevronLeft size={20} className={styles.navIcon} />
-                </button>
-              </div>
-              <div className={`${styles.nav} ${styles.navNext}`}>
-                <button
-                  type="button"
-                  className={styles.navBtn}
-                  onClick={next}
-                  aria-label="Next testimonial video"
-                >
-                  <ChevronRight size={20} className={styles.navIcon} />
-                </button>
-              </div>
-            </>
-          )}
-
+        <div
+          className={styles.stage}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocus={() => setPaused(true)}
+          onBlur={(event) => {
+            if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+              setPaused(false);
+            }
+          }}
+        >
           <div
             className={styles.carousel}
             role="region"
@@ -352,6 +360,30 @@ export default function ClientTestimonials() {
             onKeyDown={onKeyDown}
             tabIndex={0}
           >
+            {count > 1 && (
+              <>
+                <div className={`${styles.nav} ${styles.navPrev}`}>
+                  <button
+                    type="button"
+                    className={styles.navBtn}
+                    onClick={prev}
+                    aria-label="Previous testimonial video"
+                  >
+                    <ChevronLeft size={20} className={styles.navIcon} />
+                  </button>
+                </div>
+                <div className={`${styles.nav} ${styles.navNext}`}>
+                  <button
+                    type="button"
+                    className={styles.navBtn}
+                    onClick={next}
+                    aria-label="Next testimonial video"
+                  >
+                    <ChevronRight size={20} className={styles.navIcon} />
+                  </button>
+                </div>
+              </>
+            )}
             <p className={styles.srOnly}>
               Use arrow keys, swipe, or navigation buttons to browse client
               testimonial videos.
@@ -382,6 +414,7 @@ export default function ClientTestimonials() {
                     onPlay={() => setVideoOpen(featured)}
                     reduced={reduced}
                     inView={inView}
+                    direction={direction}
                   />
                 </motion.div>
               </AnimatePresence>
@@ -395,6 +428,7 @@ export default function ClientTestimonials() {
                     reduced={reduced}
                     delay={0.08}
                     inView={inView}
+                    direction={direction}
                   />
                 )}
                 {showDuo && duoOther && (
@@ -405,6 +439,7 @@ export default function ClientTestimonials() {
                     reduced={reduced}
                     delay={0.08}
                     inView={inView}
+                    direction={direction}
                   />
                 )}
                 <VideoCard
@@ -415,6 +450,7 @@ export default function ClientTestimonials() {
                   reduced={reduced}
                   delay={0.16}
                   inView={inView}
+                  direction={direction}
                 />
                 {showTrio && (
                   <VideoCard
@@ -424,11 +460,19 @@ export default function ClientTestimonials() {
                     reduced={reduced}
                     delay={0.24}
                     inView={inView}
+                    direction={direction}
                   />
                 )}
               </div>
             )}
           </div>
+
+          <p className={styles.caption}>
+            <span className={styles.captionName}>{featured.name}</span>
+            <span className={styles.captionMeta}>
+              {featured.role}, {featured.company}
+            </span>
+          </p>
 
           {count > 1 && (
             <div className={styles.pagination} role="tablist" aria-label="Testimonial videos">

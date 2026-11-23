@@ -15,6 +15,14 @@ const nextConfig = {
       },
     ],
   },
+
+  async redirects() {
+    return [
+      { source: "/services/ppc", destination: "/services/google-ads", permanent: true },
+      { source: "/services/smm", destination: "/services/social-media", permanent: true },
+      { source: "/services/content", destination: "/services/content-marketing", permanent: true },
+    ];
+  },
 };
 
 module.exports = nextConfig;

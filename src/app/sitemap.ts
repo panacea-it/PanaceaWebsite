@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { marketingServices } from "@/data/digitalMarketing";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://www.panaceaitservices.com";
 
@@ -18,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/vision",
     "/privacy",
     "/terms",
+    "/services/digital-marketing",
+    ...marketingServices.map((service) => `/services/${service.slug}`),
   ];
 
   return staticRoutes.map((path) => ({

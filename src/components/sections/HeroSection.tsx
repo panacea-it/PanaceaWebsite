@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import Image from "next/image";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
@@ -9,9 +9,11 @@ interface HeroSectionProps {
     title: string;
     subtitle: string;
     overview: string;
+    ctaLabel?: string;
+    ctaHref?: string;
 }
 
-export default function HeroSection({ title, subtitle, overview }: HeroSectionProps) {
+export default function HeroSection({ title, subtitle, overview, ctaLabel = "Let's Discuss", ctaHref = "/contact" }: HeroSectionProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,
@@ -81,10 +83,10 @@ export default function HeroSection({ title, subtitle, overview }: HeroSectionPr
                     transition={{ duration: 0.7, ease: "easeOut", delay: 0.3 }}
                     className="flex flex-col sm:flex-row gap-4"
                 >
-                    <button className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-blue-500/25 transition-all group overflow-hidden relative">
-                        <span className="relative z-10 flex items-center gap-2">Let's Discuss <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" /></span>
+                    <Link href={ctaHref} className="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-blue-500/25 transition-all group overflow-hidden relative">
+                        <span className="relative z-10 flex items-center gap-2">{ctaLabel} <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" /></span>
                         <div className="absolute inset-0 h-full w-full bg-white/20 scale-x-0 group-hover:scale-x-100 transform origin-left transition-transform duration-300 ease-out" />
-                    </button>
+                    </Link>
                 </motion.div>
             </div>
         </section>

@@ -6,18 +6,14 @@ import {
   Monitor,
   Smartphone,
   Layers,
-  Megaphone,
-  Search,
-  LayoutTemplate,
   AppWindow,
   MousePointerClick,
   PenTool,
   Users,
   Database,
   Cloud,
-  Globe,
-  Share2
 } from "lucide-react";
+import { marketingContactHref, marketingGroups, marketingServices } from "@/data/digitalMarketing";
 
 export default function ServicesPage() {
   return (
@@ -244,44 +240,40 @@ export default function ServicesPage() {
             <p className="text-slate-500 text-lg max-w-3xl mx-auto">Boost your online presence with comprehensive digital marketing solutions designed to attract, engage, and convert your audience into loyal customers.</p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-
-            {/* Digital Marketing (General) */}
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-100 transition-colors">
-              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 mb-6">
-                <MousePointerClick size={24} />
+          <div className="space-y-12">
+            {marketingGroups.map((group) => (
+              <div key={group.id}>
+                <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-3 mb-6">
+                  <div>
+                    <h3 className="text-2xl font-black text-[#0B1536]">{group.label}</h3>
+                    <p className="text-slate-500 mt-2 max-w-2xl">{group.description}</p>
+                  </div>
+                  <Link href={`/services/digital-marketing#${group.id}`} className="text-blue-600 font-bold text-sm shrink-0">
+                    View {group.label} &rarr;
+                  </Link>
+                </div>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {marketingServices.filter((service) => service.group === group.id).map((service) => (
+                    <div key={service.slug} className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-100 transition-colors">
+                      <span className="text-xs font-black tracking-widest text-blue-500">{service.number}</span>
+                      <h4 className="text-xl font-bold text-slate-900 mt-3 mb-2">{service.title}</h4>
+                      <p className="text-slate-500 text-sm leading-relaxed mb-4">{service.promise}</p>
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {service.offerings.map((offering) => (
+                          <span key={offering} className="px-3 py-1 bg-slate-50 border border-slate-100 text-slate-600 text-xs font-semibold rounded-full">
+                            {offering}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="flex flex-wrap gap-4 text-sm font-bold">
+                        <Link href={`/services/${service.slug}`} className="text-slate-900 hover:text-blue-600">Overview &rarr;</Link>
+                        <Link href={marketingContactHref(service.slug)} className="text-blue-500 hover:text-blue-600">{service.discussLabel} &rarr;</Link>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Digital Marketing</h3>
-              <p className="text-slate-500 text-sm leading-relaxed mb-6">Data-driven digital marketing strategies that attract, engage, and convert — driving measurable growth across all channels.</p>
-            </div>
-
-            {/* SEO */}
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-100 transition-colors">
-              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 mb-6">
-                <Search size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Search Engine Optimization (SEO)</h3>
-              <p className="text-slate-500 text-sm leading-relaxed mb-6">Boost your search rankings with expert SEO that increases visibility, organic traffic, and long-term sustainable growth.</p>
-            </div>
-
-            {/* SEM */}
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-100 transition-colors">
-              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 mb-6">
-                <Globe size={24} className="text-blue-500" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Search Engine Marketing (SEM)</h3>
-              <p className="text-slate-500 text-sm leading-relaxed mb-6">Drive instant traffic and high-quality leads with targeted SEM campaigns and cost-effective ad strategies that maximize ROI.</p>
-            </div>
-
-            {/* SMM */}
-            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-100 hover:border-blue-100 transition-colors">
-              <div className="w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center text-blue-500 mb-6">
-                <Megaphone size={24} />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-4">Social Media Marketing (SMM)</h3>
-              <p className="text-slate-500 text-sm leading-relaxed mb-6">Strategic content and smart advertising that builds your brand presence and turns followers into loyal customers.</p>
-            </div>
-
+            ))}
           </div>
         </div>
       </section>

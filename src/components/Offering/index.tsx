@@ -17,6 +17,8 @@ const OfferingScene = dynamic(() => import("./OfferingScene"), {
   ssr: false,
 });
 
+const HEADING_LINES = ["Boost And Lead", "With", "Technology", "Trends"] as const;
+
 export default function Offering() {
   const sectionRef = useRef<HTMLElement>(null);
   const reduced = useReducedMotion() === true;
@@ -62,7 +64,11 @@ export default function Offering() {
           </div>
 
           <h2 id="offering-heading" className={styles.heading}>
-            Boost And Lead With Technology Trends
+            {HEADING_LINES.map((line) => (
+              <span key={line} className={styles.headingLine}>
+                {line}
+              </span>
+            ))}
           </h2>
 
           <motion.p

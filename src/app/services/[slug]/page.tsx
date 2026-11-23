@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     if (!content) return { title: 'Service Not Found' };
 
     return {
-        title: `${content.title} | Panacea IT Services`,
+        title: content.title,
         description: content.overview,
     };
 }
@@ -41,17 +41,24 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 title={content.title}
                 subtitle={content.subtitle}
                 overview={content.overview}
+                ctaLabel={content.cta?.label}
+                ctaHref={content.cta?.href}
             />
 
             <FeatureGrid section={content.sections} />
 
-            <BenefitsSection benefits={content.sections.benefits} />
+            <BenefitsSection benefits={content.sections.benefits} intro={content.sections.benefitsIntro} />
 
-            <ProcessTimeline process={content.sections.process} />
+            <ProcessTimeline process={content.sections.process} intro={content.sections.processIntro} />
 
             <FAQSection faqs={content.sections.faqs} />
 
-            <CTASection title="Let's Build Your Software Solution" />
+            <CTASection
+                title={content.cta?.title ?? "Let's Build Your Software Solution"}
+                description={content.cta?.description}
+                primaryLabel={content.cta?.label ?? "Start Your Project"}
+                primaryHref={content.cta?.href ?? "/contact"}
+            />
         </div>
     );
 }
