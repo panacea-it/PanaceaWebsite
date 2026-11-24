@@ -1,0 +1,137 @@
+name: Deploy website
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      rollback:
+        description: Put the previous Panacea website release back
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: production-panacea-website
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-24.04-arm
+    env:
+      EC2_HOST: ${{ secrets.EC2_HOST }}
+      EC2_USER: ${{ secrets.EC2_USER }}
+    steps:
+      - uses: actions/checkout@v4
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.rollback != true }}
+
+      - uses: actions/setup-node@v4
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.rollback != true }}
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install and build
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.rollback != true }}
+        run: |
+          set -euo pipefail
+          npm ci
+          npm run build
+          test -f .next/standalone/server.js
+          rm -rf deploy-bundle
+          mkdir -p deploy-bundle
+          cp -a .next/standalone/. deploy-bundle/
+          rm -rf deploy-bundle/.next/static deploy-bundle/public
+          mkdir -p deploy-bundle/.next
+          cp -a .next/static deploy-bundle/.next/static
+          cp -a public deploy-bundle/public
+          test -d deploy-bundle/.next/static
+          test -d deploy-bundle/public
+        env:
+          NEXT_PUBLIC_SITE_URL: https://www.panaceaitservices.com
+
+      - name: Configure SSH
+        run: |
+          set -euo pipefail
+          install -d -m 700 ~/.ssh
+          printf '%s\n' "$EC2_SSH_KEY" > ~/.ssh/panacea_deploy
+          chmod 600 ~/.ssh/panacea_deploy
+          ssh-keyscan -t ed25519 -H "$EC2_HOST" > ~/.ssh/known_hosts
+          fingerprint="$(ssh-keygen -lf ~/.ssh/known_hosts | awk '{print $2}')"
+          test "${fingerprint}" = "SHA256:IjFlW+IB+BPW/z+F5ytYj+y5To6iltAmjH6BOhePu0E"
+        env:
+          EC2_SSH_KEY: ${{ secrets.EC2_SSH_KEY }}
+
+      - name: Prepare the release directory
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.rollback != true }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/panacea_deploy -o IdentitiesOnly=yes -o BatchMode=yes \
+            "${EC2_USER}@${EC2_HOST}" 'bash -s' < .github/scripts/prepare-release.sh
+
+      - name: Upload the build
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.rollback != true }}
+        run: |
+          set -euo pipefail
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/panacea_deploy -o IdentitiesOnly=yes -o BatchMode=yes" \
+            deploy-bundle/ \
+            "${EC2_USER}@${EC2_HOST}:/data/releases/panacea-website/incoming/"
+
+      - name: Activate the release
+        id: activate
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/panacea_deploy -o IdentitiesOnly=yes -o BatchMode=yes \
+            "${EC2_USER}@${EC2_HOST}" \
+            "GITHUB_SHA='${GITHUB_SHA}' GITHUB_RUN_ID='${GITHUB_RUN_ID}' ROLLBACK='${ROLLBACK}' bash -s" \
+            < .github/scripts/activate-release.sh
+        env:
+          GITHUB_SHA: ${{ github.sha }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          ROLLBACK: ${{ github.event_name == 'workflow_dispatch' && inputs.rollback == true && 'true' || 'false' }}
+
+      - name: Verify the public site
+        id: verify
+        run: |
+          set -euo pipefail
+          expect="Enterprise Software Engineering"
+          if [ "${ROLLBACK}" = "true" ]; then
+            expect="Panacea IT Services"
+          fi
+          for attempt in 1 2 3 4 5 6; do
+            code="$(curl -sS -o /tmp/panacea-public.html -w '%{http_code}' --max-time 20 https://www.panaceaitservices.com/ || echo 000)"
+            if [ "${code}" = "200" ] && grep -q "${expect}" /tmp/panacea-public.html; then
+              echo "Public site verified"
+              exit 0
+            fi
+            echo "Public check ${attempt} returned ${code}"
+            sleep 5
+          done
+          echo "Public site did not serve the expected release"
+          exit 1
+        env:
+          ROLLBACK: ${{ github.event_name == 'workflow_dispatch' && inputs.rollback == true && 'true' || 'false' }}
+
+      - name: Mark this release as the one to keep
+        if: ${{ success() && (github.event_name != 'workflow_dispatch' || inputs.rollback != true) }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/panacea_deploy -o IdentitiesOnly=yes -o BatchMode=yes \
+            "${EC2_USER}@${EC2_HOST}" 'bash -s' << 'EOF'
+          set -euo pipefail
+          target="$(readlink -f /data/releases/panacea-website/current)"
+          date -u +%Y-%m-%dT%H:%M:%SZ > "${target}/.release-ok"
+          echo "Marked ${target}"
+          EOF
+
+      - name: Put the previous release back
+        if: ${{ failure() && steps.activate.outcome == 'success' && steps.verify.outcome == 'failure' }}
+        run: |
+          set -euo pipefail
+          ssh -i ~/.ssh/panacea_deploy -o IdentitiesOnly=yes -o BatchMode=yes \
+            "${EC2_USER}@${EC2_HOST}" \
+            "ROLLBACK=true bash -s" < .github/scripts/activate-release.sh
