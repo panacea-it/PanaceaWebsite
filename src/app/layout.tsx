@@ -71,6 +71,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-[#07133a] relative`}
       >
+        <span hidden data-panacea-release={process.env.NEXT_PUBLIC_RELEASE_SHA || "dev"} />
         <GoogleAnalytics />
         <HomeScrollReset />
         {/* The global cursor effect */}

@@ -50,6 +50,7 @@ health() {
     echo "Health attempt ${attempt} returned ${code}" >&2
     sleep 2
   done
+  echo "Last title: $(sed -n 's:.*<title>\([^<]*\)</title>.*:\1:p' /tmp/panacea-website-check.html | head -n 1)" >&2
   return 1
 }
 
@@ -156,7 +157,7 @@ if ! switch_to "${TARGET}"; then
   exit 1
 fi
 
-if ! health "Enterprise Software Engineering"; then
+if ! health "${SHA}"; then
   echo "New site failed the health check" >&2
   if [ -n "${PREVIOUS}" ]; then
     echo "Putting the previous site back"

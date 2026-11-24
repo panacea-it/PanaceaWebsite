@@ -52,6 +52,7 @@ jobs:
           test -d deploy-bundle/public
         env:
           NEXT_PUBLIC_SITE_URL: https://www.panaceaitservices.com
+          NEXT_PUBLIC_RELEASE_SHA: ${{ github.sha }}
 
       - name: Configure SSH
         run: |
@@ -98,7 +99,7 @@ jobs:
         id: verify
         run: |
           set -euo pipefail
-          expect="Enterprise Software Engineering"
+          expect="${GITHUB_SHA}"
           if [ "${ROLLBACK}" = "true" ]; then
             expect="Panacea IT Services"
           fi
@@ -114,6 +115,7 @@ jobs:
           echo "Public site did not serve the expected release"
           exit 1
         env:
+          GITHUB_SHA: ${{ github.sha }}
           ROLLBACK: ${{ github.event_name == 'workflow_dispatch' && inputs.rollback == true && 'true' || 'false' }}
 
       - name: Mark this release as the one to keep
