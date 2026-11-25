@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "@/components/TrustedBySection.css";
@@ -8,6 +9,8 @@ import CursorGradient from "@/components/CursorGradient"; // Make sure to create
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import HomeScrollReset from "@/components/HomeScrollReset";
 import QuoteLeadProvider from "@/components/QuoteLeadProvider";
+import { VisitorRegionProvider } from "@/components/VisitorRegionProvider";
+import { resolveVisitorRegion } from "@/lib/resolveVisitorRegion";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,11 +57,13 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const initialRegion = await resolveVisitorRegion(await headers());
+
   return (
     <html lang="en">
       <head>
@@ -77,11 +82,13 @@ export default function RootLayout({
         {/* The global cursor effect */}
         <CursorGradient />
         
-        <QuoteLeadProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </QuoteLeadProvider>
+        <VisitorRegionProvider initialRegion={initialRegion}>
+          <QuoteLeadProvider>
+            <Navbar />
+            {children}
+            <Footer />
+          </QuoteLeadProvider>
+        </VisitorRegionProvider>
       </body>
     </html>
   );

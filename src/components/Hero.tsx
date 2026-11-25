@@ -1,13 +1,17 @@
 "use client";
 
 import React from "react";
-import { trackWhatsAppClick } from "@/lib/gtag";
+import { trackPhoneClick, trackWhatsAppClick } from "@/lib/gtag";
+import { USA_OFFICE } from "@/data/offices";
+import { useVisitorRegion } from "@/components/VisitorRegionProvider";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
+  const isUsVisitor = useVisitorRegion() === "US";
   const phoneNumber = "919347959536";
   const message = "Hi! I am interested in your services. Can you help me?";
   const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  const quoteHref = isUsVisitor ? `tel:${USA_OFFICE.phoneTel}` : whatsappLink;
 
   return (
     <section className={styles.hero} style={{ height: "84dvh", maxHeight: "88vh" }}>
@@ -37,10 +41,9 @@ export default function Hero() {
 
       <div className={styles.ctaWrap}>
         <a
-          href={whatsappLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={trackWhatsAppClick}
+          href={quoteHref}
+          {...(isUsVisitor ? {} : { target: "_blank", rel: "noopener noreferrer" })}
+          onClick={isUsVisitor ? trackPhoneClick : trackWhatsAppClick}
           className="
             group relative flex items-center gap-2 sm:gap-3
             px-3 sm:px-4 md:px-6

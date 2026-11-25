@@ -3,27 +3,8 @@
 import { motion } from "framer-motion";
 import { Facebook, Instagram, Linkedin, Mail, MapPin, Phone } from "lucide-react";
 import Contact from "@/components/Contact";
-
-const DETAILS = [
-  {
-    label: "Call us",
-    value: "+91 9347959536",
-    href: "tel:+919347959536",
-    Icon: Phone,
-  },
-  {
-    label: "Email",
-    value: "contact@panaceaitservices.com",
-    href: "mailto:contact@panaceaitservices.com",
-    Icon: Mail,
-  },
-  {
-    label: "Studio",
-    value: "Madhapur, Hyderabad, India and USA",
-    href: "https://maps.google.com/?q=Panacea+IT+Services+Pvt+Ltd+Madhapur",
-    Icon: MapPin,
-  },
-] as const;
+import { officesForRegion } from "@/data/offices";
+import { useVisitorRegion } from "@/components/VisitorRegionProvider";
 
 const SOCIALS = [
   {
@@ -44,6 +25,31 @@ const SOCIALS = [
 ] as const;
 
 export default function ContactPage() {
+  const offices = officesForRegion(useVisitorRegion());
+  const details = [
+    ...offices.map((office) => ({
+      label: office.id === "usa" ? "US phone" : "India phone",
+      value: office.phoneDisplay,
+      href: `tel:${office.phoneTel}`,
+      Icon: Phone,
+    })),
+    {
+      label: "Email",
+      value: "contact@panaceaitservices.com",
+      href: "mailto:contact@panaceaitservices.com",
+      Icon: Mail,
+    },
+    ...offices.map((office) => ({
+      label: office.id === "usa" ? "Manchester office" : "Hyderabad office",
+      value: office.address,
+      href:
+        office.id === "usa"
+          ? "https://maps.google.com/?q=Manchester,+New+Hampshire+03102"
+          : "https://maps.google.com/?q=Panacea+IT+Services+Pvt+Ltd+Madhapur",
+      Icon: MapPin,
+    })),
+  ];
+
   return (
     <div className="relative overflow-hidden bg-[#f4f9ff]">
       <div
@@ -87,7 +93,7 @@ export default function ContactPage() {
             </p>
 
             <ul className="mt-7 space-y-4">
-              {DETAILS.map(({ label, value, href, Icon }) => (
+              {details.map(({ label, value, href, Icon }) => (
                 <li key={label}>
                   <a
                     href={href}

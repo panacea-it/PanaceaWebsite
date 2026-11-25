@@ -14,6 +14,8 @@ import { FaPhoneVolume } from "react-icons/fa6";
 import { ImLocation2 } from "react-icons/im";
 import HiringTag from "./HiringTag";
 import { trackEmailClick, trackPhoneClick } from "@/lib/gtag";
+import { officesForRegion } from "@/data/offices";
+import { useVisitorRegion } from "@/components/VisitorRegionProvider";
 import { useQuoteLead } from "./QuoteLeadProvider";
 import styles from "./Navbar.module.css";
 
@@ -580,6 +582,7 @@ export default function Navbar() {
   ];
 
   const contactActive = pathname.startsWith("/contact");
+  const offices = officesForRegion(useVisitorRegion());
 
   return (
     <header
@@ -597,23 +600,30 @@ export default function Navbar() {
               <FaEnvelope size={10} />
               contact@panaceaitservices.com
             </a>
-            <span className={styles.topSep} aria-hidden />
-            <a
-              href="tel:+919347959536"
-              onClick={trackPhoneClick}
-              className={styles.contactLink}
-            >
-              <FaPhoneVolume size={10} />
-              +91 9347959536
-            </a>
+            {offices.map((office) => (
+              <React.Fragment key={office.id}>
+                <span className={styles.topSep} aria-hidden />
+                <a
+                  href={`tel:${office.phoneTel}`}
+                  onClick={trackPhoneClick}
+                  className={styles.contactLink}
+                >
+                  <FaPhoneVolume size={10} />
+                  {office.phoneDisplay}
+                </a>
+              </React.Fragment>
+            ))}
           </div>
           <div className={styles.topBarRight}>
-            <span className={styles.contactLink}>
-              <ImLocation2 size={10} />
-              Hyderabad
-            </span>
-            <span className={styles.topSep} aria-hidden />
-            <span className={styles.metaText}>USA</span>
+            {offices.map((office, index) => (
+              <React.Fragment key={office.id}>
+                {index > 0 && <span className={styles.topSep} aria-hidden />}
+                <span className={styles.contactLink}>
+                  <ImLocation2 size={10} />
+                  {office.shortAddress}
+                </span>
+              </React.Fragment>
+            ))}
             <span className={`${styles.topSep} hidden xl:block`} aria-hidden />
             <span className={`${styles.statusText} hidden xl:inline-flex`}>
               <span className={styles.statusDot} aria-hidden />

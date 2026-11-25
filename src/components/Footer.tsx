@@ -14,6 +14,8 @@ import {
 import { Suez_One } from "next/font/google";
 import Image from "next/image";
 import { trackEmailClick, trackPhoneClick } from "@/lib/gtag";
+import { officesForRegion } from "@/data/offices";
+import { useVisitorRegion } from "@/components/VisitorRegionProvider";
 import styles from "./Footer.module.css";
 
 const suezOne = Suez_One({
@@ -173,6 +175,7 @@ const ContactItem = ({
 
 const Footer = () => {
   const reduced = useReducedMotion() === true;
+  const offices = officesForRegion(useVisitorRegion());
   const footerRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -242,10 +245,6 @@ const Footer = () => {
   const contactInfo = {
     email: "contact@panaceaitservices.com",
     emailSub: "Get in touch",
-    phone: "+91 9347959536",
-    phoneSub: "Call us anytime",
-    address: "Panacea IT Services, Madhapur, Hyderabad / USA",
-    addressSub: "Our headquarters",
   };
 
   const motionProps = reduced
@@ -440,23 +439,29 @@ const Footer = () => {
                   onClick={trackEmailClick}
                   nowrap
                 />
-                <ContactItem
-                  icon={<FaPhoneAlt size={15} />}
-                  title="Phone"
-                  content={contactInfo.phone}
-                  sub={contactInfo.phoneSub}
-                  iconClass={styles.contactIconBlue}
-                  href="tel:+919347959536"
-                  onClick={trackPhoneClick}
-                  nowrap
-                />
-                <ContactItem
-                  icon={<FaMapMarkerAlt size={16} />}
-                  title="Location"
-                  content={contactInfo.address}
-                  sub={contactInfo.addressSub}
-                  iconClass={styles.contactIconPurple}
-                />
+                {offices.map((office) => (
+                  <ContactItem
+                    key={`${office.id}-phone`}
+                    icon={<FaPhoneAlt size={15} />}
+                    title={offices.length > 1 ? (office.id === "usa" ? "US phone" : "India phone") : "Phone"}
+                    content={office.phoneDisplay}
+                    sub="Call us anytime"
+                    iconClass={styles.contactIconBlue}
+                    href={`tel:${office.phoneTel}`}
+                    onClick={trackPhoneClick}
+                    nowrap
+                  />
+                ))}
+                {offices.map((office) => (
+                  <ContactItem
+                    key={`${office.id}-address`}
+                    icon={<FaMapMarkerAlt size={16} />}
+                    title={offices.length > 1 ? (office.id === "usa" ? "US office" : "India office") : "Location"}
+                    content={office.shortAddress}
+                    sub={office.id === "usa" ? "United States desk" : "Headquarters"}
+                    iconClass={styles.contactIconPurple}
+                  />
+                ))}
               </div>
             </div>
           </motion.div>
