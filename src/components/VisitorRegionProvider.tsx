@@ -30,17 +30,34 @@ export function VisitorRegionProvider({
       setRegion("OTHER");
       return;
     }
-    if (initialRegion === "US") {
-      setRegion("US");
-      return;
-    }
-    if (initialRegion === "OTHER") {
-      setRegion("OTHER");
-      return;
-    }
 
-    // Silent fallback when the connection country cannot be read. This does not prompt.
-    setRegion(regionFromTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone));
+    const controller = new AbortController();
+    const timer = window.setTimeout(() => controller.abort(), 4000);
+    // Uses the connection address. A VPN changes this. It does not ask for location,
+    // and the computer clock is ignored because a VPN does not change the time zone.
+    fetch("https://api.country.is/", { signal: controller.signal, cache: "no-store" })
+      .then((response) => {
+        if (!response.ok) throw new Error("country lookup failed");
+        return response.json() as Promise<{ country?: string }>;
+      })
+      .then((data) => {
+        const code = (data.country || "").trim().toUpperCase();
+        if (!code) throw new Error("missing country");
+        setRegion(code === "US" ? "US" : "OTHER");
+      })
+      .catch((error: unknown) => {
+        if (controller.signal.aborted) return;
+        if (error instanceof DOMException && error.name === "AbortError") return;
+        if (initialRegion === "US") setRegion("US");
+        else if (initialRegion === "OTHER") setRegion("OTHER");
+        else setRegion(regionFromTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone));
+      })
+      .finally(() => window.clearTimeout(timer));
+
+    return () => {
+      controller.abort();
+      window.clearTimeout(timer);
+    };
   }, [initialRegion, pathname]);
 
   return <VisitorRegionContext.Provider value={region}>{children}</VisitorRegionContext.Provider>;
