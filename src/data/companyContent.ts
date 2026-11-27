@@ -160,58 +160,515 @@ export const servicesContent: Record<string, PageContent> = {
     ...marketingPageContent,
 };
 
-export const productsContent: Record<string, PageContent> = {
-    "child-care": {
-        slug: "child-care",
-        title: "Child Care System",
-        subtitle: "Streamline daycare operations",
-        overview: "An all-in-one management platform designed specifically for child care centers and daycares to handle administration, billing, and parent communication.",
-        sections: {
-            title: "System Features",
-            description: "Everything you need to run your center efficiently.",
-            features: [
-                { title: "Attendance Tracking", desc: "Digital check-in/out for children and staff." },
-                { title: "Automated Billing", desc: "Seamless invoicing and payment processing." },
-            ],
-            benefits: ["Reduced administrative work", "Improved parent engagement", "Accurate record keeping"],
-            process: defaultProcess,
-            faqs: defaultFaqs
-        }
-    },
-    "school": {
-        slug: "school",
-        title: "School Management App",
-        subtitle: "All-in-one educational platform",
-        overview: "A comprehensive digital solution to manage school operations, from admissions and academics to fee collection and transport.",
-        sections: {
-            title: "Platform Modules",
-            description: "Connecting students, parents, and teachers.",
-            features: [
-                { title: "Academic Management", desc: "Timetables, exams, and grading." },
-                { title: "Parent Portal", desc: "Real-time updates on student progress." },
-            ],
-            benefits: ["Streamlined operations", "Enhanced communication", "Data security"],
-            process: defaultProcess,
-            faqs: defaultFaqs
-        }
-    },
-    "car-wash": {
-        slug: "car-wash",
-        title: "Car Wash App",
-        subtitle: "Book auto cleaning instantly",
-        overview: "An on-demand car wash booking system connecting vehicle owners with professional detailers for scheduling doorstep or on-site services.",
-        sections: {
-            title: "App Features",
-            description: "Modernizing the car detailing business.",
-            features: [
-                { title: "Instant Booking", desc: "Schedule washes with a few taps." },
-                { title: "Service Tracking", desc: "Real-time updates on washer arrival." },
-            ],
-            benefits: ["Increased bookings", "Optimized scheduling", "Customer loyalty"],
-            process: defaultProcess,
-            faqs: defaultFaqs
-        }
+const createProductContent = (
+    slug: string,
+    title: string,
+    subtitle: string,
+    overview: string,
+    features: { title: string; desc: string }[],
+    benefits: string[],
+    sectionTitle = "Product Features",
+    description = "Built for performance, scale, and everyday usability.",
+    process = defaultProcess,
+    faqs = defaultFaqs
+): PageContent => ({
+    slug,
+    title,
+    subtitle,
+    overview,
+    sections: {
+        title: sectionTitle,
+        description,
+        features,
+        benefits,
+        process,
+        faqs
     }
+});
+
+export const productsContent: Record<string, PageContent> = {
+    /* On-Demand & Delivery Apps */
+    "car-wash": createProductContent(
+        "car-wash",
+        "Car Wash App",
+        "Book auto cleaning instantly",
+        "An on-demand car wash booking system connecting vehicle owners with professional detailers for scheduling doorstep or on-site services.",
+        [
+            { title: "Instant Booking", desc: "Schedule washes with a few taps." },
+            { title: "Service Tracking", desc: "Real-time updates on washer arrival." },
+            { title: "Secure Payments", desc: "Pay online or after the service completes." },
+            { title: "Ratings & Reviews", desc: "Build trust with verified customer feedback." }
+        ],
+        ["Increased bookings", "Optimized scheduling", "Customer loyalty", "Lower operational overhead"],
+        "App Features",
+        "Modernizing the car detailing business."
+    ),
+    "grocery": createProductContent(
+        "grocery",
+        "Grocery Delivery App",
+        "Hyperlocal commerce platforms",
+        "An on-demand grocery delivery platform connecting local stores and customers with real-time inventory, slot-based delivery, and secure payments.",
+        [
+            { title: "Smart Catalog & Inventory", desc: "Keep stock and pricing accurate across stores." },
+            { title: "Slot-Based Delivery", desc: "Let customers choose delivery windows." },
+            { title: "Store & Rider Apps", desc: "Give stores and delivery partners dedicated tools." },
+            { title: "Secure Checkout", desc: "Support cards, wallets, UPI, and cash on delivery." }
+        ],
+        ["Faster deliveries", "Higher basket size", "More repeat orders", "Local store growth"],
+        "Platform Features",
+        "Everything needed to run hyperlocal grocery commerce."
+    ),
+    "food-delivery": createProductContent(
+        "food-delivery",
+        "Food Delivery App Development Company in Hyderabad",
+        "Launch a scalable, user-friendly food delivery app with advanced features, seamless ordering, real-time tracking, and secure payment integration.",
+        "Panacea IT Services is a leading food delivery app development company in Hyderabad, helping startups, restaurants, cloud kitchens, and enterprises build powerful digital ordering and delivery platforms. Whether you need a single-restaurant ordering app, a multi-vendor delivery marketplace, or a complete on-demand food delivery platform, we deliver tailored solutions focused on usability, performance, scalability, and long-term success.",
+        [
+            { title: "Easy Sign-Up & Login", desc: "Secure onboarding for customers, restaurants, and delivery partners." },
+            { title: "Smart Search & Filters", desc: "Help users discover dishes, cuisines, and restaurants faster." },
+            { title: "Restaurant Listings & Menus", desc: "Rich menus with pricing, availability, and customizations." },
+            { title: "Cart & Quick Checkout", desc: "Frictionless ordering with saved addresses and repeat orders." },
+            { title: "Multiple Payment Options", desc: "Cards, wallets, UPI, net banking, and cash on delivery." },
+            { title: "Real-Time Order Tracking", desc: "Live status from order confirmation to doorstep delivery." },
+            { title: "Ratings & Reviews", desc: "Verified feedback that builds trust and improves quality." },
+            { title: "Push Notifications & Offers", desc: "Targeted campaigns, discounts, and re-engagement." },
+            { title: "Admin, Restaurant & Delivery Panels", desc: "Manage users, menus, commissions, payouts, and routes from one dashboard." },
+            { title: "Order Scheduling", desc: "Let customers schedule orders for a later time or date." },
+            { title: "Coupons & Loyalty", desc: "Run discounts, cashback, and repeat-order rewards." },
+            { title: "Multi-Language & Multi-Currency", desc: "Serve customers across regions and markets." }
+        ],
+        [
+            "Single restaurant, multi-vendor, cloud kitchen, and subscription models",
+            "Real-time tracking, route optimization, and delivery partner management",
+            "Secure, PCI-compliant payment gateway integration",
+            "AI-powered recommendations, smart search, and demand forecasting",
+            "Custom UI/UX for customers, restaurants, and delivery agents",
+            "Scalable architecture built for high order volumes",
+            "Agile delivery with transparent communication",
+            "Post-launch support, maintenance, and feature enhancements"
+        ],
+        "Core Features of Our Food Delivery App",
+        "Everything customers, restaurants, delivery partners, and admins need to run a seamless food delivery business.",
+        [
+            { step: 1, name: "Discovery & Planning", desc: "We understand your business model, audience, workflows, and goals." },
+            { step: 2, name: "UI/UX Design", desc: "We design intuitive interfaces for customers, restaurants, and delivery agents." },
+            { step: 3, name: "Development", desc: "We build secure, scalable applications with real-time tracking and payments." },
+            { step: 4, name: "Testing & QA", desc: "Every module is tested for performance, usability, and reliability." },
+            { step: 5, name: "Launch & Support", desc: "We help you launch smoothly and continue with upgrades, maintenance, and optimization." }
+        ],
+        [
+            { q: "What is food delivery app development?", a: "Food delivery app development is the process of building mobile or web applications that allow users to order food online, track deliveries in real time, and make secure payments. These apps connect customers, restaurants, and delivery partners on a single platform." },
+            { q: "How much does it cost to develop a food delivery app?", a: "The cost depends on features, platforms, and business model. Basic apps are more affordable, while advanced multi-vendor platforms with real-time tracking, analytics, and integrations require a higher investment. We provide custom quotes based on your feature list and launch roadmap." },
+            { q: "How long does it take to build a food delivery app?", a: "A food delivery app typically takes 4 to 12 weeks to develop, depending on features and complexity. Simple apps take less time, while custom multi-vendor or enterprise platforms require additional development and testing." },
+            { q: "Can you build apps like Zomato or Uber Eats?", a: "Yes. We develop scalable food delivery apps similar to Zomato, Swiggy, and Uber Eats with custom features, real-time tracking, and a seamless user experience tailored to your business model." },
+            { q: "What features are essential in a food delivery app?", a: "Key features include restaurant listings, menu browsing, real-time order tracking, secure payments, delivery management, and notifications. Advanced apps also include AI recommendations, analytics, and loyalty programs." },
+            { q: "What business models are supported in food delivery apps?", a: "Food delivery apps support multiple business models such as single restaurant apps, multi-vendor marketplaces, cloud kitchens, and subscription-based delivery platforms, depending on your business goals." },
+            { q: "Do you provide maintenance and support after launch?", a: "Yes. We provide ongoing support and maintenance, including updates, performance optimization, bug fixes, and feature enhancements to ensure smooth operation." },
+            { q: "Can AI be integrated into food delivery apps?", a: "Yes. Food delivery apps can include AI-powered features such as personalized recommendations, demand forecasting, smart search, and chatbot support to improve user engagement and efficiency." }
+        ]
+    ),
+    "courier-logistics": createProductContent(
+        "courier-logistics",
+        "Courier & Logistics App",
+        "Same-day pickup and delivery",
+        "A logistics platform for same-day pickup, route planning, fleet assignment, and proof-of-delivery tracking across multiple service zones.",
+        [
+            { title: "Route Optimization", desc: "Plan efficient routes and reduce fuel costs." },
+            { title: "Live Tracking", desc: "Give customers and ops real-time visibility." },
+            { title: "Proof of Delivery", desc: "Capture signatures, photos, and timestamps." },
+            { title: "Fleet Management", desc: "Assign, monitor, and scale delivery partners." }
+        ],
+        ["Lower delivery costs", "On-time delivery", "Real-time visibility", "Scalable fleet operations"],
+        "Logistics Features",
+        "Control pickup, routing, and delivery in one place."
+    ),
+
+    /* Booking and Service Platforms */
+    "tickets": createProductContent(
+        "tickets",
+        "Ticket Booking App",
+        "Event and travel reservations",
+        "A ticket booking platform for events, travel, and experiences with seat inventory, secure payments, QR check-ins, and refund workflows.",
+        [
+            { title: "Seat & Inventory Management", desc: "Control availability across events and routes." },
+            { title: "Secure Payments", desc: "Support multiple gateways and currencies." },
+            { title: "QR Ticketing", desc: "Enable fast, contactless entry and validation." },
+            { title: "Refunds & Cancellations", desc: "Automate policies and customer communication." }
+        ],
+        ["Higher conversions", "Fraud protection", "Faster check-ins", "Real-time sales insights"],
+        "Booking Features",
+        "Sell, validate, and manage tickets without spreadsheets."
+    ),
+    "party-rentals": createProductContent(
+        "party-rentals",
+        "Party Rentals App",
+        "Manage inventory and bookings",
+        "A rental management platform for party equipment and event supplies with availability calendars, deposits, delivery scheduling, and returns.",
+        [
+            { title: "Rental Catalog", desc: "Showcase items with photos, pricing, and add-ons." },
+            { title: "Availability Calendar", desc: "Prevent double bookings across dates." },
+            { title: "Deposits & Payments", desc: "Collect deposits and final payments securely." },
+            { title: "Delivery Scheduling", desc: "Plan drop-off, setup, and pickup windows." }
+        ],
+        ["Fewer double bookings", "Higher utilization", "Streamlined logistics", "Better customer experience"],
+        "Rental Features",
+        "Keep inventory, bookings, and deliveries in sync."
+    ),
+    "appointment-booking": createProductContent(
+        "appointment-booking",
+        "Appointment Booking Platform",
+        "Smart scheduling for service teams",
+        "A scheduling platform for salons, clinics, consultants, and service teams with real-time availability, reminders, and online payments.",
+        [
+            { title: "Smart Calendar", desc: "Show real-time availability across staff." },
+            { title: "Automated Reminders", desc: "Reduce no-shows with SMS and email nudges." },
+            { title: "Staff & Resource Scheduling", desc: "Assign rooms, equipment, and team members." },
+            { title: "Online Payments", desc: "Collect prepayments or deposits at booking." }
+        ],
+        ["Fewer no-shows", "Higher utilization", "Less admin work", "Better customer reviews"],
+        "Scheduling Features",
+        "Make booking effortless for customers and staff."
+    ),
+    "home-services": createProductContent(
+        "home-services",
+        "Home Services App",
+        "On-demand home service bookings",
+        "An on-demand platform for home services such as cleaning, repairs, beauty, and maintenance with verified professionals and live job tracking.",
+        [
+            { title: "Service Marketplace", desc: "List services, pricing, and service areas." },
+            { title: "Verified Professionals", desc: "Onboard and verify providers before dispatch." },
+            { title: "Live Job Tracking", desc: "Track arrival, progress, and completion." },
+            { title: "In-App Payments", desc: "Handle payments, tips, and refunds securely." }
+        ],
+        ["More bookings", "Trusted providers", "Faster dispatch", "Transparent pricing"],
+        "Service Features",
+        "Connect customers with reliable local professionals."
+    ),
+
+    /* E-Commerce & Marketplace Solutions */
+    "multi-vendor-marketplace": createProductContent(
+        "multi-vendor-marketplace",
+        "Multi-Vendor Marketplace",
+        "Scalable marketplace platforms",
+        "A multi-vendor commerce platform with seller onboarding, commission management, unified checkout, and vendor dashboards.",
+        [
+            { title: "Vendor Onboarding", desc: "Approve sellers and manage store profiles." },
+            { title: "Commission Engine", desc: "Configure category-wise commissions and payouts." },
+            { title: "Unified Cart", desc: "Let customers buy from multiple sellers at once." },
+            { title: "Vendor Dashboards", desc: "Give sellers orders, inventory, and earnings views." }
+        ],
+        ["New revenue streams", "Faster scaling", "Transparent payouts", "Better seller experience"],
+        "Marketplace Features",
+        "Run a marketplace without juggling disconnected tools."
+    ),
+    "online-store": createProductContent(
+        "online-store",
+        "Online Store",
+        "Conversion-focused e-commerce",
+        "A modern online store platform with catalog management, secure checkout, order tracking, and promotions built for growing brands.",
+        [
+            { title: "Product Management", desc: "Manage variants, pricing, and inventory." },
+            { title: "Secure Checkout", desc: "Reduce friction with fast, trusted payments." },
+            { title: "Order Management", desc: "Track fulfillment, returns, and refunds." },
+            { title: "Discounts & Coupons", desc: "Run campaigns that drive repeat purchases." }
+        ],
+        ["Higher conversions", "Lower cart abandonment", "Easy catalog updates", "Repeat purchases"],
+        "Store Features",
+        "A storefront designed to turn browsers into buyers."
+    ),
+    "subscription-commerce": createProductContent(
+        "subscription-commerce",
+        "Subscription Commerce Platform",
+        "Recurring revenue made simple",
+        "A subscription commerce platform for recurring billing, plan management, customer portals, and churn reduction.",
+        [
+            { title: "Flexible Plans", desc: "Offer monthly, annual, and usage-based plans." },
+            { title: "Recurring Billing", desc: "Automate invoices, retries, and receipts." },
+            { title: "Dunning Management", desc: "Recover failed payments with smart retries." },
+            { title: "Customer Portal", desc: "Let customers upgrade, pause, or cancel." }
+        ],
+        ["Predictable revenue", "Lower churn", "Automated billing", "Better retention"],
+        "Subscription Features",
+        "Build recurring revenue without billing headaches."
+    ),
+    "b2b-marketplace": createProductContent(
+        "b2b-marketplace",
+        "B2B Marketplace",
+        "Wholesale buying and selling",
+        "A B2B commerce platform for wholesale catalogs, bulk pricing, RFQs, buyer and seller portals, and credit terms.",
+        [
+            { title: "Bulk Pricing", desc: "Support tiered and customer-specific pricing." },
+            { title: "RFQ & Quotes", desc: "Let buyers request and compare quotes." },
+            { title: "Buyer & Seller Portals", desc: "Give each side the tools they need." },
+            { title: "Credit Terms", desc: "Manage invoices, limits, and payment terms." }
+        ],
+        ["Faster procurement", "Larger order values", "Transparent negotiations", "Streamlined operations"],
+        "B2B Features",
+        "Digitize wholesale commerce from quote to payment."
+    ),
+
+    /* Education & Entertainment */
+    "school": createProductContent(
+        "school",
+        "School Management App",
+        "All-in-one educational platform",
+        "A comprehensive digital solution to manage school operations, from admissions and academics to fee collection and transport.",
+        [
+            { title: "Academic Management", desc: "Timetables, exams, and grading." },
+            { title: "Parent Portal", desc: "Real-time updates on student progress." },
+            { title: "Fees & Payments", desc: "Collect fees online with clear records." },
+            { title: "Transport Tracking", desc: "Keep parents informed about bus routes." }
+        ],
+        ["Streamlined operations", "Enhanced communication", "Data security", "Less administrative work"],
+        "Platform Modules",
+        "Connecting students, parents, and teachers."
+    ),
+    "child-care": createProductContent(
+        "child-care",
+        "Child Care System",
+        "Streamline daycare operations",
+        "An all-in-one management platform designed specifically for child care centers and daycares to handle administration, billing, and parent communication.",
+        [
+            { title: "Attendance Tracking", desc: "Digital check-in/out for children and staff." },
+            { title: "Automated Billing", desc: "Seamless invoicing and payment processing." },
+            { title: "Parent Communication", desc: "Share updates, photos, and reminders." },
+            { title: "Daily Reports", desc: "Keep families informed about activities and meals." }
+        ],
+        ["Reduced administrative work", "Improved parent engagement", "Accurate record keeping", "Safer daily operations"],
+        "System Features",
+        "Everything you need to run your center efficiently."
+    ),
+    "omr": createProductContent(
+        "omr",
+        "OMR Customization",
+        "Automated grading solutions",
+        "An optical mark recognition platform for institutions with custom answer sheets, high-volume scanning, automated grading, and audit trails.",
+        [
+            { title: "Custom Templates", desc: "Design answer sheets for any exam format." },
+            { title: "High-Volume Scanning", desc: "Process hundreds to millions of sheets." },
+            { title: "Auto Grading", desc: "Score objectively with configurable rules." },
+            { title: "Audit Trails", desc: "Keep every scan and result traceable." }
+        ],
+        ["Faster results", "High accuracy", "Reduced manual effort", "Audit-ready records"],
+        "OMR Features",
+        "Accurate grading at institutional scale."
+    ),
+    "elearning": createProductContent(
+        "elearning",
+        "eLearning Platform",
+        "Interactive online learning",
+        "An eLearning platform for course delivery, live classes, progress tracking, assessments, and certifications.",
+        [
+            { title: "Course Builder", desc: "Create structured lessons and modules." },
+            { title: "Live Classes", desc: "Host real-time sessions and recordings." },
+            { title: "Progress Tracking", desc: "Track completion and learner outcomes." },
+            { title: "Certifications", desc: "Issue verifiable certificates automatically." }
+        ],
+        ["Higher engagement", "Scalable delivery", "Better outcomes", "New revenue streams"],
+        "Learning Features",
+        "Deliver engaging learning experiences at scale."
+    ),
+    "interactive-media": createProductContent(
+        "interactive-media",
+        "Interactive Media Platform",
+        "Engaging entertainment experiences",
+        "An interactive media platform for streaming, quizzes, personalized feeds, and creator tools that keep audiences engaged.",
+        [
+            { title: "Content Streaming", desc: "Deliver video and audio reliably at scale." },
+            { title: "Interactive Quizzes", desc: "Add participation layers to content." },
+            { title: "Personalized Feeds", desc: "Recommend content based on behavior." },
+            { title: "Creator Tools", desc: "Help creators publish and monetize." }
+        ],
+        ["Longer sessions", "Higher retention", "Monetization options", "Scalable content operations"],
+        "Media Features",
+        "Turn passive viewing into interactive experiences."
+    ),
+
+    /* Healthcare & Wellness */
+    "patient-management": createProductContent(
+        "patient-management",
+        "Patient Management System",
+        "Digital patient records and care",
+        "A patient management system for clinics and hospitals with electronic health records, appointments, billing, and patient portals.",
+        [
+            { title: "Electronic Health Records", desc: "Keep patient history secure and searchable." },
+            { title: "Appointment Scheduling", desc: "Coordinate doctors, rooms, and visits." },
+            { title: "Billing & Claims", desc: "Streamline invoices and insurance workflows." },
+            { title: "Patient Portal", desc: "Give patients access to records and visits." }
+        ],
+        ["Better care coordination", "Less paperwork", "Faster billing", "Improved patient experience"],
+        "Clinical Features",
+        "One system for records, scheduling, and billing."
+    ),
+    "telemedicine": createProductContent(
+        "telemedicine",
+        "Telemedicine App",
+        "Virtual consultations and care",
+        "A telemedicine platform for video consultations, e-prescriptions, secure messaging, and follow-up care.",
+        [
+            { title: "Video Consultations", desc: "Connect patients and providers securely." },
+            { title: "E-Prescriptions", desc: "Issue and share prescriptions digitally." },
+            { title: "Secure Messaging", desc: "Keep follow-ups private and organized." },
+            { title: "Provider Scheduling", desc: "Manage availability across specialties." }
+        ],
+        ["Wider access", "Lower overhead", "Faster care", "Better follow-ups"],
+        "Telehealth Features",
+        "Deliver care beyond the clinic walls."
+    ),
+    "clinic-booking": createProductContent(
+        "clinic-booking",
+        "Clinic Booking Platform",
+        "Appointments for clinics and practices",
+        "A clinic booking platform with doctor availability, online appointments, reminders, and payments for small and multi-location practices.",
+        [
+            { title: "Doctor Availability", desc: "Show real-time slots by specialty." },
+            { title: "Online Booking", desc: "Let patients book without calling." },
+            { title: "Automated Reminders", desc: "Reduce no-shows with timely nudges." },
+            { title: "Payments", desc: "Collect consultation fees securely." }
+        ],
+        ["Fewer no-shows", "Higher utilization", "Less front-desk work", "Better reviews"],
+        "Clinic Features",
+        "Simplify appointments for staff and patients."
+    ),
+    "fitness-wellness": createProductContent(
+        "fitness-wellness",
+        "Fitness & Wellness App",
+        "Training, tracking, and memberships",
+        "A fitness and wellness platform for class bookings, memberships, workout tracking, and trainer-led programs.",
+        [
+            { title: "Class Booking", desc: "Manage schedules, capacity, and waitlists." },
+            { title: "Membership Plans", desc: "Sell recurring plans and packages." },
+            { title: "Workout Tracking", desc: "Help members log activity and progress." },
+            { title: "Trainer Tools", desc: "Give coaches plans and client visibility." }
+        ],
+        ["Higher retention", "Recurring revenue", "Better engagement", "Scalable coaching"],
+        "Wellness Features",
+        "Keep members motivated and coming back."
+    ),
+
+    /* Social & Media Apps */
+    "influencers": createProductContent(
+        "influencers",
+        "Influencers App",
+        "Manage campaigns and creators",
+        "A creator marketplace and campaign management platform for brands and influencers with discovery, live campaigns, and performance analytics.",
+        [
+            { title: "Creator Discovery", desc: "Find creators by niche, audience, and fit." },
+            { title: "Campaign Management", desc: "Brief, track, and approve deliverables." },
+            { title: "Performance Analytics", desc: "Measure reach, engagement, and ROI." },
+            { title: "Secure Payments", desc: "Pay creators and track campaign spend." }
+        ],
+        ["Better matches", "Faster campaigns", "Transparent ROI", "Scalable partnerships"],
+        "Creator Features",
+        "Run influencer campaigns without spreadsheets."
+    ),
+    "community-platform": createProductContent(
+        "community-platform",
+        "Community Platform",
+        "Community building and engagement",
+        "A community platform with member profiles, groups, discussions, events, and moderation tools for brands and organizations.",
+        [
+            { title: "Member Profiles", desc: "Help members connect and contribute." },
+            { title: "Groups & Forums", desc: "Organize conversations by topic." },
+            { title: "Events", desc: "Host meetups, webinars, and sessions." },
+            { title: "Moderation Tools", desc: "Keep discussions safe and on-brand." }
+        ],
+        ["Stronger engagement", "Member growth", "Safer spaces", "Better insights"],
+        "Community Features",
+        "Build a space members want to return to."
+    ),
+    "content-sharing": createProductContent(
+        "content-sharing",
+        "Content Sharing App",
+        "Publish, discover, and share media",
+        "A content sharing app for publishing, discovery, reactions, comments, and creator monetization across web and mobile.",
+        [
+            { title: "Media Uploads", desc: "Support images, video, and audio." },
+            { title: "Feeds & Discovery", desc: "Surface relevant content by interest." },
+            { title: "Reactions & Comments", desc: "Drive conversation and engagement." },
+            { title: "Creator Monetization", desc: "Enable tips, subscriptions, and payouts." }
+        ],
+        ["Higher reach", "Longer sessions", "New revenue", "Scalable moderation"],
+        "Content Features",
+        "Give creators and audiences a place to connect."
+    ),
+    "messaging-app": createProductContent(
+        "messaging-app",
+        "Messaging App",
+        "Real-time chat and collaboration",
+        "A real-time messaging platform for one-to-one chat, group conversations, media sharing, and secure collaboration.",
+        [
+            { title: "Real-Time Chat", desc: "Deliver messages instantly at scale." },
+            { title: "Group Conversations", desc: "Support teams, communities, and threads." },
+            { title: "Media Sharing", desc: "Send files, images, and voice notes." },
+            { title: "End-to-End Security", desc: "Protect conversations and user data." }
+        ],
+        ["Faster communication", "Stronger retention", "Secure collaboration", "Global reach"],
+        "Messaging Features",
+        "Keep conversations fast, secure, and reliable."
+    ),
+
+    /* AI-Powered Products */
+    "ai-assistant": createProductContent(
+        "ai-assistant",
+        "AI Assistant",
+        "Production AI built on LLMs and RAG",
+        "A production-ready AI assistant that answers questions, takes actions, and integrates with your business systems using LLMs and retrieval-augmented generation.",
+        [
+            { title: "Domain-Trained Chat", desc: "Answer with your products and policies." },
+            { title: "RAG Knowledge Search", desc: "Ground responses in approved documents." },
+            { title: "Tool Integrations", desc: "Connect CRMs, ticketing, and internal APIs." },
+            { title: "Guardrails & Logging", desc: "Monitor quality, safety, and usage." }
+        ],
+        ["Faster support", "Lower costs", "Accurate answers", "Enterprise-ready security"],
+        "AI Features",
+        "Move from AI demos to dependable production use."
+    ),
+    "rag-knowledge-base": createProductContent(
+        "rag-knowledge-base",
+        "RAG Knowledge Base",
+        "Turn business documents into answers",
+        "A retrieval-augmented knowledge base that ingests your documents and returns citation-backed answers with access controls.",
+        [
+            { title: "Document Ingestion", desc: "Index PDFs, docs, tickets, and wikis." },
+            { title: "Semantic Search", desc: "Find relevant passages beyond keywords." },
+            { title: "Citation-Backed Answers", desc: "Show sources for every response." },
+            { title: "Access Controls", desc: "Respect roles and sensitive content." }
+        ],
+        ["Instant answers", "Less hallucination", "Secure knowledge access", "Faster onboarding"],
+        "Knowledge Features",
+        "Make institutional knowledge searchable and trustworthy."
+    ),
+    "ai-automation": createProductContent(
+        "ai-automation",
+        "AI Workflow Automation",
+        "Automate repetitive business processes",
+        "An AI workflow automation platform that combines workflow builders, AI decisioning, system integrations, and human review.",
+        [
+            { title: "Workflow Builder", desc: "Design multi-step automations visually." },
+            { title: "AI Decisioning", desc: "Classify, extract, and route with LLMs." },
+            { title: "System Integrations", desc: "Connect the tools your teams already use." },
+            { title: "Human-in-the-Loop", desc: "Add review steps for high-risk actions." }
+        ],
+        ["Less manual work", "Faster operations", "Fewer errors", "Scalable processes"],
+        "Automation Features",
+        "Automate the work that slows your team down."
+    ),
+    "predictive-analytics": createProductContent(
+        "predictive-analytics",
+        "Predictive Analytics",
+        "Forecast outcomes with your data",
+        "A predictive analytics product with data pipelines, forecasting models, dashboards, alerts, and model monitoring.",
+        [
+            { title: "Data Pipelines", desc: "Bring business data into one reliable flow." },
+            { title: "Predictive Models", desc: "Forecast demand, churn, and revenue." },
+            { title: "Dashboards & Alerts", desc: "Surface insights when they matter." },
+            { title: "Model Monitoring", desc: "Track accuracy and drift over time." }
+        ],
+        ["Better decisions", "Early risk detection", "Revenue optimization", "Measurable ROI"],
+        "Analytics Features",
+        "Turn historical data into forward-looking decisions."
+    )
 };
 
 export const hireContent: Record<string, PageContent> = {

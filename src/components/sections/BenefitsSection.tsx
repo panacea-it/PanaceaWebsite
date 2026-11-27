@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
@@ -8,12 +9,20 @@ export default function BenefitsSection({
     benefits,
     title = "Why Choose Our Services",
     intro = "We focus on delivering measurable value, prioritizing quality, scalability, and an exceptional user experience in every project we undertake.",
+    image,
+    imageAlt,
 }: {
     benefits?: string[];
     title?: string;
     intro?: string;
+    image?: string;
+    imageAlt?: string;
 }) {
     if (!benefits || benefits.length === 0) return null;
+
+    const titleParts = title.trim().split(" ");
+    const titleLast = titleParts.length > 1 ? titleParts.pop() : "";
+    const titleLead = titleParts.join(" ");
 
     return (
         <section className="py-24 px-6 bg-white relative overflow-hidden">
@@ -28,7 +37,7 @@ export default function BenefitsSection({
                         transition={{ duration: 0.6 }}
                     >
                         <h2 className="text-3xl md:text-5xl font-black text-[#0B1536] tracking-tight mb-6">
-                            Why Choose <span className="text-blue-600">Our Services</span>
+                            {titleLead} {titleLast && <span className="text-blue-600">{titleLast}</span>}
                         </h2>
                         <p className="text-slate-500 text-lg mb-10 max-w-xl font-medium">
                             {intro}
@@ -67,10 +76,23 @@ export default function BenefitsSection({
                         <div className="absolute top-[10%] left-[10%] w-[40%] h-[40%] bg-blue-500/20 rounded-full blur-3xl group-hover:bg-blue-500/30 transition-colors duration-700" />
                         <div className="absolute bottom-[10%] right-[10%] w-[50%] h-[50%] bg-cyan-400/20 rounded-full blur-3xl group-hover:bg-cyan-400/30 transition-colors duration-700" />
 
-                        <div className="absolute inset-[15%] bg-white/60 backdrop-blur-xl rounded-[2rem] border border-white/50 shadow-sm flex items-center justify-center overflow-hidden">
-                            <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-80 mix-blend-overlay group-hover:scale-105 transition-transform duration-700"></div>
-                            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent mix-blend-multiply pointer-events-none" />
-                        </div>
+                        {image ? (
+                            <div className="absolute inset-0 overflow-hidden">
+                                <Image
+                                    src={image}
+                                    alt={imageAlt ?? title}
+                                    fill
+                                    sizes="(max-width: 1024px) 100vw, 45vw"
+                                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-blue-950/45 via-transparent to-transparent" />
+                            </div>
+                        ) : (
+                            <div className="absolute inset-[15%] bg-white/60 backdrop-blur-xl rounded-[2rem] border border-white/50 shadow-sm flex items-center justify-center overflow-hidden">
+                                <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-80 mix-blend-overlay group-hover:scale-105 transition-transform duration-700"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent mix-blend-multiply pointer-events-none" />
+                            </div>
+                        )}
                     </motion.div>
                 </div>
             </div>

@@ -230,36 +230,14 @@ const servicesData = [
 
 const productsData = [
   {
-    category: "Management Systems",
-    desc: "Comprehensive admin and operations management tools.",
-    icon: <Image src="/education.png" alt="Management" width={24} height={24} className="object-contain" />,
-    items: [
-      { title: "Child Care System", desc: "Streamline daycare operations", href: "/products/child-care" },
-      { title: "School Management App", desc: "All-in-one educational platform", href: "/products/school" },
-      { title: "OMR Customization", desc: "Automated grading solutions", href: "/products/omr" },
-      { title: "Influencers App", desc: "Manage campaigns and creators", href: "/products/influencers" },
-    ],
-    rightPanel: {
-      title: "OUR PRODUCTS",
-      checkmarks: [
-        "Scalable Architectures",
-        "Easy Integration Capabilities",
-        "Secure Data Handling",
-        "Custom Tailored Deployments"
-      ],
-      buttonText: "View Products",
-      buttonLink: "/products"
-    }
-  },
-  {
-    category: "On-Demand Apps",
-    desc: "Transforming services into instant successes.",
-    icon: <Image src="/ondemand.png" alt="On Demand" width={24} height={24} className="object-contain" />,
+    category: "On-Demand & Delivery Apps",
+    desc: "Transforming everyday services into on-demand success stories.",
+    icon: <span className="text-[18px] leading-none" aria-hidden>🍔</span>,
     items: [
       { title: "Car Wash App", desc: "Book auto cleaning instantly", href: "/products/car-wash" },
       { title: "Grocery Delivery", desc: "Hyperlocal commerce platforms", href: "/products/grocery" },
-      { title: "Ticket Booking", desc: "Event and travel reservations", href: "/products/tickets" },
-      { title: "Party Rentals", desc: "Manage inventory and bookings", href: "/products/party-rentals" },
+      { title: "Food Delivery App", desc: "Multi-restaurant ordering with real-time tracking", href: "/products/food-delivery" },
+      { title: "Courier & Logistics", desc: "Same-day pickup and delivery", href: "/products/courier-logistics" },
     ],
     rightPanel: {
       title: "ON-DEMAND ECONOMY",
@@ -270,6 +248,139 @@ const productsData = [
         "Multi-Platform Support"
       ],
       buttonText: "Start Building",
+      buttonLink: "/contact"
+    }
+  },
+  {
+    category: "Booking and Service Platforms",
+    desc: "Seamless scheduling and appointment management apps",
+    icon: <span className="text-[18px] leading-none" aria-hidden>📅</span>,
+    items: [
+      { title: "Ticket Booking", desc: "Event and travel reservations", href: "/products/tickets" },
+      { title: "Party Rentals", desc: "Manage inventory and bookings", href: "/products/party-rentals" },
+      { title: "Appointment Booking", desc: "Smart scheduling for service teams", href: "/products/appointment-booking" },
+      { title: "Home Services", desc: "On-demand home service bookings", href: "/products/home-services" },
+    ],
+    rightPanel: {
+      title: "BOOKING & SERVICES",
+      checkmarks: [
+        "Real-Time Availability",
+        "Automated Reminders",
+        "Secure Online Payments",
+        "Staff & Resource Management"
+      ],
+      buttonText: "Book a Demo",
+      buttonLink: "/contact"
+    }
+  },
+  {
+    category: "E-Commerce & Marketplace Solutions",
+    desc: "Multi-vendor stores and online shopping platforms",
+    icon: <span className="text-[18px] leading-none" aria-hidden>🛒</span>,
+    items: [
+      { title: "Multi-Vendor Marketplace", desc: "Scalable marketplace platforms", href: "/products/multi-vendor-marketplace" },
+      { title: "Online Store", desc: "Conversion-focused e-commerce", href: "/products/online-store" },
+      { title: "Subscription Commerce", desc: "Recurring revenue made simple", href: "/products/subscription-commerce" },
+      { title: "B2B Marketplace", desc: "Wholesale buying and selling", href: "/products/b2b-marketplace" },
+    ],
+    rightPanel: {
+      title: "COMMERCE AT SCALE",
+      checkmarks: [
+        "Vendor & Catalog Management",
+        "Secure Checkout",
+        "Commission & Payouts",
+        "Analytics & Reporting"
+      ],
+      buttonText: "Build Your Store",
+      buttonLink: "/contact"
+    }
+  },
+  {
+    category: "Education & Entertainment",
+    desc: "eLearning platforms and interactive media solutions",
+    icon: <span className="text-[18px] leading-none" aria-hidden>💻</span>,
+    items: [
+      { title: "School Management App", desc: "All-in-one educational platform", href: "/products/school" },
+      { title: "Child Care System", desc: "Streamline daycare operations", href: "/products/child-care" },
+      { title: "OMR Customization", desc: "Automated grading solutions", href: "/products/omr" },
+      { title: "eLearning Platform", desc: "Interactive online learning", href: "/products/elearning" },
+      { title: "Interactive Media", desc: "Engaging entertainment experiences", href: "/products/interactive-media" },
+    ],
+    rightPanel: {
+      title: "LEARNING & MEDIA",
+      checkmarks: [
+        "Engaging Learning Experiences",
+        "Live & On-Demand Content",
+        "Progress & Certification",
+        "Scalable Delivery"
+      ],
+      buttonText: "Explore Solutions",
+      buttonLink: "/contact"
+    }
+  },
+  {
+    category: "Healthcare & Wellness",
+    desc: "Patient management and telemedicine applications",
+    icon: <span className="text-[18px] leading-none" aria-hidden>❤️</span>,
+    items: [
+      { title: "Patient Management", desc: "Digital patient records and care", href: "/products/patient-management" },
+      { title: "Telemedicine App", desc: "Virtual consultations and care", href: "/products/telemedicine" },
+      { title: "Clinic Booking", desc: "Appointments for clinics and practices", href: "/products/clinic-booking" },
+      { title: "Fitness & Wellness", desc: "Training, tracking, and memberships", href: "/products/fitness-wellness" },
+    ],
+    rightPanel: {
+      title: "HEALTHCARE READY",
+      checkmarks: [
+        "Secure Patient Data",
+        "Appointment & Care Coordination",
+        "Telehealth Integrations",
+        "Compliance-Ready Architecture"
+      ],
+      buttonText: "Talk to Experts",
+      buttonLink: "/contact"
+    }
+  },
+  {
+    category: "Social & Media Apps",
+    desc: "Community building and content sharing platforms",
+    icon: <span className="text-[18px] leading-none" aria-hidden>📣</span>,
+    items: [
+      { title: "Influencers App", desc: "Manage campaigns and creators", href: "/products/influencers" },
+      { title: "Community Platform", desc: "Community building and engagement", href: "/products/community-platform" },
+      { title: "Content Sharing", desc: "Publish, discover, and share media", href: "/products/content-sharing" },
+      { title: "Messaging App", desc: "Real-time chat and collaboration", href: "/products/messaging-app" },
+    ],
+    rightPanel: {
+      title: "SOCIAL & COMMUNITY",
+      checkmarks: [
+        "Real-Time Engagement",
+        "Creator & Community Tools",
+        "Moderation & Safety",
+        "Scalable Media Delivery"
+      ],
+      buttonText: "Start Building",
+      buttonLink: "/contact"
+    }
+  },
+  {
+    category: "AI-Powered Products",
+    desc: "Production AI assistants built on LLMs, RAG and your business systems",
+    icon: <span className="text-[18px] leading-none" aria-hidden>✨</span>,
+    items: [
+      { title: "AI Assistant", desc: "Production AI built on LLMs and RAG", href: "/products/ai-assistant" },
+      { title: "RAG Knowledge Base", desc: "Turn business documents into answers", href: "/products/rag-knowledge-base" },
+      { title: "AI Workflow Automation", desc: "Automate repetitive business processes", href: "/products/ai-automation" },
+      { title: "Predictive Analytics", desc: "Forecast outcomes with your data", href: "/products/predictive-analytics" },
+    ],
+    rightPanel: {
+      title: "AI-POWERED PRODUCTS",
+      checkmarks: [
+        "LLM & RAG Expertise",
+        "Secure Enterprise Integrations",
+        "Guardrails & Observability",
+        "Measurable Business Impact"
+      ],
+      buttonText: "Build with AI",
       buttonLink: "/contact"
     }
   }
