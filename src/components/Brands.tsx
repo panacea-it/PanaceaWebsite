@@ -11,17 +11,12 @@ import React, {
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import type { IconType } from "react-icons";
 import { FaAws, FaMicrosoft } from "react-icons/fa";
-import { BsMicrosoftTeams } from "react-icons/bs";
 import { VscAzure } from "react-icons/vsc";
 import {
   SiAmazon,
   SiAnthropic,
   SiApple,
-  SiBitbucket,
   SiCloudflare,
-  SiConfluence,
-  SiDatabricks,
-  SiDigitalocean,
   SiDocker,
   SiFirebase,
   SiGithub,
@@ -31,20 +26,17 @@ import {
   SiGooglegemini,
   SiGoogleplay,
   SiHubspot,
-  SiHuggingface,
   SiJira,
   SiKubernetes,
   SiMeta,
   SiMongodb,
   SiMysql,
-  SiNetlify,
   SiNotion,
   SiNvidia,
   SiOpenai,
   SiOracle,
   SiPaypal,
   SiPostgresql,
-  SiPytorch,
   SiRazorpay,
   SiRedis,
   SiSalesforce,
@@ -56,7 +48,6 @@ import {
   SiTensorflow,
   SiVercel,
   SiWoocommerce,
-  SiZoho,
 } from "react-icons/si";
 import styles from "./Brands.module.css";
 
@@ -79,7 +70,7 @@ type Platform = {
   color: string;
   Icon?: IconType;
   src?: string;
-  custom?: "ibm" | "servicenow";
+  custom?: "ibm";
   wide?: boolean;
 };
 
@@ -138,19 +129,9 @@ const platforms: Platform[] = [
 
   /* Far */
   { id: "ibm", name: "IBM Cloud", category: "cloud", categoryLabel: "Cloud Infrastructure", ring: "far", color: "#054ADA", custom: "ibm", wide: true },
-  { id: "digitalocean", name: "DigitalOcean", category: "cloud", categoryLabel: "Cloud Infrastructure", ring: "far", color: "#0080FF", Icon: SiDigitalocean },
-  { id: "netlify", name: "Netlify", category: "cloud", categoryLabel: "Cloud Infrastructure", ring: "far", color: "#00C7B7", Icon: SiNetlify },
-  { id: "bitbucket", name: "Bitbucket", category: "development", categoryLabel: "Development", ring: "far", color: "#0052CC", Icon: SiBitbucket },
   { id: "mysql", name: "MySQL", category: "development", categoryLabel: "Development", ring: "far", color: "#4479A1", Icon: SiMysql },
-  { id: "huggingface", name: "Hugging Face", category: "ai", categoryLabel: "AI & Data", ring: "far", color: "#FFD21E", Icon: SiHuggingface },
   { id: "tensorflow", name: "TensorFlow", category: "ai", categoryLabel: "AI & Data", ring: "far", color: "#FF6F00", Icon: SiTensorflow },
-  { id: "pytorch", name: "PyTorch", category: "ai", categoryLabel: "AI & Data", ring: "far", color: "#EE4C2C", Icon: SiPytorch },
-  { id: "databricks", name: "Databricks", category: "ai", categoryLabel: "AI & Data", ring: "far", color: "#FF3621", Icon: SiDatabricks },
   { id: "hubspot", name: "HubSpot", category: "enterprise", categoryLabel: "Enterprise", ring: "far", color: "#FF7A59", Icon: SiHubspot },
-  { id: "teams", name: "Microsoft Teams", category: "enterprise", categoryLabel: "Enterprise", ring: "far", color: "#6264A7", Icon: BsMicrosoftTeams },
-  { id: "confluence", name: "Confluence", category: "enterprise", categoryLabel: "Enterprise", ring: "far", color: "#172B4D", Icon: SiConfluence },
-  { id: "zoho", name: "Zoho", category: "enterprise", categoryLabel: "Enterprise", ring: "far", color: "#E42527", Icon: SiZoho },
-  { id: "servicenow", name: "ServiceNow", category: "enterprise", categoryLabel: "Enterprise", ring: "far", color: "#81B5A1", custom: "servicenow" },
   { id: "woocommerce", name: "WooCommerce", category: "payments", categoryLabel: "Commerce", ring: "far", color: "#96588A", Icon: SiWoocommerce },
   { id: "alltime", name: "All Time Storage", category: "education", categoryLabel: "Partner", ring: "far", color: "#2F6FED", src: "/brands/all-time-storage.png", wide: true },
 ];
@@ -235,25 +216,6 @@ function IbmMark({ className }: { className?: string }) {
   );
 }
 
-function ServiceNowMark({ className }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 32 32" className={className} aria-hidden>
-      <rect x="1" y="1" width="30" height="30" rx="8" fill="#81B5A1" />
-      <text
-        x="16"
-        y="21"
-        textAnchor="middle"
-        fill="#fff"
-        fontSize="11"
-        fontWeight="700"
-        fontFamily="Arial, Helvetica, sans-serif"
-      >
-        now
-      </text>
-    </svg>
-  );
-}
-
 function PlatformMark({
   platform,
   className,
@@ -262,7 +224,6 @@ function PlatformMark({
   className?: string;
 }) {
   if (platform.custom === "ibm") return <IbmMark className={className} />;
-  if (platform.custom === "servicenow") return <ServiceNowMark className={className} />;
   if (platform.src) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
@@ -617,7 +578,7 @@ export default function BrandSlider() {
           >
             <h2 id="partners-heading" className={styles.heading}>
               <span className={styles.headingText}>
-                <span className={styles.headingLine}>Trusted Platforms</span>
+                <span className={styles.headingLine}>Trusted Platforms</span>{" "}
                 <span className={styles.headingPartners}>&amp; Partners</span>
               </span>
             </h2>

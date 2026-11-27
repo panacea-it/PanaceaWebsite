@@ -38,6 +38,11 @@ export default function AwardsSection() {
           transition={{ duration: reduceMotion ? 0.01 : 0.55, ease: EASE }}
         >
           <p className={styles.kicker}>Our Awards</p>
+          <div className={styles.kickerDivider} aria-hidden>
+            <span className={styles.kickerLine} />
+            <span className={styles.kickerStar}>★</span>
+            <span className={styles.kickerLine} />
+          </div>
           <h2 id="awards-heading" className={`${styles.heading} ${playfair.className}`}>
             A Legacy of Distinction
           </h2>

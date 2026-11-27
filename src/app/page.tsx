@@ -69,7 +69,7 @@ export default function Home() {
       <Offering />
       <TrustedBySection
         theme="blue"
-        imageSrc="/whyBusinessTrustUs.png"
+        imageSrc="/whyBusinessTrustUs.webp"
         imageAlt="Panacea IT Services team collaborating in a modern office, building secure and scalable software"
         badgeScale={1.12}
         badgeVariant="glow"

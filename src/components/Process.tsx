@@ -9,35 +9,35 @@ const steps = [
     id: "01", 
     title: "STRATEGY", 
     description: "Panacea IT services encourages innovation, out-of-the-box thinking & continual learning. We follow a systematic process to ensure excellence.", 
-    imageSrc: "/bar1.png", 
+    imageSrc: "/bar1.webp", 
     position: "top" 
   },
   { 
     id: "02", 
     title: "DESIGN", 
     description: "After finalizing the strategy, our veteran designers create a high-fidelity prototype of your project as per specifications.", 
-    imageSrc: "/bar2.png", 
+    imageSrc: "/bar2.webp", 
     position: "bottom" 
   },
   { 
     id: "03", 
     title: "DEVELOP", 
     description: "Once designs are approved, we move forward with robust mobile app development using the latest tech stacks.", 
-    imageSrc: "/bar3.png", 
+    imageSrc: "/bar3.webp", 
     position: "top" 
   },
   { 
     id: "04", 
     title: "TESTING", 
     description: "Before rolling out, we ensure the quality of your web or mobile apps project with comprehensive Q&A testing.", 
-    imageSrc: "/bar4.png", 
+    imageSrc: "/bar4.webp", 
     position: "bottom" 
   },
   { 
     id: "05", 
     title: "DELIVER", 
     description: "Our dedicated teams offer you high-quality projects designed to scale your business and drive growth.", 
-    imageSrc: "/bar5.png", 
+    imageSrc: "/bar5.webp", 
     position: "top" 
   },
 ];
@@ -145,15 +145,18 @@ function ImageCircle({ src, alt }: { src: string; alt: string }) {
       <div className="absolute -inset-5 border-2 border-dashed border-blue-400/20 rounded-full group-hover:rotate-180 transition-transform duration-[3000ms] group-hover:border-cyan-400/50"></div>
       
       {/* Outer Container Clip */}
-      <div className="w-40 h-40 rounded-full bg-[#0a1b4e] border border-blue-300/10 flex items-center justify-center p-2 relative z-10 shadow-[0_0_50px_rgba(0,0,0,0.3)] group-hover:border-blue-400/40 transition-all duration-500 overflow-hidden">
+      <div className="w-40 h-40 rounded-full bg-[#0a1b4e] border border-blue-300/15 flex items-center justify-center p-2 relative z-10 shadow-[0_0_50px_rgba(0,0,0,0.3)] group-hover:border-blue-400/40 transition-all duration-500 overflow-hidden">
         {/* Inner Circle Image Container */}
-        <div className="relative w-full h-full rounded-full overflow-hidden group-hover:scale-110 transition-transform duration-500 bg-[#0a1b4e]">
-          <Image 
-            src={src} 
-            alt={alt} 
-            fill 
-            className="object-cover brightness-110 rounded-full" 
-          />
+        <div className="relative w-full h-full rounded-full overflow-hidden group-hover:scale-105 transition-transform duration-500 bg-white flex items-center justify-center p-3.5">
+          <div className="relative w-full h-full">
+            <Image
+              src={src}
+              alt={alt}
+              fill
+              sizes="140px"
+              className="object-contain"
+            />
+          </div>
         </div>
       </div>
     </div>

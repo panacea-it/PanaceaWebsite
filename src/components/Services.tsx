@@ -45,8 +45,6 @@ type ServiceItem = {
   path: string;
   icon: LucideIcon;
   category: Exclude<FilterId, "all">;
-  visual: "phone" | "browser" | "layout" | "code" | "chart" | "wordpress";
-  iconAnim: "tilt" | "scale" | "spin";
   accent: string;
   accentStrong: string;
   accentSoft: string;
@@ -74,12 +72,10 @@ const coreServices: ServiceItem[] = [
     path: "/services/application-development",
     icon: Smartphone,
     category: "development",
-    visual: "phone",
-    iconAnim: "scale",
-    accent: "#f97316",
-    accentStrong: "#ea580c",
-    accentSoft: "rgba(249, 115, 22, 0.16)",
-    accentGrad: "linear-gradient(135deg, #fb923c, #ef4444)",
+    accent: "#0284c7",
+    accentStrong: "#0369a1",
+    accentSoft: "rgba(2, 132, 199, 0.1)",
+    accentGrad: "linear-gradient(135deg, #0ea5e9, #0284c7)",
     capabilities: [
       "Native iOS and Android apps",
       "Cross-platform builds with React Native and Flutter",
@@ -95,12 +91,10 @@ const coreServices: ServiceItem[] = [
     path: "/services/website-development",
     icon: Globe,
     category: "development",
-    visual: "browser",
-    iconAnim: "tilt",
-    accent: "#6366f1",
-    accentStrong: "#4f46e5",
-    accentSoft: "rgba(99, 102, 241, 0.16)",
-    accentGrad: "linear-gradient(135deg, #818cf8, #4f46e5)",
+    accent: "#2563eb",
+    accentStrong: "#1d4ed8",
+    accentSoft: "rgba(37, 99, 235, 0.1)",
+    accentGrad: "linear-gradient(135deg, #3b82f6, #1d4ed8)",
     capabilities: [
       "Marketing sites, portals, and SaaS platforms",
       "Responsive, accessible front-end engineering",
@@ -116,12 +110,10 @@ const coreServices: ServiceItem[] = [
     path: "/services/website-designing",
     icon: Layout,
     category: "design",
-    visual: "layout",
-    iconAnim: "spin",
-    accent: "#10b981",
-    accentStrong: "#059669",
-    accentSoft: "rgba(16, 185, 129, 0.16)",
-    accentGrad: "linear-gradient(135deg, #34d399, #059669)",
+    accent: "#0891b2",
+    accentStrong: "#0e7490",
+    accentSoft: "rgba(8, 145, 178, 0.1)",
+    accentGrad: "linear-gradient(135deg, #06b6d4, #0e7490)",
     capabilities: [
       "User research, wireframes, and interactive prototypes",
       "Design systems that stay consistent at scale",
@@ -137,12 +129,10 @@ const coreServices: ServiceItem[] = [
     path: "/services/application-development",
     icon: Code2,
     category: "development",
-    visual: "code",
-    iconAnim: "tilt",
-    accent: "#c026d3",
-    accentStrong: "#a21caf",
-    accentSoft: "rgba(192, 38, 211, 0.16)",
-    accentGrad: "linear-gradient(135deg, #e879f9, #7e22ce)",
+    accent: "#4f46e5",
+    accentStrong: "#4338ca",
+    accentSoft: "rgba(79, 70, 229, 0.1)",
+    accentGrad: "linear-gradient(135deg, #6366f1, #4338ca)",
     capabilities: [
       "Custom enterprise and workflow software",
       "System integration and process automation",
@@ -158,12 +148,10 @@ const coreServices: ServiceItem[] = [
     path: "/services/digital-marketing",
     icon: PieChart,
     category: "marketing",
-    visual: "chart",
-    iconAnim: "scale",
-    accent: "#ef4444",
-    accentStrong: "#dc2626",
-    accentSoft: "rgba(239, 68, 68, 0.16)",
-    accentGrad: "linear-gradient(135deg, #f87171, #f97316)",
+    accent: "#0f766e",
+    accentStrong: "#115e59",
+    accentSoft: "rgba(15, 118, 110, 0.1)",
+    accentGrad: "linear-gradient(135deg, #14b8a6, #0f766e)",
     capabilities: [
       "SEO, content, and search visibility programs",
       "Paid media, social, and campaign analytics",
@@ -181,12 +169,10 @@ const coreServices: ServiceItem[] = [
     path: "/services/clouds-and-devops",
     icon: LayoutTemplate,
     category: "development",
-    visual: "wordpress",
-    iconAnim: "spin",
-    accent: "#2563eb",
-    accentStrong: "#1d4ed8",
-    accentSoft: "rgba(37, 99, 235, 0.16)",
-    accentGrad: "linear-gradient(135deg, #60a5fa, #1d4ed8)",
+    accent: "#1d4ed8",
+    accentStrong: "#1e40af",
+    accentSoft: "rgba(29, 78, 216, 0.1)",
+    accentGrad: "linear-gradient(135deg, #2563eb, #1e40af)",
     capabilities: [
       "Custom themes, blocks, and editorial workflows",
       "Performance, security, and hosting setup",
@@ -196,17 +182,17 @@ const coreServices: ServiceItem[] = [
   },
 ];
 
-const marketingAccents: Record<string, Pick<ServiceItem, "accent" | "accentStrong" | "accentSoft" | "accentGrad" | "icon" | "iconAnim">> = {
-  seo: { icon: Search, iconAnim: "scale", accent: "#0ea5e9", accentStrong: "#0284c7", accentSoft: "rgba(14, 165, 233, 0.16)", accentGrad: "linear-gradient(135deg, #38bdf8, #0284c7)" },
-  "local-seo": { icon: MapPin, iconAnim: "tilt", accent: "#14b8a6", accentStrong: "#0f766e", accentSoft: "rgba(20, 184, 166, 0.16)", accentGrad: "linear-gradient(135deg, #2dd4bf, #0f766e)" },
-  "ai-search": { icon: Sparkles, iconAnim: "spin", accent: "#8b5cf6", accentStrong: "#6d28d9", accentSoft: "rgba(139, 92, 246, 0.16)", accentGrad: "linear-gradient(135deg, #c4b5fd, #6d28d9)" },
-  "google-ads": { icon: MousePointerClick, iconAnim: "scale", accent: "#f59e0b", accentStrong: "#d97706", accentSoft: "rgba(245, 158, 11, 0.16)", accentGrad: "linear-gradient(135deg, #fbbf24, #d97706)" },
-  "meta-ads": { icon: Megaphone, iconAnim: "tilt", accent: "#ec4899", accentStrong: "#be185d", accentSoft: "rgba(236, 72, 153, 0.16)", accentGrad: "linear-gradient(135deg, #f9a8d4, #be185d)" },
-  "social-media": { icon: Share2, iconAnim: "spin", accent: "#6366f1", accentStrong: "#4338ca", accentSoft: "rgba(99, 102, 241, 0.16)", accentGrad: "linear-gradient(135deg, #a5b4fc, #4338ca)" },
-  "content-marketing": { icon: FileText, iconAnim: "tilt", accent: "#10b981", accentStrong: "#047857", accentSoft: "rgba(16, 185, 129, 0.16)", accentGrad: "linear-gradient(135deg, #6ee7b7, #047857)" },
-  "video-reels": { icon: Clapperboard, iconAnim: "scale", accent: "#ef4444", accentStrong: "#b91c1c", accentSoft: "rgba(239, 68, 68, 0.16)", accentGrad: "linear-gradient(135deg, #fca5a5, #b91c1c)" },
-  branding: { icon: Palette, iconAnim: "spin", accent: "#c026d3", accentStrong: "#a21caf", accentSoft: "rgba(192, 38, 211, 0.16)", accentGrad: "linear-gradient(135deg, #f0abfc, #a21caf)" },
-  "marketing-automation": { icon: Workflow, iconAnim: "tilt", accent: "#2563eb", accentStrong: "#1d4ed8", accentSoft: "rgba(37, 99, 235, 0.16)", accentGrad: "linear-gradient(135deg, #93c5fd, #1d4ed8)" },
+const marketingAccents: Record<string, Pick<ServiceItem, "accent" | "accentStrong" | "accentSoft" | "accentGrad" | "icon">> = {
+  seo: { icon: Search, accent: "#0284c7", accentStrong: "#0369a1", accentSoft: "rgba(2, 132, 199, 0.1)", accentGrad: "linear-gradient(135deg, #0ea5e9, #0284c7)" },
+  "local-seo": { icon: MapPin, accent: "#0f766e", accentStrong: "#115e59", accentSoft: "rgba(15, 118, 110, 0.1)", accentGrad: "linear-gradient(135deg, #14b8a6, #0f766e)" },
+  "ai-search": { icon: Sparkles, accent: "#4f46e5", accentStrong: "#4338ca", accentSoft: "rgba(79, 70, 229, 0.1)", accentGrad: "linear-gradient(135deg, #6366f1, #4338ca)" },
+  "google-ads": { icon: MousePointerClick, accent: "#2563eb", accentStrong: "#1d4ed8", accentSoft: "rgba(37, 99, 235, 0.1)", accentGrad: "linear-gradient(135deg, #3b82f6, #1d4ed8)" },
+  "meta-ads": { icon: Megaphone, accent: "#0891b2", accentStrong: "#0e7490", accentSoft: "rgba(8, 145, 178, 0.1)", accentGrad: "linear-gradient(135deg, #06b6d4, #0e7490)" },
+  "social-media": { icon: Share2, accent: "#1d4ed8", accentStrong: "#1e40af", accentSoft: "rgba(29, 78, 216, 0.1)", accentGrad: "linear-gradient(135deg, #2563eb, #1e40af)" },
+  "content-marketing": { icon: FileText, accent: "#0f766e", accentStrong: "#115e59", accentSoft: "rgba(15, 118, 110, 0.1)", accentGrad: "linear-gradient(135deg, #14b8a6, #0f766e)" },
+  "video-reels": { icon: Clapperboard, accent: "#0284c7", accentStrong: "#0369a1", accentSoft: "rgba(2, 132, 199, 0.1)", accentGrad: "linear-gradient(135deg, #0ea5e9, #0284c7)" },
+  branding: { icon: Palette, accent: "#4f46e5", accentStrong: "#4338ca", accentSoft: "rgba(79, 70, 229, 0.1)", accentGrad: "linear-gradient(135deg, #6366f1, #4338ca)" },
+  "marketing-automation": { icon: Workflow, accent: "#2563eb", accentStrong: "#1d4ed8", accentSoft: "rgba(37, 99, 235, 0.1)", accentGrad: "linear-gradient(135deg, #3b82f6, #1d4ed8)" },
 };
 
 const marketingHomeCards: ServiceItem[] = marketingServices.map((service) => {
@@ -219,8 +205,6 @@ const marketingHomeCards: ServiceItem[] = marketingServices.map((service) => {
     path: `/services/${service.slug}`,
     icon: accent.icon,
     category: "marketing",
-    visual: "chart",
-    iconAnim: accent.iconAnim,
     accent: accent.accent,
     accentStrong: accent.accentStrong,
     accentSoft: accent.accentSoft,
@@ -258,85 +242,6 @@ const FLOATERS = [
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-function MiniVisual({ kind }: { kind: ServiceItem["visual"] }) {
-  switch (kind) {
-    case "phone":
-      return (
-        <div className={styles.viz} aria-hidden>
-          <div className={styles.phone}>
-            <span className={styles.phoneNotch} />
-            <span className={styles.phoneUi} />
-            <span className={styles.phoneUiWide} />
-          </div>
-        </div>
-      );
-    case "browser":
-      return (
-        <div className={styles.viz} aria-hidden>
-          <div className={styles.browserBar}>
-            <div className={styles.browserDots}>
-              <i />
-              <i />
-              <i />
-            </div>
-            <span className={styles.urlBar} />
-          </div>
-          <div className={styles.browserBody}>
-            <span className={styles.heroBlock} />
-            <span className={styles.lineStack}>
-              <span />
-              <span />
-              <span />
-            </span>
-          </div>
-        </div>
-      );
-    case "layout":
-      return (
-        <div className={styles.viz} aria-hidden>
-          <div className={styles.layoutViz}>
-            <span />
-            <span />
-            <span />
-          </div>
-        </div>
-      );
-    case "code":
-      return (
-        <div className={styles.viz} aria-hidden>
-          <pre className={styles.codeViz}>
-            <span className={styles.kw}>fn</span> build() {"{"}
-            {"\n"}  <span className={styles.key}>ship</span>()
-            {"\n"}
-            {"}"}
-          </pre>
-        </div>
-      );
-    case "chart":
-      return (
-        <div className={styles.viz} aria-hidden>
-          <div className={styles.chartViz}>
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-        </div>
-      );
-    default:
-      return (
-        <div className={styles.viz} aria-hidden>
-          <div className={styles.wpViz}>
-            <span />
-            <span />
-            <span />
-            <span />
-          </div>
-        </div>
-      );
-  }
-}
-
 function ServiceCard({
   service,
   reduced,
@@ -351,34 +256,22 @@ function ServiceCard({
   onOpen: (service: ServiceItem) => void;
 }) {
   const Icon = service.icon;
-  const animClass =
-    service.iconAnim === "scale"
-      ? styles.cardAnimScale
-      : service.iconAnim === "spin"
-        ? styles.cardAnimSpin
-        : "";
-
-  const onMove = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    event.currentTarget.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-    event.currentTarget.style.setProperty("--my", `${event.clientY - rect.top}px`);
-  };
 
   return (
     <motion.div
       className={`${styles.cardSlot} ${hidden ? styles.cardSlotHidden : ""}`}
-      initial={reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+      initial={reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
       animate={{ opacity: hidden ? 0 : 1, y: 0 }}
       transition={{
-        duration: reduced ? 0 : 0.45,
-        delay: reduced || hidden ? 0 : Math.min(index, 5) * 0.1,
+        duration: reduced ? 0 : 0.42,
+        delay: reduced || hidden ? 0 : Math.min(index, 5) * 0.08,
         ease,
       }}
       aria-hidden={hidden}
     >
       <button
         type="button"
-        className={`${styles.card} ${animClass}`}
+        className={styles.card}
         style={
           {
             "--accent": service.accent,
@@ -387,7 +280,6 @@ function ServiceCard({
             "--accent-grad": service.accentGrad,
           } as React.CSSProperties
         }
-        onMouseMove={onMove}
         onClick={() => {
           if (!hidden) onOpen(service);
         }}
@@ -396,25 +288,19 @@ function ServiceCard({
         aria-label={`${service.title}. ${service.description} Open details.`}
       >
         <span className={styles.accentBar} aria-hidden />
-        <span className={styles.accentOrb} aria-hidden />
-        <span className={styles.cardGlow} aria-hidden />
 
         <div className={styles.cardTop}>
           <span className={styles.iconWrap}>
-            <Icon size={18} strokeWidth={1.9} aria-hidden />
+            <Icon size={20} strokeWidth={1.85} aria-hidden />
           </span>
-          <div className={styles.visualSlot}>
-            <MiniVisual kind={service.visual} />
-          </div>
         </div>
 
-        <span className={styles.number}>{service.number}</span>
         <h3 className={styles.cardTitle}>{service.title}</h3>
         <p className={styles.cardDesc}>{service.description}</p>
         <span className={styles.explore} aria-hidden>
-          Explore
+          <span>Explore service</span>
           <span className={styles.exploreArrow}>
-            <ArrowRight size={14} />
+            <ArrowRight size={14} strokeWidth={2} />
           </span>
         </span>
       </button>

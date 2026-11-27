@@ -22,7 +22,6 @@ import {
   ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
-import ServiceMiniVisual, { type ServiceVisualKind } from "@/components/ServiceMiniVisuals";
 import styles from "./SoftwareServicesBento.module.css";
 
 type ServiceItem = {
@@ -32,7 +31,6 @@ type ServiceItem = {
   accent: string;
   soft: string;
   href: string;
-  visual: ServiceVisualKind;
 };
 
 const SERVICES: ServiceItem[] = [
@@ -40,55 +38,49 @@ const SERVICES: ServiceItem[] = [
     title: "Custom Software",
     desc: "Scalable, secure applications tailored to your business workflows.",
     icon: Code2,
-    accent: "#0ea5e9",
-    soft: "rgba(14,165,233,0.14)",
+    accent: "#0284c7",
+    soft: "rgba(2,132,199,0.1)",
     href: "/services/custom",
-    visual: "code",
   },
   {
     title: "Web Development",
     desc: "Business sites, web apps, SaaS platforms, and e‑commerce builds.",
     icon: Globe,
-    accent: "#8b5cf6",
-    soft: "rgba(139,92,246,0.14)",
+    accent: "#2563eb",
+    soft: "rgba(37,99,235,0.1)",
     href: "/services/web",
-    visual: "browser",
   },
   {
     title: "Mobile Apps",
     desc: "Android, iOS, and cross-platform apps for consumer and enterprise.",
     icon: Smartphone,
-    accent: "#14b8a6",
-    soft: "rgba(20,184,166,0.14)",
+    accent: "#0891b2",
+    soft: "rgba(8,145,178,0.1)",
     href: "/services/mobile",
-    visual: "phone",
   },
   {
     title: "IT Consulting",
     desc: "Digital transformation, cloud strategy, and system integration.",
     icon: Cloud,
-    accent: "#f59e0b",
-    soft: "rgba(245,158,11,0.14)",
+    accent: "#1d4ed8",
+    soft: "rgba(29,78,216,0.1)",
     href: "/services/cloud-consulting",
-    visual: "network",
   },
   {
     title: "AI Solutions",
     desc: "Generative AI, automation tools, and machine learning products.",
     icon: Sparkles,
-    accent: "#ec4899",
-    soft: "rgba(236,72,153,0.14)",
+    accent: "#4f46e5",
+    soft: "rgba(79,70,229,0.1)",
     href: "/services/ai-consulting",
-    visual: "ai",
   },
   {
     title: "E‑commerce",
     desc: "Custom stores, marketplaces, and seamless payment integrations.",
     icon: ShoppingBag,
-    accent: "#4f46e5",
-    soft: "rgba(79,70,229,0.14)",
+    accent: "#0f766e",
+    soft: "rgba(15,118,110,0.1)",
     href: "/services",
-    visual: "shop",
   },
 ];
 
@@ -169,23 +161,17 @@ function ServiceCard({
 }) {
   const Icon = service.icon;
 
-  const onMove = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    event.currentTarget.style.setProperty("--mx", `${event.clientX - rect.left}px`);
-    event.currentTarget.style.setProperty("--my", `${event.clientY - rect.top}px`);
-  };
-
   return (
     <motion.div
       variants={{
-        hidden: reduced ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 18, scale: 0.97 },
+        hidden: reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
         show: {
           opacity: 1,
           y: 0,
-          scale: 1,
-          transition: { duration: reduced ? 0 : 0.5, ease },
+          transition: { duration: reduced ? 0 : 0.45, ease },
         },
       }}
+      className="h-full"
     >
       <Link
         href={service.href}
@@ -197,20 +183,13 @@ function ServiceCard({
             "--accent-soft": service.soft,
           } as React.CSSProperties
         }
-        onMouseMove={onMove}
       >
-        <span className={styles.cardTint} aria-hidden />
-        <span className={styles.cardGlow} aria-hidden />
-        <span className={styles.cardSweep} aria-hidden />
+        <span className={styles.cardAccentBar} aria-hidden />
 
         <div className={styles.cardTop}>
           <span className={styles.iconWrap}>
-            <span className={styles.iconGlow} aria-hidden />
-            <Icon size={18} strokeWidth={1.9} aria-hidden />
+            <Icon size={20} strokeWidth={1.85} aria-hidden />
           </span>
-          <div className={styles.visualSlot}>
-            <ServiceMiniVisual kind={service.visual} />
-          </div>
         </div>
 
         <h3 className={styles.title}>{service.title}</h3>
@@ -219,7 +198,7 @@ function ServiceCard({
         <span className={styles.explore} aria-hidden>
           <span className={styles.exploreLine}>Explore service</span>
           <span className={styles.exploreArrow}>
-            <ArrowRight size={14} />
+            <ArrowRight size={14} strokeWidth={2} />
           </span>
         </span>
       </Link>

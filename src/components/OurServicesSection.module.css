@@ -146,14 +146,13 @@
   width: fit-content;
   overflow-wrap: break-word;
   background: linear-gradient(
-    105deg,
-    #38bdf8 0%,
-    #818cf8 32%,
-    #fb7185 58%,
-    #818cf8 78%,
-    #38bdf8 100%
+    100deg,
+    #ffffff 0%,
+    #bae6fd 42%,
+    #38bdf8 78%,
+    #93c5fd 100%
   );
-  background-size: 220% auto;
+  background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -163,7 +162,7 @@
 
 .heading:hover,
 .heading:focus-visible {
-  filter: drop-shadow(0 0 16px rgba(129, 140, 248, 0.55));
+  filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.45));
 }
 
 .description {
@@ -217,8 +216,8 @@
 .filterBtnActive {
   color: #fff;
   border-color: transparent;
-  background: linear-gradient(90deg, #0ea5e9, #6366f1 55%, #db2777);
-  box-shadow: 0 8px 22px -10px rgba(99, 102, 241, 0.7);
+  background: linear-gradient(90deg, #1d4ed8, #0284c7);
+  box-shadow: 0 8px 22px -10px rgba(29, 78, 216, 0.7);
 }
 
 .filterBtn:focus-visible {
@@ -273,14 +272,14 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: #f9a8d4;
-  box-shadow: 0 0 8px rgba(244, 114, 182, 0.55);
+  background: #7dd3fc;
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.45);
 }
 
 .floaterShape {
   width: 18px;
   height: 18px;
-  border: 1px solid rgba(165, 180, 252, 0.55);
+  border: 1px solid rgba(147, 197, 253, 0.55);
   transform: rotate(18deg);
 }
 
@@ -289,7 +288,7 @@
   z-index: 1;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 0.9rem;
+  gap: 1rem;
   align-items: stretch;
 }
 
@@ -303,8 +302,6 @@
 }
 
 .card {
-  --mx: 50%;
-  --my: 28%;
   appearance: none;
   -webkit-appearance: none;
   position: relative;
@@ -312,29 +309,27 @@
   flex-direction: column;
   width: 100%;
   height: 100%;
-  min-height: 15.75rem;
-  padding: 1.15rem 1.15rem 1rem;
+  min-height: 14.5rem;
+  padding: 1.55rem 1.5rem 1.35rem;
   overflow: hidden;
   text-align: left;
   cursor: pointer;
   font-family: inherit;
-  border-radius: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.78);
+  border-radius: 18px;
+  border: 1px solid #dce7f5;
+  background: #ffffff;
   box-shadow:
-    0 14px 36px -18px rgba(15, 23, 42, 0.28),
-    0 1px 0 rgba(255, 255, 255, 0.7) inset;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+    0 1px 3px rgba(11, 21, 54, 0.05),
+    0 12px 30px -16px rgba(11, 21, 54, 0.14);
   color: inherit;
   transition:
-    transform 0.42s var(--ease),
-    box-shadow 0.42s var(--ease),
-    border-color 0.4s ease;
+    transform 0.3s var(--ease),
+    box-shadow 0.3s var(--ease),
+    border-color 0.25s ease;
 }
 
 .card:focus-visible {
-  outline: 2px solid #38bdf8;
+  outline: 2px solid var(--accent, #0284c7);
   outline-offset: 3px;
 }
 
@@ -342,107 +337,95 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 38%;
+  right: 0;
   height: 3px;
-  border-radius: 0 0 8px 0;
-  background: var(--accent-grad);
-  transition: width 0.45s var(--ease), height 0.45s var(--ease);
-}
-
-.accentOrb {
-  position: absolute;
-  top: -32%;
-  right: -18%;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
   background: var(--accent);
-  opacity: 0.14;
-  filter: blur(28px);
-  pointer-events: none;
-  transition: transform 0.45s var(--ease), opacity 0.45s var(--ease);
-}
-
-.cardGlow {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0;
-  background:
-    radial-gradient(160px circle at var(--mx) var(--my), var(--accent-soft), transparent 58%),
-    linear-gradient(160deg, var(--accent-soft), transparent 48%);
-  transition: opacity 0.4s ease;
+  opacity: 0.85;
+  transition: opacity 0.25s ease;
 }
 
 .cardTop {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 0.75rem;
-  margin-bottom: 0.7rem;
+  margin-bottom: 1.2rem;
 }
 
 .iconWrap {
   position: relative;
   display: grid;
   place-items: center;
-  width: 2.7rem;
-  height: 2.7rem;
+  width: 2.85rem;
+  height: 2.85rem;
   flex-shrink: 0;
-  border-radius: 14px;
-  color: #fff;
-  background: var(--accent-grad);
-  box-shadow: 0 8px 18px -10px var(--accent);
-  transition: transform 0.42s var(--ease);
+  border-radius: 12px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(11, 21, 54, 0.06);
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .number {
-  display: block;
-  margin: 0 0 0.2rem;
-  font-size: 0.72rem;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.08em;
   color: #94a3b8;
-}
-
-.visualSlot {
-  width: 6.8rem;
-  height: 4.1rem;
-  flex-shrink: 0;
-  pointer-events: none;
+  transition: color 0.25s ease;
 }
 
 .cardTitle {
-  margin: 0 0 0.4rem;
-  font-size: 1.05rem;
-  font-weight: 800;
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
   letter-spacing: -0.02em;
-  color: #0f172a;
-  transition: color 0.35s ease;
+  line-height: 1.3;
+  color: #0b1536;
+  transition: color 0.25s ease;
 }
 
 .cardDesc {
-  margin: 0 0 0.95rem;
+  margin: 0;
   flex: 1;
-  font-size: 0.86rem;
-  line-height: 1.55;
-  color: #64748b;
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #475569;
 }
 
 .explore {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 0.35rem;
-  margin-top: auto;
-  font-size: 0.8rem;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+  margin-top: 1.35rem;
+  padding-top: 0.95rem;
+  border-top: 1px solid #eaf1fa;
+  font-size: 0.82rem;
   font-weight: 600;
-  color: #64748b;
-  transition: color 0.35s ease;
+  color: #1e293b;
+  transition: color 0.25s ease, border-color 0.25s ease;
 }
 
 .exploreArrow {
   display: inline-flex;
-  transition: transform 0.38s var(--ease);
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 999px;
+  background: #f1f6fd;
+  border: 1px solid #dce7f5;
+  color: #334155;
+  transition:
+    transform 0.25s var(--ease),
+    background-color 0.25s ease,
+    border-color 0.25s ease,
+    color 0.25s ease;
 }
 
 /* ---- Mini visuals ---- */
@@ -633,11 +616,10 @@
   overflow: hidden;
   text-align: center;
   padding: 1.75rem 1.25rem;
-  border-radius: 24px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(248, 250, 252, 0.9));
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  box-shadow: 0 16px 40px -24px rgba(15, 23, 42, 0.2);
+  border-radius: 20px;
+  background: #ffffff;
+  border: 1px solid #dce7f5;
+  box-shadow: 0 14px 34px -22px rgba(11, 21, 54, 0.14);
 }
 
 .ctaKicker {
@@ -646,7 +628,7 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: #64748b;
+  color: #0284c7;
 }
 
 .ctaTitle {
@@ -654,7 +636,7 @@
   font-size: clamp(1.15rem, 2.4vw, 1.55rem);
   font-weight: 800;
   letter-spacing: -0.03em;
-  color: #0f172a;
+  color: #0b1536;
 }
 
 .ctaWrap {
@@ -666,8 +648,8 @@
   position: absolute;
   inset: -8px 2px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #38bdf8, #818cf8, #fb7185);
-  opacity: 0.4;
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  opacity: 0.28;
   filter: blur(12px);
   pointer-events: none;
 }
@@ -684,9 +666,9 @@
   font-size: 0.9rem;
   font-weight: 700;
   text-decoration: none;
-  background: linear-gradient(90deg, #0ea5e9 0%, #6366f1 55%, #db2777 100%);
-  box-shadow: 0 12px 24px -12px rgba(99, 102, 241, 0.75);
-  transition: transform 0.38s var(--ease), box-shadow 0.38s ease;
+  background: linear-gradient(90deg, #1d4ed8 0%, #0284c7 100%);
+  box-shadow: 0 12px 24px -12px rgba(29, 78, 216, 0.65);
+  transition: transform 0.35s var(--ease), box-shadow 0.35s ease;
 }
 
 .ctaBtn:focus-visible {
@@ -852,56 +834,43 @@
 
 .modalPrimary {
   color: #fff;
-  background: linear-gradient(90deg, #0ea5e9, #6366f1);
+  background: linear-gradient(90deg, #1d4ed8, #0284c7);
 }
 
 .modalSecondary {
-  color: #334155;
+  color: #0b1536;
   background: #fff;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #cbd5e1;
 }
 
 .modalPrimary:focus-visible,
 .modalSecondary:focus-visible {
-  outline: 2px solid #38bdf8;
+  outline: 2px solid #0284c7;
   outline-offset: 3px;
 }
 
 /* Hover — pointer devices only */
 @media (hover: hover) and (pointer: fine) {
   .card:hover {
-    transform: translateY(-8px);
-    border-color: var(--accent-soft);
+    transform: translateY(-4px);
+    border-color: #bfdbfe;
     box-shadow:
-      0 22px 40px -18px rgba(15, 23, 42, 0.32),
-      0 0 0 1px var(--accent-soft),
-      0 0 28px var(--accent-soft);
+      0 4px 10px -2px rgba(11, 21, 54, 0.06),
+      0 20px 36px -18px rgba(11, 21, 54, 0.18);
   }
 
   .card:hover .accentBar {
-    width: 100%;
-    height: 4px;
-  }
-
-  .card:hover .accentOrb {
-    transform: scale(1.4);
-    opacity: 0.28;
-  }
-
-  .card:hover .cardGlow {
     opacity: 1;
   }
 
   .card:hover .iconWrap {
-    transform: scale(1.08) rotate(-8deg);
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #ffffff;
   }
 
-  .cardAnimScale:hover .iconWrap {
-    transform: scale(1.12) rotate(0deg);
-  }
-
-  .cardAnimSpin:hover .iconWrap {
-    transform: scale(1.06) rotate(10deg);
+  .card:hover .number {
+    color: var(--accent);
   }
 
   .card:hover .cardTitle {
@@ -909,16 +878,20 @@
   }
 
   .card:hover .explore {
-    color: var(--accent-strong);
+    color: var(--accent);
+    border-color: #dce7f5;
   }
 
   .card:hover .exploreArrow {
-    transform: translateX(5px);
+    transform: translateX(3px);
+    background: var(--accent-soft);
+    border-color: transparent;
+    color: var(--accent);
   }
 
   .ctaBtn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 32px -12px rgba(99, 102, 241, 0.85);
+    box-shadow: 0 16px 32px -12px rgba(29, 78, 216, 0.75);
   }
 
   .ctaBtn:hover .ctaArrow {
@@ -926,7 +899,7 @@
   }
 
   .heading:hover {
-    filter: drop-shadow(0 0 16px rgba(129, 140, 248, 0.55));
+    filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.45));
   }
 }
 
@@ -944,12 +917,7 @@
 
   .grid {
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-
-  .visualSlot {
-    width: 7.4rem;
-    height: 4.35rem;
+    gap: 1.15rem;
   }
 }
 
@@ -965,12 +933,12 @@
 
   .grid {
     grid-template-columns: 1fr 1fr 1fr;
-    gap: 1.1rem;
+    gap: 1.35rem;
   }
 
   .card {
-    min-height: 16.25rem;
-    padding: 1.25rem 1.25rem 1.1rem;
+    min-height: 15.25rem;
+    padding: 1.65rem 1.6rem 1.45rem;
   }
 
   .cta {

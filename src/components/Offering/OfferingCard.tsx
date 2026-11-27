@@ -1,111 +1,89 @@
 "use client";
 
-import { motion, useMotionValue, useReducedMotion, useSpring } from "framer-motion";
-import { useCallback, useRef, useState, type MouseEvent, type PointerEvent } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { useCallback, useRef, type PointerEvent } from "react";
 import type { OfferingItem } from "./offeringData";
 import styles from "./Offering.module.css";
-
-type Ripple = { id: number; x: number; y: number };
 
 type Props = {
   item: OfferingItem;
   index: number;
+  isActive: boolean;
+  onHoverStart: () => void;
+  onHoverEnd: () => void;
 };
 
-export default function OfferingCard({ item, index }: Props) {
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+export default function OfferingCard({
+  item,
+  index,
+  isActive,
+  onHoverStart,
+  onHoverEnd,
+}: Props) {
   const reduced = useReducedMotion() === true;
-  const cardRef = useRef<HTMLButtonElement>(null);
-  const rotateX = useSpring(useMotionValue(0), { stiffness: 240, damping: 22, mass: 0.5 });
-  const rotateY = useSpring(useMotionValue(0), { stiffness: 240, damping: 22, mass: 0.5 });
-  const [ripples, setRipples] = useState<Ripple[]>([]);
+  const cardRef = useRef<HTMLDivElement>(null);
   const Icon = item.Icon;
 
-  const resetTilt = useCallback(() => {
-    rotateX.set(0);
-    rotateY.set(0);
-  }, [rotateX, rotateY]);
-
-  const onPointerMove = (event: PointerEvent<HTMLButtonElement>) => {
-    if (reduced || event.pointerType !== "mouse") return;
-    const el = cardRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const px = (event.clientX - rect.left) / rect.width - 0.5;
-    const py = (event.clientY - rect.top) / rect.height - 0.5;
-    rotateX.set(py * -16);
-    rotateY.set(px * 18);
-  };
-
-  const onClick = (event: MouseEvent<HTMLButtonElement>) => {
-    const el = cardRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const next: Ripple = {
-      id: event.timeStamp,
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top,
-    };
-    setRipples((prev) => [...prev.slice(-3), next]);
-  };
+  const handlePointerMove = useCallback(
+    (event: PointerEvent<HTMLDivElement>) => {
+      if (reduced || event.pointerType !== "mouse") return;
+      const el = cardRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+      el.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+      el.style.setProperty("--my", `${event.clientY - rect.top}px`);
+    },
+    [reduced],
+  );
 
   return (
     <motion.div
-      className={styles.cardEntrance}
-      initial={reduced ? { opacity: 0 } : { opacity: 0, y: 26 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.4 }}
+      className={styles.cardWrap}
+      initial={reduced ? { opacity: 1 } : { opacity: 0, y: 24, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, amount: 0.25 }}
       transition={{
-        delay: reduced ? 0 : 0.12 + index * 0.06,
-        duration: reduced ? 0 : 0.55,
-        ease: [0.22, 1, 0.36, 1],
+        duration: 0.58,
+        delay: reduced ? 0 : 0.08 + index * 0.06,
+        ease: EASE,
       }}
     >
-      <div
-        className={styles.cardFloat}
-        style={{
-          animationDelay: reduced ? undefined : `calc(${item.floatDelay} + 0.7s)`,
-        }}
+      <motion.div
+        ref={cardRef}
+        className={isActive ? `${styles.card} ${styles.cardActive}` : styles.card}
+        onPointerMove={handlePointerMove}
+        onMouseEnter={onHoverStart}
+        onMouseLeave={onHoverEnd}
+        onFocus={onHoverStart}
+        onBlur={onHoverEnd}
+        whileHover={reduced ? undefined : { y: -6 }}
+        transition={{ type: "spring", stiffness: 320, damping: 24 }}
+        tabIndex={0}
+        role="article"
+        aria-label={`${item.title} — ${item.subtitle}`}
       >
-        <motion.button
-          ref={cardRef}
-          type="button"
-          className={styles.card}
-          style={{
-            rotateX,
-            rotateY,
-            transformPerspective: 900,
-          }}
-          onPointerMove={onPointerMove}
-          onPointerLeave={resetTilt}
-          onPointerCancel={resetTilt}
-          onClick={onClick}
-          whileTap={reduced ? undefined : { scale: 0.98 }}
-          aria-label={`${item.title} service`}
-        >
-          <span className={styles.cardGlow} aria-hidden />
-          <span className={styles.iconStage} aria-hidden>
-            <span className={styles.iconShadow}>
-              <Icon size={26} />
-            </span>
-            <span className={styles.iconGlyph}>
-              <Icon size={26} />
-            </span>
+        <span className={styles.cardSpotlight} aria-hidden="true" />
+        <span className={styles.cardSheen} aria-hidden="true" />
+        <span className={styles.cardTopAccent} aria-hidden="true" />
+
+        <div className={styles.cardHeader}>
+          <span className={styles.cardDotWrap} aria-hidden="true">
+            <span className={styles.cardDotPing} />
+            <span className={styles.cardDot} />
           </span>
-          <span className={styles.cardTitle}>{item.title}</span>
-          <span className={styles.rippleLayer} aria-hidden>
-            {ripples.map((ripple) => (
-              <span
-                key={ripple.id}
-                className={styles.ripple}
-                style={{ left: ripple.x, top: ripple.y }}
-                onAnimationEnd={() =>
-                  setRipples((prev) => prev.filter((itemRipple) => itemRipple.id !== ripple.id))
-                }
-              />
-            ))}
-          </span>
-        </motion.button>
-      </div>
+        </div>
+
+        <div className={styles.iconStage} aria-hidden="true">
+          <Icon size={24} className={styles.iconGlyph} />
+        </div>
+
+        <div className={styles.cardText}>
+          <h3 className={styles.cardTitle}>{item.title}</h3>
+          <span className={styles.cardSubtitle}>{item.subtitle}</span>
+        </div>
+      </motion.div>
     </motion.div>
   );
 }

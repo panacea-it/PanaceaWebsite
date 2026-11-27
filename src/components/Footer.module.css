@@ -746,9 +746,10 @@
 
 @media (min-width: 960px) {
   .contactCardInner {
-    grid-template-columns: 1.15fr 0.85fr 1.15fr;
-    gap: 0;
-    align-items: center;
+    grid-template-columns: 1.15fr 0.9fr 1.1fr;
+    row-gap: 1.35rem;
+    column-gap: 0;
+    align-items: start;
   }
 }
 
@@ -767,10 +768,11 @@
     border-right: 1px solid rgba(255, 255, 255, 0.07);
   }
 
-  .contactItem:first-child {
+  .contactItem:nth-child(3n + 1) {
     padding-left: 0.15rem;
   }
 
+  .contactItem:nth-child(3n),
   .contactItem:last-child {
     border-right: none;
     padding-right: 0.15rem;

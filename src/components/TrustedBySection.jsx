@@ -463,7 +463,7 @@ function TrustShowcase({ imageSrc, imageAlt, cards, reduced, visible }) {
 }
 
 export default function TrustedBySection({
-  imageSrc = "/whyBusinessTrustUs.png",
+  imageSrc = "/whyBusinessTrustUs.webp",
   imageAlt = "Panacea IT Services team collaborating in a modern office, building secure and scalable software",
   items = DEFAULT_ITEMS,
   theme = "blue",

@@ -192,7 +192,7 @@ export const productsContent: Record<string, PageContent> = {
         "car-wash",
         "Car Wash App",
         "Book auto cleaning instantly",
-        "An on-demand car wash booking system connecting vehicle owners with professional detailers for scheduling doorstep or on-site services.",
+        "An on-demand car wash booking system connecting vehicle owners with professional detailers for scheduling doorstep or on-site cleaning services anytime. Built for solo detailing businesses, multi-branch wash stations, and mobile service fleets, the platform streamlines service discovery, package selection, and automated slot allocation. Customers can compare wash tiers, book recurring plans, track technician arrival in real time, and pay seamlessly via cards, wallets, or UPI. Meanwhile, operators manage staff schedules, service zones, pricing rules, and verified customer ratings from a centralized dashboard designed to boost repeat bookings and maximize daily fleet utilization.",
         [
             { title: "Instant Booking", desc: "Schedule washes with a few taps." },
             { title: "Service Tracking", desc: "Real-time updates on washer arrival." },
@@ -207,7 +207,7 @@ export const productsContent: Record<string, PageContent> = {
         "grocery",
         "Grocery Delivery App",
         "Hyperlocal commerce platforms",
-        "An on-demand grocery delivery platform connecting local stores and customers with real-time inventory, slot-based delivery, and secure payments.",
+        "An on-demand grocery delivery platform connecting local supermarkets, kirana stores, and specialty grocers with neighborhood shoppers through a fast, mobile-first experience. Real-time inventory syncing prevents out-of-stock surprises, while flexible express and scheduled delivery slots let households order on their own terms. Store managers receive instant picking lists, substitution tools, and price controls, and delivery riders get optimized turn-by-turn dispatch routes. Complete with multi-mode checkout across cards, UPI, digital wallets, and cash on delivery, the platform helps local brands increase average basket size and build lasting customer retention.",
         [
             { title: "Smart Catalog & Inventory", desc: "Keep stock and pricing accurate across stores." },
             { title: "Slot-Based Delivery", desc: "Let customers choose delivery windows." },
@@ -222,7 +222,7 @@ export const productsContent: Record<string, PageContent> = {
         "food-delivery",
         "Food Delivery App Development Company in Hyderabad",
         "Launch a scalable, user-friendly food delivery app with advanced features, seamless ordering, real-time tracking, and secure payment integration.",
-        "Panacea IT Services is a leading food delivery app development company in Hyderabad, helping startups, restaurants, cloud kitchens, and enterprises build powerful digital ordering and delivery platforms. Whether you need a single-restaurant ordering app, a multi-vendor delivery marketplace, or a complete on-demand food delivery platform, we deliver tailored solutions focused on usability, performance, scalability, and long-term success.",
+        "Panacea IT Services is a leading food delivery app development company in Hyderabad, helping startups, restaurants, cloud kitchens, and enterprises build powerful digital ordering and delivery platforms. Whether you need a single-restaurant ordering app, a multi-vendor delivery marketplace, or a complete on-demand food delivery ecosystem, we engineer tailored solutions built for speed, reliability, and high order volumes. Customers enjoy effortless dish discovery, customizable menus, live GPS tracking, and secure multi-gateway payments, while partners gain dedicated restaurant, rider, and admin panels to manage commissions, payouts, promotions, and daily operations seamlessly.",
         [
             { title: "Easy Sign-Up & Login", desc: "Secure onboarding for customers, restaurants, and delivery partners." },
             { title: "Smart Search & Filters", desc: "Help users discover dishes, cuisines, and restaurants faster." },
@@ -271,7 +271,7 @@ export const productsContent: Record<string, PageContent> = {
         "courier-logistics",
         "Courier & Logistics App",
         "Same-day pickup and delivery",
-        "A logistics platform for same-day pickup, route planning, fleet assignment, and proof-of-delivery tracking across multiple service zones.",
+        "A comprehensive courier and logistics management platform built for same-day pickup, intelligent route planning, fleet assignment, and end-to-end shipment tracking across multiple service zones. Dispatchers can balance workloads dynamically, monitor driver locations live, and handle urgent re-routing without manual calls or spreadsheets. Riders use an intuitive mobile app to scan parcels, capture digital signatures, upload photo proof of delivery, and record accurate timestamps at every stop. Customers and enterprise shippers receive automated SMS and push notifications with live tracking links, cutting support inquiries while keeping deliveries consistently on time.",
         [
             { title: "Route Optimization", desc: "Plan efficient routes and reduce fuel costs." },
             { title: "Live Tracking", desc: "Give customers and ops real-time visibility." },
@@ -288,7 +288,7 @@ export const productsContent: Record<string, PageContent> = {
         "tickets",
         "Ticket Booking App",
         "Event and travel reservations",
-        "A ticket booking platform for events, travel, and experiences with seat inventory, secure payments, QR check-ins, and refund workflows.",
+        "A scalable ticket booking platform built for live events, concerts, transit operators, and entertainment venues to sell and manage reservations effortlessly. Real-time seat maps and tiered inventory controls prevent overselling across web and mobile channels, even during high-traffic ticket drops. Attendees receive instant QR-coded digital passes for fast, contactless gate validation, alongside clear self-service options for transfers, cancellations, and automated refunds. Organizers gain live sales dashboards, promo code campaigns, multi-currency payment support, and fraud protection tools that simplify event operations from pre-sale launch to final check-in.",
         [
             { title: "Seat & Inventory Management", desc: "Control availability across events and routes." },
             { title: "Secure Payments", desc: "Support multiple gateways and currencies." },
@@ -303,7 +303,7 @@ export const productsContent: Record<string, PageContent> = {
         "party-rentals",
         "Party Rentals App",
         "Manage inventory and bookings",
-        "A rental management platform for party equipment and event supplies with availability calendars, deposits, delivery scheduling, and returns.",
+        "A complete rental management platform crafted for party equipment suppliers, event decorators, and furniture rental businesses to keep bookings and inventory synchronized. Interactive availability calendars automatically block reserved dates, eliminating costly double bookings across overlapping weekend events and multi-day hires. Customers can browse curated rental catalogs, select add-on packages, pay security deposits online, and schedule exact drop-off and pickup windows. Back-office teams manage warehouse prep checklists, driver routing, damage inspections, and final balance invoicing from one unified workspace that increases fleet utilization and keeps every event running smoothly.",
         [
             { title: "Rental Catalog", desc: "Showcase items with photos, pricing, and add-ons." },
             { title: "Availability Calendar", desc: "Prevent double bookings across dates." },
@@ -318,7 +318,7 @@ export const productsContent: Record<string, PageContent> = {
         "appointment-booking",
         "Appointment Booking Platform",
         "Smart scheduling for service teams",
-        "A scheduling platform for salons, clinics, consultants, and service teams with real-time availability, reminders, and online payments.",
+        "A smart appointment scheduling platform designed for salons, wellness studios, clinics, consultants, and multi-staff service businesses seeking effortless booking workflows. Live calendars sync individual team member shifts, room capacities, and equipment availability so clients only see accurate, conflict-free time slots. Automated SMS, WhatsApp, and email reminders significantly reduce costly no-shows while offering one-tap rescheduling when plans change. Integrated online prepayments, cancellation policies, and recurring membership credits help businesses stabilize cash flow, eliminate front-desk phone bottlenecks, and deliver a polished client experience from first click to checkout.",
         [
             { title: "Smart Calendar", desc: "Show real-time availability across staff." },
             { title: "Automated Reminders", desc: "Reduce no-shows with SMS and email nudges." },
@@ -333,7 +333,7 @@ export const productsContent: Record<string, PageContent> = {
         "home-services",
         "Home Services App",
         "On-demand home service bookings",
-        "An on-demand platform for home services such as cleaning, repairs, beauty, and maintenance with verified professionals and live job tracking.",
+        "An on-demand home services marketplace connecting homeowners with background-verified professionals for cleaning, plumbing, electrical repairs, appliance servicing, and beauty care. Customers browse transparent service packages, view upfront pricing, select preferred arrival windows, and track assigned technicians live on a map. Every service provider goes through structured onboarding, credential verification, and skill categorization before accepting jobs through their dedicated partner app. Built-in in-app chat, secure digital payments, tipping, and post-job review workflows foster customer trust while helping operators scale reliable local service coverage.",
         [
             { title: "Service Marketplace", desc: "List services, pricing, and service areas." },
             { title: "Verified Professionals", desc: "Onboard and verify providers before dispatch." },
@@ -350,7 +350,7 @@ export const productsContent: Record<string, PageContent> = {
         "multi-vendor-marketplace",
         "Multi-Vendor Marketplace",
         "Scalable marketplace platforms",
-        "A multi-vendor commerce platform with seller onboarding, commission management, unified checkout, and vendor dashboards.",
+        "A comprehensive multi-vendor commerce platform engineered with streamlined seller onboarding, flexible commission management, unified checkout, and dedicated vendor dashboards. Marketplace operators can verify incoming merchants, set category-based fee rules, and automate split payouts without manual accounting overhead. Shoppers enjoy a seamless storefront experience where they can browse diverse brands, filter across thousands of SKUs, and complete a single unified cart checkout across multiple independent sellers. Each vendor receives real-time order alerts, inventory controls, shipping label workflows, and transparent earnings analytics to scale sales confidently.",
         [
             { title: "Vendor Onboarding", desc: "Approve sellers and manage store profiles." },
             { title: "Commission Engine", desc: "Configure category-wise commissions and payouts." },
@@ -365,7 +365,7 @@ export const productsContent: Record<string, PageContent> = {
         "online-store",
         "Online Store",
         "Conversion-focused e-commerce",
-        "A modern online store platform with catalog management, secure checkout, order tracking, and promotions built for growing brands.",
+        "A modern, conversion-focused online store platform built for direct-to-consumer brands and growing retail businesses seeking full control over their digital storefront. Powerful product management tools make it simple to organize multi-variant catalogs, update real-time stock levels, and launch seasonal collections in minutes. Fast-loading product pages, streamlined guest or member checkout, and trusted payment integrations help dramatically reduce cart abandonment on both desktop and mobile. Complete with automated order tracking, self-service returns, coupon campaigns, and customer loyalty perks, the platform turns casual browsers into repeat buyers.",
         [
             { title: "Product Management", desc: "Manage variants, pricing, and inventory." },
             { title: "Secure Checkout", desc: "Reduce friction with fast, trusted payments." },
@@ -380,7 +380,7 @@ export const productsContent: Record<string, PageContent> = {
         "subscription-commerce",
         "Subscription Commerce Platform",
         "Recurring revenue made simple",
-        "A subscription commerce platform for recurring billing, plan management, customer portals, and churn reduction.",
+        "A purpose-built subscription commerce platform designed to simplify recurring billing, flexible plan management, customer self-service portals, and automated churn reduction. Businesses can launch monthly boxes, annual memberships, tiered SaaS packages, or hybrid usage-based pricing without wrestling with brittle billing scripts. Automated invoicing, tax handling, and intelligent dunning retries recover failed card payments seamlessly before accounts lapse. Subscribers gain an intuitive portal to upgrade tiers, swap items, skip deliveries, or pause plans on demand—boosting long-term retention while keeping recurring revenue predictable.",
         [
             { title: "Flexible Plans", desc: "Offer monthly, annual, and usage-based plans." },
             { title: "Recurring Billing", desc: "Automate invoices, retries, and receipts." },
@@ -395,7 +395,7 @@ export const productsContent: Record<string, PageContent> = {
         "b2b-marketplace",
         "B2B Marketplace",
         "Wholesale buying and selling",
-        "A B2B commerce platform for wholesale catalogs, bulk pricing, RFQs, buyer and seller portals, and credit terms.",
+        "An enterprise-ready B2B commerce platform built for wholesale catalogs, tiered bulk pricing, structured RFQ negotiations, and digital credit-term workflows. Manufacturers, distributors, and trade buyers collaborate through dedicated portals supporting custom price lists, minimum order quantities, and multi-approver purchasing rules. Buyers can request and compare formal quotes, reorder past shipments in seconds, and track multi-pallet fulfillment milestones online. Finance teams benefit from automated invoice generation, configurable credit limits, net-term tracking, and ERP-ready reporting that digitize complex wholesale procurement from quote to settlement.",
         [
             { title: "Bulk Pricing", desc: "Support tiered and customer-specific pricing." },
             { title: "RFQ & Quotes", desc: "Let buyers request and compare quotes." },
@@ -412,7 +412,7 @@ export const productsContent: Record<string, PageContent> = {
         "school",
         "School Management App",
         "All-in-one educational platform",
-        "A comprehensive digital solution to manage school operations, from admissions and academics to fee collection and transport.",
+        "A comprehensive digital school management platform connecting administrators, teachers, students, and parents across every academic and operational workflow. From online admissions, class timetables, and digital attendance to exam scheduling, report cards, and assignment tracking, daily campus tasks run from one unified system. Automated fee invoicing with online payment receipts simplifies accounting, while real-time school bus GPS tracking gives families peace of mind during daily commutes. Role-based portals keep sensitive student records secure while ensuring instant announcements, homework updates, and progress reports reach parents right on time.",
         [
             { title: "Academic Management", desc: "Timetables, exams, and grading." },
             { title: "Parent Portal", desc: "Real-time updates on student progress." },
@@ -427,7 +427,7 @@ export const productsContent: Record<string, PageContent> = {
         "child-care",
         "Child Care System",
         "Streamline daycare operations",
-        "An all-in-one management platform designed specifically for child care centers and daycares to handle administration, billing, and parent communication.",
+        "An all-in-one child care and daycare management platform designed to simplify center administration, automated tuition billing, and daily family communication. Educators log contactless digital check-ins and check-outs for children and staff, track room ratios in real time, and record meals, naps, and developmental milestones in seconds. Parents receive reassuring photo updates, activity summaries, and instant announcements through a secure mobile portal without disrupting classroom routines. Meanwhile, center directors automate recurring invoices, late-pickup fees, subsidy tracking, and compliance logs so teams can spend more time caring for children.",
         [
             { title: "Attendance Tracking", desc: "Digital check-in/out for children and staff." },
             { title: "Automated Billing", desc: "Seamless invoicing and payment processing." },
@@ -442,7 +442,7 @@ export const productsContent: Record<string, PageContent> = {
         "omr",
         "OMR Customization",
         "Automated grading solutions",
-        "An optical mark recognition platform for institutions with custom answer sheets, high-volume scanning, automated grading, and audit trails.",
+        "A high-precision optical mark recognition platform built for universities, coaching institutes, recruitment boards, and examination authorities handling large-scale testing. Administrators can design custom OMR answer sheet templates with flexible bubble layouts, barcode identifiers, and multi-set question keys tailored to any exam format. High-volume batch scanning processes thousands of sheets rapidly with intelligent skew correction, smudge detection, and configurable negative-marking rules. Every scanned sheet, manual override, and score report is preserved with complete digital audit trails so institutions publish accurate, verifiable results in hours instead of weeks.",
         [
             { title: "Custom Templates", desc: "Design answer sheets for any exam format." },
             { title: "High-Volume Scanning", desc: "Process hundreds to millions of sheets." },
@@ -457,7 +457,7 @@ export const productsContent: Record<string, PageContent> = {
         "elearning",
         "eLearning Platform",
         "Interactive online learning",
-        "An eLearning platform for course delivery, live classes, progress tracking, assessments, and certifications.",
+        "A feature-rich eLearning and LMS platform built for academies, corporate training teams, and edtech founders delivering interactive online education at scale. Instructors can structure multi-module courses combining HD video lessons, downloadable workbooks, live interactive webinars, and timed skill assessments. Learners track their completion milestones across web and mobile devices, participate in cohort discussions, and earn verifiable digital certificates upon passing final evaluations. Built-in enrollment checkout, subscription bundles, instructor analytics, and drip-content scheduling give organizations everything required to launch and monetize impactful learning programs.",
         [
             { title: "Course Builder", desc: "Create structured lessons and modules." },
             { title: "Live Classes", desc: "Host real-time sessions and recordings." },
@@ -472,7 +472,7 @@ export const productsContent: Record<string, PageContent> = {
         "interactive-media",
         "Interactive Media Platform",
         "Engaging entertainment experiences",
-        "An interactive media platform for streaming, quizzes, personalized feeds, and creator tools that keep audiences engaged.",
+        "An interactive media and entertainment platform engineered for adaptive video and audio streaming, real-time audience participation, and personalized content discovery. Viewers move beyond passive watching with live polls, interactive trivia quizzes, synchronized reactions, and branching storylines that turn every broadcast into a shared experience. Behavior-driven recommendation feeds surface relevant shows, shorts, and channels tailored to each user's interests, driving longer watch sessions and higher daily retention. Dedicated creator studios provide publishing workflows, audience analytics, and flexible monetization across subscriptions, ad placements, and virtual gifts.",
         [
             { title: "Content Streaming", desc: "Deliver video and audio reliably at scale." },
             { title: "Interactive Quizzes", desc: "Add participation layers to content." },
@@ -489,7 +489,7 @@ export const productsContent: Record<string, PageContent> = {
         "patient-management",
         "Patient Management System",
         "Digital patient records and care",
-        "A patient management system for clinics and hospitals with electronic health records, appointments, billing, and patient portals.",
+        "A unified patient management system designed for clinics, specialty practices, and multi-department hospitals to streamline electronic health records, scheduling, and billing. Clinicians gain instant, searchable access to patient histories, lab reports, allergies, and visit notes with strict role-based security and audit logging. Front-desk coordinators manage doctor calendars, consultation rooms, and patient queues smoothly without paper charts or duplicate data entry. Integrated insurance claims tracking, automated invoicing, and a self-service patient portal help care teams reduce administrative bottlenecks and deliver more attentive, coordinated patient care.",
         [
             { title: "Electronic Health Records", desc: "Keep patient history secure and searchable." },
             { title: "Appointment Scheduling", desc: "Coordinate doctors, rooms, and visits." },
@@ -504,7 +504,7 @@ export const productsContent: Record<string, PageContent> = {
         "telemedicine",
         "Telemedicine App",
         "Virtual consultations and care",
-        "A telemedicine platform for video consultations, e-prescriptions, secure messaging, and follow-up care.",
+        "A secure telemedicine platform built for hospitals, clinics, and digital health startups to deliver high-definition virtual consultations and continuous remote care. Patients can browse practitioner specialties, book same-day video appointments, upload symptoms or prior lab reports, and join encrypted calls from any phone or browser. Doctors manage structured appointment queues, review patient intake summaries, issue digital e-prescriptions directly, and schedule automated follow-up reminders. Private, organized messaging threads keep post-visit questions structured while extending clinical reach well beyond physical waiting rooms.",
         [
             { title: "Video Consultations", desc: "Connect patients and providers securely." },
             { title: "E-Prescriptions", desc: "Issue and share prescriptions digitally." },
@@ -519,7 +519,7 @@ export const productsContent: Record<string, PageContent> = {
         "clinic-booking",
         "Clinic Booking Platform",
         "Appointments for clinics and practices",
-        "A clinic booking platform with doctor availability, online appointments, reminders, and payments for small and multi-location practices.",
+        "A dedicated clinic booking platform tailored for solo practitioners, dental clinics, diagnostic centers, and multi-location medical practices. Real-time availability calendars display open slots across doctors, specialties, and branches so patients can book or reschedule online without calling the front desk. Automated SMS and email appointment reminders dramatically cut missed visits, while built-in waitlist backfills keep consultation schedules consistently full. With secure upfront consultation payments, digital intake forms, and post-visit feedback prompts, clinics save staff hours every day while elevating patient satisfaction.",
         [
             { title: "Doctor Availability", desc: "Show real-time slots by specialty." },
             { title: "Online Booking", desc: "Let patients book without calling." },
@@ -534,7 +534,7 @@ export const productsContent: Record<string, PageContent> = {
         "fitness-wellness",
         "Fitness & Wellness App",
         "Training, tracking, and memberships",
-        "A fitness and wellness platform for class bookings, memberships, workout tracking, and trainer-led programs.",
+        "An engaging fitness and wellness platform engineered for gyms, yoga studios, personal trainers, and holistic health brands to manage classes, memberships, and member progress. Clients can reserve studio spots, join automated class waitlists, purchase recurring membership packs, and log daily workouts, nutrition, and body metrics from one mobile app. Trainers receive dedicated coaching tools to assign custom exercise programs, share video demonstrations, monitor adherence, and celebrate client milestones. Automated renewal billing and community challenges keep members motivated and boost long-term studio retention.",
         [
             { title: "Class Booking", desc: "Manage schedules, capacity, and waitlists." },
             { title: "Membership Plans", desc: "Sell recurring plans and packages." },
@@ -551,7 +551,7 @@ export const productsContent: Record<string, PageContent> = {
         "influencers",
         "Influencers App",
         "Manage campaigns and creators",
-        "A creator marketplace and campaign management platform for brands and influencers with discovery, live campaigns, and performance analytics.",
+        "A full-cycle creator marketplace and influencer campaign management platform connecting brands and agencies with vetted content creators across social channels. Brands can filter talent by niche, audience demographics, engagement authenticity, and past campaign performance without juggling messy spreadsheets. Structured workflow tools handle campaign briefs, contract approvals, draft content reviews, and scheduled launch tracking in one transparent workspace. Real-time ROI dashboards measure impressions, clicks, and conversions while automated escrow and milestone payouts ensure creators are paid accurately and on time.",
         [
             { title: "Creator Discovery", desc: "Find creators by niche, audience, and fit." },
             { title: "Campaign Management", desc: "Brief, track, and approve deliverables." },
@@ -566,7 +566,7 @@ export const productsContent: Record<string, PageContent> = {
         "community-platform",
         "Community Platform",
         "Community building and engagement",
-        "A community platform with member profiles, groups, discussions, events, and moderation tools for brands and organizations.",
+        "A customizable community platform built for brands, membership networks, alumni groups, and professional associations to spark meaningful member engagement. Rich member profiles, interest-based groups, threaded discussions, and resource libraries help members connect, share expertise, and collaborate organically. Built-in event calendars support virtual webinars, local meetups, RSVPs, and post-event recordings inside the same branded ecosystem. Comprehensive moderation queues, automated spam filters, role permissions, and engagement analytics keep every conversation welcoming, safe, and aligned with your community guidelines.",
         [
             { title: "Member Profiles", desc: "Help members connect and contribute." },
             { title: "Groups & Forums", desc: "Organize conversations by topic." },
@@ -581,7 +581,7 @@ export const productsContent: Record<string, PageContent> = {
         "content-sharing",
         "Content Sharing App",
         "Publish, discover, and share media",
-        "A content sharing app for publishing, discovery, reactions, comments, and creator monetization across web and mobile.",
+        "A high-performance content sharing app designed for creators, publishers, and niche media communities to publish, discover, and monetize digital media across web and mobile. Seamless upload pipelines support short-form videos, high-resolution photography, podcasts, and rich editorial posts with adaptive playback on any connection. Personalized discovery feeds, topic tags, reactions, and threaded comments keep audiences exploring new voices and returning daily. Integrated creator monetization tools—including paid subscriptions, tipping, gated posts, and transparent payout dashboards—empower independent storytellers to grow sustainable businesses.",
         [
             { title: "Media Uploads", desc: "Support images, video, and audio." },
             { title: "Feeds & Discovery", desc: "Surface relevant content by interest." },
@@ -596,7 +596,7 @@ export const productsContent: Record<string, PageContent> = {
         "messaging-app",
         "Messaging App",
         "Real-time chat and collaboration",
-        "A real-time messaging platform for one-to-one chat, group conversations, media sharing, and secure collaboration.",
+        "A fast, reliable real-time messaging platform engineered for one-to-one chat, structured group channels, rich media sharing, and secure team or community collaboration. Built on low-latency delivery infrastructure, messages, typing indicators, read receipts, and push notifications sync effortlessly across mobile and desktop clients. Users can organize threaded discussions, share documents, photos, and voice notes, and search conversation histories instantaneously. Enterprise-grade encryption, role-based access controls, and scalable cloud architecture protect sensitive communications while supporting thousands of concurrent users reliably.",
         [
             { title: "Real-Time Chat", desc: "Deliver messages instantly at scale." },
             { title: "Group Conversations", desc: "Support teams, communities, and threads." },
@@ -613,7 +613,7 @@ export const productsContent: Record<string, PageContent> = {
         "ai-assistant",
         "AI Assistant",
         "Production AI built on LLMs and RAG",
-        "A production-ready AI assistant that answers questions, takes actions, and integrates with your business systems using LLMs and retrieval-augmented generation.",
+        "A production-ready enterprise AI assistant engineered to answer domain-specific questions accurately, execute guided actions, and integrate directly into your existing business systems. Grounded in large language models and retrieval-augmented generation, it pulls verified context from approved company documentation, product catalogs, and policy playbooks rather than guessing. Deep API integrations connect the assistant to CRMs, helpdesk ticketing tools, scheduling systems, and internal databases to resolve customer and employee requests end to end. Comprehensive guardrails, citation checks, usage telemetry, and audit logs ensure dependable, compliant performance at scale.",
         [
             { title: "Domain-Trained Chat", desc: "Answer with your products and policies." },
             { title: "RAG Knowledge Search", desc: "Ground responses in approved documents." },
@@ -628,7 +628,7 @@ export const productsContent: Record<string, PageContent> = {
         "rag-knowledge-base",
         "RAG Knowledge Base",
         "Turn business documents into answers",
-        "A retrieval-augmented knowledge base that ingests your documents and returns citation-backed answers with access controls.",
+        "An enterprise retrieval-augmented knowledge base that transforms scattered PDFs, wikis, SOPs, and support tickets into instant, trustworthy answers for teams and customers. Automated ingestion pipelines chunk, index, and continuously refresh documents while semantic vector search uncovers relevant insights beyond exact keyword matches. Every generated response includes clickable inline source citations so users can verify facts immediately and organizations minimize AI hallucination risks. Granular role-based access controls ensure employees and clients only retrieve answers from documents they are authorized to view.",
         [
             { title: "Document Ingestion", desc: "Index PDFs, docs, tickets, and wikis." },
             { title: "Semantic Search", desc: "Find relevant passages beyond keywords." },
@@ -643,7 +643,7 @@ export const productsContent: Record<string, PageContent> = {
         "ai-automation",
         "AI Workflow Automation",
         "Automate repetitive business processes",
-        "An AI workflow automation platform that combines workflow builders, AI decisioning, system integrations, and human review.",
+        "An intelligent AI workflow automation platform combining visual process builders, LLM-powered decisioning, system integrations, and human-in-the-loop review gates. Operations teams can automate repetitive multi-step workflows such as document extraction, ticket triage, lead qualification, invoice routing, and compliance checks without brittle manual scripts. Native connectors bridge CRMs, ERPs, email inboxes, and cloud storage so data flows smoothly across departments in real time. Built-in confidence thresholds escalate edge cases to human reviewers with full audit trails, helping teams cut manual overhead while keeping high-stakes decisions reliable.",
         [
             { title: "Workflow Builder", desc: "Design multi-step automations visually." },
             { title: "AI Decisioning", desc: "Classify, extract, and route with LLMs." },
@@ -658,7 +658,7 @@ export const productsContent: Record<string, PageContent> = {
         "predictive-analytics",
         "Predictive Analytics",
         "Forecast outcomes with your data",
-        "A predictive analytics product with data pipelines, forecasting models, dashboards, alerts, and model monitoring.",
+        "A modern predictive analytics platform featuring automated data pipelines, custom forecasting models, executive dashboards, and proactive anomaly alerts. Businesses unify fragmented sales, operational, and customer interaction data into clean, reliable datasets ready for machine learning inference. Tailored predictive models forecast seasonal demand, inventory bottlenecks, customer churn risks, and revenue trends weeks before they impact the bottom line. Continuous model monitoring tracks accuracy and data drift over time, empowering leadership teams to replace reactive guesswork with confident, forward-looking decisions.",
         [
             { title: "Data Pipelines", desc: "Bring business data into one reliable flow." },
             { title: "Predictive Models", desc: "Forecast demand, churn, and revenue." },
@@ -861,7 +861,7 @@ export function getPageContent(category: string, slug: string): PageContent {
         slug,
         title: `${formattedTitle} Solutions`,
         subtitle: `Expert ${formattedTitle} services tailored for you`,
-        overview: `At Panacea IT Services, we provide comprehensive ${formattedTitle.toLowerCase()} solutions designed to streamline operations, enhance user engagement, and accelerate your digital transformation journey.`,
+        overview: `At Panacea IT Services, we provide comprehensive ${formattedTitle.toLowerCase()} solutions designed to streamline operations, enhance user engagement, and accelerate your digital transformation journey. Our product engineering teams combine intuitive UI/UX design, scalable cloud architectures, and battle-tested integrations to deliver platforms tailored around your exact business workflows. Whether launching a new digital venture or modernizing legacy systems, we build secure, high-performance applications with real-time visibility, automated operations, and seamless payment or third-party connectivity. Every solution is backed by structured QA, transparent milestone delivery, and ongoing post-launch support so your platform grows reliably alongside your users.`,
         sections: {
             title: `Our ${formattedTitle} Offerings`,
             description: "Industry-leading expertise to help you scale.",

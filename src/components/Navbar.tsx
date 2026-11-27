@@ -225,6 +225,30 @@ const servicesData = [
       buttonText: "All marketing services",
       buttonLink: "/services/digital-marketing"
     }
+  },
+  {
+    category: "Business Services",
+    desc: "Strategic IT consulting, digital transformation, and enterprise growth solutions.",
+    icon: <Image src="/business_solution.png" alt="Business Services" width={24} height={24} className="object-contain" />,
+    items: [
+      { title: "IT Consulting & Strategy", desc: "Technology roadmaps aligned with business goals", href: "/services/it-consulting" },
+      { title: "Digital Transformation", desc: "Modernize operations, workflows, and legacy systems", href: "/services/digital-transformation" },
+      { title: "Business Process Automation", desc: "Streamline repetitive tasks and boost productivity", href: "/services/process-automation" },
+      { title: "ERP & CRM Solutions", desc: "Unified platforms for finance, sales, and operations", href: "/services/erp-crm" },
+      { title: "Product Discovery & Advisory", desc: "Validate ideas, architecture, and go-to-market plans", href: "/services/product-advisory" },
+      { title: "Managed IT Services", desc: "Reliable ongoing support, monitoring, and optimization", href: "/services/managed-it" },
+    ],
+    rightPanel: {
+      title: "BUSINESS SOLUTIONS",
+      checkmarks: [
+        "Strategy-Led Technology Consulting",
+        "Streamlined Enterprise Operations",
+        "Scalable & Secure Architectures",
+        "Dedicated Post-Launch Support"
+      ],
+      buttonText: "Get in Touch",
+      buttonLink: "/contact"
+    }
   }
 ];
 
@@ -735,11 +759,6 @@ export default function Navbar() {
                 </span>
               </React.Fragment>
             ))}
-            <span className={`${styles.topSep} hidden xl:block`} aria-hidden />
-            <span className={`${styles.statusText} hidden xl:inline-flex`}>
-              <span className={styles.statusDot} aria-hidden />
-              Available for new projects
-            </span>
           </div>
         </div>
       </div>

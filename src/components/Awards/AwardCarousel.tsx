@@ -17,14 +17,14 @@ function wrap(index: number, length: number) {
 
 const SPARKS = [
   { x: -42, delay: 0, rot: 18, tone: "gold" },
-  { x: -18, delay: 0.04, rot: -24, tone: "violet" },
+  { x: -18, delay: 0.04, rot: -24, tone: "silver" },
   { x: 8, delay: 0.02, rot: 32, tone: "gold" },
   { x: 28, delay: 0.07, rot: -12, tone: "silver" },
-  { x: 48, delay: 0.01, rot: 8, tone: "violet" },
+  { x: 48, delay: 0.01, rot: 8, tone: "gold" },
   { x: -56, delay: 0.09, rot: -30, tone: "gold" },
   { x: 62, delay: 0.05, rot: 22, tone: "silver" },
   { x: -8, delay: 0.11, rot: 14, tone: "gold" },
-  { x: 16, delay: 0.08, rot: -18, tone: "violet" },
+  { x: 16, delay: 0.08, rot: -18, tone: "silver" },
   { x: 0, delay: 0.03, rot: 40, tone: "gold" },
 ] as const;
 
@@ -43,10 +43,13 @@ export default function AwardCarousel({
   const labelId = useId();
   const count = AWARDS.length;
 
-  const go = useCallback((next: number) => {
-    setActive(wrap(next, count));
-    setLit(null);
-  }, [count]);
+  const go = useCallback(
+    (next: number) => {
+      setActive(wrap(next, count));
+      setLit(null);
+    },
+    [count]
+  );
 
   useEffect(() => {
     if (reduceMotion || hovered || !inView) return;
@@ -70,7 +73,6 @@ export default function AwardCarousel({
 
   const playing = inView && !reduceMotion;
   const fromLeft = active % 2 === 0;
-  const variant = active % 2 === 0 ? "gold" : "violet";
   const pieces = useMemo(() => SPARKS, []);
 
   return (
@@ -119,11 +121,10 @@ export default function AwardCarousel({
                 cursor: offset === 0 ? "default" : "pointer",
               }}
               animate={{
-                x: `${-50 + offset * 108}%`,
+                x: `${-50 + offset * 106}%`,
                 y: "-50%",
-                scale: offset === 0 ? 1 : 0.86,
-                opacity: visible ? (offset === 0 ? 1 : 0.62) : 0,
-                filter: offset === 0 ? "blur(0px)" : "blur(0.4px)",
+                scale: offset === 0 ? 1 : 0.88,
+                opacity: visible ? (offset === 0 ? 1 : 0.9) : 0,
               }}
               transition={{
                 duration: reduceMotion ? 0.01 : 0.55,
@@ -151,7 +152,7 @@ export default function AwardCarousel({
           fromLeft={fromLeft}
           playing={playing}
           reduceMotion={reduceMotion}
-          variant={variant}
+          variant="gold"
           onLand={onLand}
         />
 
@@ -169,11 +170,7 @@ export default function AwardCarousel({
                 <span
                   key={i}
                   className={`${styles.confettiBit} ${
-                    piece.tone === "gold"
-                      ? styles.toneGold
-                      : piece.tone === "violet"
-                        ? styles.toneViolet
-                        : styles.toneSilver
+                    piece.tone === "gold" ? styles.toneGold : styles.toneSilver
                   }`}
                   style={{
                     ["--x" as string]: `${piece.x}px`,
@@ -226,18 +223,9 @@ export default function AwardCarousel({
         </button>
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.p
-          key={AWARDS[active].id}
-          className={styles.liveCaption}
-          initial={reduceMotion ? false : { opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={reduceMotion ? undefined : { opacity: 0, y: -6 }}
-          transition={{ duration: 0.32, ease: EASE }}
-        >
-          {AWARDS[active].year} · {AWARDS[active].title}
-        </motion.p>
-      </AnimatePresence>
+      <p className={styles.liveCaption}>
+        {AWARDS[active].year} — {AWARDS[active].title}
+      </p>
     </div>
   );
 }

@@ -26,16 +26,16 @@ const FOUNDERS = [
 ];
 
 const TEAM = [
-  { name: "Dharsan", role: "Lead UI/UX Designer", image: "/dharsan.jpeg" },
-  { name: "PavanKalyan", role: "Digital Marketing Manager", image: "/pavan.jpeg" },
-  { name: "Deekshith", role: "Senior Frontend Lead", image: "/deekshith.jpeg" },
-  { name: "Harika", role: "Mobile App Developer", image: "/harika.jpeg" },
-  { name: "Varun", role: "DevOps Architect", image: "/varun.jpeg" },
-  { name: "Vinayaraj", role: "AI/ML Specialist", image: "/vinayaraj.jpeg" },
-  { name: "Karthik", role: "software developer", image: "/karthik1.jpeg" },
-  { name: "Akshitha", role: "software developer", image: "/akshitha.jpeg" },
-  { name: "Akhila", role: "software developer", image: "/akhila.jpeg" },
-  { name: "Kranthi", role: "software developer", image: "/kranthi.jpeg" },
+  { name: "Dharsan", role: "Lead UI/UX Designer", image: "/dharsan.webp" },
+  { name: "PavanKalyan", role: "Digital Marketing Manager", image: "/pavan.webp" },
+  { name: "Deekshith", role: "Senior Frontend Lead", image: "/deekshith.webp" },
+  { name: "Harika", role: "Mobile App Developer", image: "/harika.webp" },
+  { name: "Varun", role: "DevOps Architect", image: "/varun.webp" },
+  { name: "Vinayaraj", role: "AI/ML Specialist", image: "/vinayaraj.webp" },
+  { name: "Karthik", role: "software developer", image: "/karthik1.webp" },
+  { name: "Akshitha", role: "software developer", image: "/akshitha.webp" },
+  { name: "Akhila", role: "software developer", image: "/akhila.webp" },
+  { name: "Kranthi", role: "software developer", image: "/kranthi.webp" },
 ];
 
 const ease = [0.22, 1, 0.36, 1] as const;

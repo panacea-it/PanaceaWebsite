@@ -12,50 +12,30 @@ type StoryContentProps = {
 
 export default function StoryContent({ visible, reduced }: StoryContentProps) {
   const reveal = (delay: number) => ({
-    initial: reduced ? false : { opacity: 0, y: 12, filter: "blur(5px)" },
-    animate:
-      visible || reduced
-        ? { opacity: 1, y: 0, filter: "blur(0px)" }
-        : { opacity: 0, y: 12, filter: "blur(5px)" },
-    transition: { duration: 0.48, delay: reduced ? 0 : delay, ease },
+    initial: reduced ? false : { opacity: 0, y: 10 },
+    animate: visible || reduced ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 },
+    transition: { duration: 0.45, delay: reduced ? 0 : delay, ease },
   });
 
   return (
     <div className={styles.content}>
-      <motion.div className={styles.chapter} {...reveal(0.22)}>
-        <h3 className={styles.kicker}>Research-driven technology</h3>
-        <p className={styles.copy}>
-          Panacea IT Services Pvt Ltd is a{" "}
-          <em className={styles.emph}>research-driven technology</em> company
-          founded by industry experts with deep expertise in mobile, web, and
-          enterprise software for modern businesses worldwide.
-        </p>
-      </motion.div>
+      <motion.p className={styles.copy} {...reveal(0.2)}>
+        Panacea IT Services Pvt Ltd is a research-driven technology company
+        founded by industry experts with deep expertise in mobile, web, and
+        enterprise software for modern businesses worldwide.
+      </motion.p>
 
-      <motion.div className={styles.chapter} {...reveal(0.34)}>
-        <h3 className={`${styles.kicker} ${styles.kickerSubtle}`}>
-          Product excellence + client-first vision
-        </h3>
-        <p className={styles.copy}>
-          Driven by <em className={styles.emph}>product excellence</em> and a{" "}
-          <em className={styles.emph}>client-first vision</em>, we help startups
-          and global brands turn ambitious ideas into reliable digital products —
-          combining thoughtful design,{" "}
-          <em className={styles.emph}>modern engineering</em>, and{" "}
-          <em className={styles.emph}>measurable outcomes</em>.
-        </p>
-      </motion.div>
+      <motion.p className={styles.copy} {...reveal(0.3)}>
+        Driven by product excellence and a client-first vision, we help startups
+        and global brands turn ambitious ideas into reliable digital products —
+        combining thoughtful design, modern engineering, and measurable outcomes.
+      </motion.p>
 
-      <motion.div className={styles.chapter} {...reveal(0.46)}>
-        <h3 className={`${styles.kicker} ${styles.kickerSubtle}`}>
-          Trusted global partner
-        </h3>
-        <p className={styles.copy}>
-          For over a decade, Panacea has stood as a trusted partner from Hyderabad
-          to the USA, delivering ISO-certified quality across custom software, SaaS
-          platforms, cloud, and digital growth services.
-        </p>
-      </motion.div>
+      <motion.p className={styles.copy} {...reveal(0.4)}>
+        For over a decade, Panacea has stood as a trusted partner from Hyderabad
+        to the USA, delivering ISO-certified quality across custom software, SaaS
+        platforms, cloud, and digital growth services.
+      </motion.p>
     </div>
   );
 }

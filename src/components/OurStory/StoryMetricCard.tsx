@@ -7,7 +7,7 @@ import styles from "./OurStory.module.css";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-export type MetricAccent = "blue" | "violet" | "pink" | "teal";
+export type MetricAccent = "pink" | "blue" | "teal" | "amber";
 export type MetricId = "years" | "projects" | "iso" | "offices";
 
 export type StoryMetric = {
@@ -21,10 +21,10 @@ export type StoryMetric = {
 };
 
 const accentClass: Record<MetricAccent, string> = {
-  blue: styles.metricBlue,
-  violet: styles.metricViolet,
   pink: styles.metricPink,
+  blue: styles.metricBlue,
   teal: styles.metricTeal,
+  amber: styles.metricAmber,
 };
 
 function CountValue({
@@ -103,30 +103,30 @@ export default function StoryMetricCard({
   return (
     <motion.li
       className={`${styles.metric} ${accentClass[metric.accent]} ${active ? styles.metricActive : ""}`}
-      initial={reduced ? false : { opacity: 0, y: 12, filter: "blur(6px)" }}
+      initial={reduced ? false : { opacity: 0, scale: 0.9 }}
       animate={
-        visible || reduced
-          ? { opacity: 1, y: 0, filter: "blur(0px)" }
-          : { opacity: 0, y: 12, filter: "blur(6px)" }
+        visible || reduced ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }
       }
       transition={{
         duration: 0.42,
-        delay: reduced ? 0 : 0.32 + index * 0.08,
+        delay: reduced ? 0 : 0.24 + index * 0.08,
         ease,
       }}
       tabIndex={0}
     >
-      <span className={styles.metricIcon} aria-hidden>
-        <Icon size={13} strokeWidth={1.85} />
-      </span>
-      <CountValue
-        value={metric.value}
-        suffix={metric.suffix}
-        display={metric.display}
-        visible={visible}
-        reduced={reduced}
-      />
-      <span className={styles.metricLabel}>{metric.label}</span>
+      <div className={styles.metricInner}>
+        <span className={styles.metricIcon} aria-hidden>
+          <Icon size={15} strokeWidth={1.9} />
+        </span>
+        <CountValue
+          value={metric.value}
+          suffix={metric.suffix}
+          display={metric.display}
+          visible={visible}
+          reduced={reduced}
+        />
+        <span className={styles.metricLabel}>{metric.label}</span>
+      </div>
     </motion.li>
   );
 }
