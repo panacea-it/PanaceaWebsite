@@ -10,9 +10,8 @@ import {
   ChevronDown, ArrowRight, X, Menu,
 } from "lucide-react";
 import { FaEnvelope } from "react-icons/fa";
-import { FaPhoneVolume } from "react-icons/fa6";
-import { ImLocation2 } from "react-icons/im";
 import HiringTag from "./HiringTag";
+import { IndiaFlag, UsFlag } from "./FlagIcon";
 import { trackEmailClick, trackPhoneClick } from "@/lib/gtag";
 import { officesForRegion } from "@/data/offices";
 import { useVisitorRegion } from "@/components/VisitorRegionProvider";
@@ -714,9 +713,9 @@ export default function Navbar() {
     { id: "resources", label: "Resources", href: "/resources", hasDropdown: true, isActive: (p) => p.startsWith("/resources") },
     { id: "portfolio", label: "Portfolio", href: "/portfolio", hasDropdown: false, isActive: (p) => p.startsWith("/portfolio") },
     { id: "careers", label: "Careers", href: "/careers", hasDropdown: false, isActive: (p) => p.startsWith("/careers") },
+    { id: "contact", label: "Contact Us", href: "/contact", hasDropdown: false, isActive: (p) => p.startsWith("/contact") },
   ];
 
-  const contactActive = pathname.startsWith("/contact");
   const offices = officesForRegion(useVisitorRegion());
 
   return (
@@ -726,37 +725,28 @@ export default function Navbar() {
     >
       <div className={`${styles.topBar} hidden lg:block`}>
         <div className={styles.topBarInner}>
-          <div className={styles.topBarLeft}>
-            <a
-              href="mailto:contact@panaceaitservices.com"
-              onClick={trackEmailClick}
-              className={styles.contactLink}
-            >
-              <FaEnvelope size={10} />
-              contact@panaceaitservices.com
-            </a>
-            {offices.map((office) => (
+          <a
+            href="mailto:contact@panaceaitservices.com"
+            onClick={trackEmailClick}
+            className={styles.contactLink}
+          >
+            <FaEnvelope size={11} />
+            contact@panaceaitservices.com
+          </a>
+          <div className={styles.topBarRight}>
+            {offices.map((office, index) => (
               <React.Fragment key={office.id}>
-                <span className={styles.topSep} aria-hidden />
+                {index > 0 && <span className={styles.topSep} aria-hidden />}
                 <a
                   href={`tel:${office.phoneTel}`}
                   onClick={trackPhoneClick}
                   className={styles.contactLink}
                 >
-                  <FaPhoneVolume size={10} />
+                  <span className={styles.flag} aria-hidden>
+                    {office.id === "india" ? <IndiaFlag /> : <UsFlag />}
+                  </span>
                   {office.phoneDisplay}
                 </a>
-              </React.Fragment>
-            ))}
-          </div>
-          <div className={styles.topBarRight}>
-            {offices.map((office, index) => (
-              <React.Fragment key={office.id}>
-                {index > 0 && <span className={styles.topSep} aria-hidden />}
-                <span className={styles.contactLink}>
-                  <ImLocation2 size={10} />
-                  {office.shortAddress}
-                </span>
               </React.Fragment>
             ))}
           </div>
@@ -820,17 +810,6 @@ export default function Navbar() {
               <HiringTag hidden={isMobileMenuOpen} />
             </span>
 
-            <Link
-              href="/contact"
-              data-nav="contact"
-              className={`${styles.navContact} ${contactActive ? styles.navContactActive : ""}`}
-              onMouseEnter={() => setActiveDropdown(null)}
-              aria-current={contactActive ? "page" : undefined}
-            >
-              Contact Us
-              <ArrowRight className={styles.navContactArrow} aria-hidden />
-            </Link>
-
             <button
               type="button"
               onClick={() => openQuote("manual")}
@@ -838,7 +817,6 @@ export default function Navbar() {
               onMouseEnter={() => setActiveDropdown(null)}
             >
               <span className={styles.quoteLabel}>Request Quote</span>
-              <ArrowRight className={styles.quoteArrow} aria-hidden />
             </button>
 
             <span className={styles.desktopHiring}>
